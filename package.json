@@ -22,7 +22,6 @@
   "homepage": "https://github.com/nickhowell6425/cdlc-map#readme",
   "dependencies": {
     "bcrypt": "^3.0.6",
-    "bcrypt-nodejs": "latest",
     "body-parser": "~1.15.2",
     "connect-flash": "~0.1.1",
     "cookie-parser": "~1.4.3",
