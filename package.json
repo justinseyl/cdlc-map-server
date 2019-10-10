@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js",
+    "test": "nodemon -e js,ejs,html -w . -w public -w views -w routes -w models server.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,24 @@
   },
   "homepage": "https://github.com/nickhowell6425/cdlc-map#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
+    "bcrypt-nodejs": "latest",
+    "body-parser": "~1.15.2",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "ejs": "~2.5.2",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
-    "hbs": "^4.0.5"
+    "express-session": "~1.14.1",
+    "hbs": "^4.0.5",
+    "method-override": "~2.3.6",
+    "moment": "^2.24.0",
+    "morgan": "~1.7.0",
+    "mysql": "^2.17.1",
+    "nodemon": "^1.19.3",
+    "passport": "~0.3.2",
+    "passport-local": "~1.0.0",
+    "q": "^1.5.1"
   }
 }

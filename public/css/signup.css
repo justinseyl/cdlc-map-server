@@ -1,0 +1,95 @@
+@font-face {
+  font-family: 'MontserratRegular';
+  font-weight: normal;
+  src: url('montserrat_regular.eot');
+  src: url('montserrat_regular.eot?#iefix') format('embedded-opentype'),
+       url('montserrat_regular.woff2') format('woff2'),
+       url('montserrat_regular.woff') format('woff'),
+       url('montserrat_regular.ttf')  format('truetype'),
+}
+
+html * {
+   font-family: 'MontserratRegular' !important;
+}
+
+body {
+  background-color: lightgrey;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'MontserratRegular' !important;
+}
+
+html, body {
+  -webkit-overflow-scrolling: touch;
+}
+
+.container {
+  margin-top: 150px;
+  align-content: center;
+}
+
+.card {
+  max-width: 515px;
+  width: 65%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+  background-color: #ffffff;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 40px 50px;
+}
+
+.card h1 {
+  margin-top: 0px; color: #3C4152;	font-family: Montserrat;	font-size: 32px;	font-weight: bold;	line-height: 42px;	text-align: center;
+}
+
+.txt-hr {
+  height: 3px;	margin-top: 0px; width: 30px;	border-radius: 1.5px;	background-color: #6975FF;	box-shadow: 0 1px 5px 0 #DCE4FF;}
+}
+
+.form-group p {
+  margin-bottom: 10px; color: #525766 !important;	font-family: Montserrat !important;	font-size: 12px !important;	font-weight: bold !important;	line-height: 15px !important;
+}
+
+.split-top {
+  padding-left: 0px;
+}
+
+.split-btm {
+  padding-right: 0px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-control {
+  box-sizing: border-box;	height: 46px;	border: 1px solid #F2F2FA;	border-radius: 6px;	background-color: #FCFCFF; color: #3C4152;	font-family: "Montserrat Medium";	font-size: 14px;	line-height: 18px;
+}
+
+.form-control:active,.form-control:focus {
+  border: 1px solid #6975FF;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+input::placeholder {
+  opacity: 0.3;	color: #3C4152;	font-family: "Montserrat Medium";	font-size: 14px;	line-height: 18px;
+}
+
+.signup-button {
+  height: 62px;	width: 100%;	border-radius: 10px;	background-color: #6975FF; border: none; box-shadow: 0 6px 18px 0 rgba(0,0,0,0.12); color: #FFFFFF;	font-family: Montserrat;	font-size: 18px;	font-weight: bold;	letter-spacing: 0.5px;	line-height: 22px;	text-align: center;}
+}
+
+.bottom-hr {
+  height: 1px;	width: 100%;	background-color: #F2F2FA; box-shadow: none; margin-top: 50px !important;
+}
+
+.alt-text {
+  color: #3C4152;	font-family: "Montserrat Medium";	font-size: 14px;	line-height: 18px;	text-align: center;
+}
+
+.alt-link {
+  color: #6975FF;	font-family: Montserrat;	font-size: 14px;	font-weight: bold;	line-height: 18px;	text-align: center;
+}
