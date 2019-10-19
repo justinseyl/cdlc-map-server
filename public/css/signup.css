@@ -1,19 +1,11 @@
-@font-face {
-  font-family: 'MontserratRegular';
-  font-weight: normal;
-  src: url('montserrat_regular.eot');
-  src: url('montserrat_regular.eot?#iefix') format('embedded-opentype'),
-       url('montserrat_regular.woff2') format('woff2'),
-       url('montserrat_regular.woff') format('woff'),
-       url('montserrat_regular.ttf')  format('truetype'),
-}
+import "typeface-montserrat";
 
 html * {
-   font-family: 'MontserratRegular' !important;
+   font-family: 'Montserrat', sans-serif;
 }
 
 body {
-  background-color: lightgrey;
+  background-image: url("/assets/background.svg");
   background-size: cover;
   background-repeat: no-repeat;
   font-family: 'MontserratRegular' !important;
@@ -29,27 +21,53 @@ html, body {
 }
 
 .card {
-  max-width: 515px;
-  width: 65%;
+  position: relative;
   height: auto;
-  border-radius: 6px;
-  box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
-  background-color: #ffffff;
-  margin-top: auto;
-  margin-bottom: auto;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  box-shadow: 0 4px 16px 0 rgba(29, 29, 31, 0.36);
+  border: solid 1px rgba(255, 255, 255, 0.02);
+  background-color: rgba(255, 255, 255, 0.06);
   padding: 40px 50px;
 }
 
+.tr {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.tl {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.bl {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 .card h1 {
-  margin-top: 0px; color: #3C4152;	font-family: Montserrat;	font-size: 32px;	font-weight: bold;	line-height: 42px;	text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
 }
 
 .txt-hr {
-  height: 3px;	margin-top: 0px; width: 30px;	border-radius: 1.5px;	background-color: #6975FF;	box-shadow: 0 1px 5px 0 #DCE4FF;}
-}
-
-.form-group p {
-  margin-bottom: 10px; color: #525766 !important;	font-family: Montserrat !important;	font-size: 12px !important;	font-weight: bold !important;	line-height: 15px !important;
+  height: 3px;	margin-top: 0px; width: 30px;	background-color: #4ab3ad; border: none;}
 }
 
 .split-top {
@@ -62,10 +80,48 @@ html, body {
 
 .form-group {
   margin-bottom: 25px;
+  padding: 0px;
 }
 
-.form-control {
-  box-sizing: border-box;	height: 46px;	border: 1px solid #F2F2FA;	border-radius: 6px;	background-color: #FCFCFF; color: #3C4152;	font-family: "Montserrat Medium";	font-size: 14px;	line-height: 18px;
+input.form-control,select.form-control {
+  height: 46px;
+  border-radius: 2px;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border: solid 1px rgba(242, 242, 250, 0.05);
+  background-color: rgba(252, 252, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition-delay: 9999s;
+    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+}
+
+input.form-control:hover,input.form-control:active,input.form-control:focus,
+select.form-control:hover,select.form-control:active,select.form-control:focus {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: solid 1px #4ab3ad;
+  background-color: rgba(255, 255, 255, 0.05);
+  caret-color: #4ab3ad;
+}
+
+input#email-input.form-control:hover,input#email-input.form-control:active,input#email-input.form-control:focus {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: solid 1px #4ab3ad;
+  background-color: rgba(255, 255, 255, 0.05);
+  caret-color: #4ab3ad;
 }
 
 .form-control:active,.form-control:focus {
@@ -79,29 +135,74 @@ input::placeholder {
 }
 
 .signup-button {
-  height: 62px;	width: 100%;	border-radius: 10px;	background-color: #6975FF; border: none; box-shadow: 0 6px 18px 0 rgba(0,0,0,0.12); color: #FFFFFF;	font-family: Montserrat;	font-size: 18px;	font-weight: bold;	letter-spacing: 0.5px;	line-height: 22px;	text-align: center;}
+  height: 62px;
+  width: 100%;
+  margin-top: 40px;
+  text-align: center;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+  border: solid 1px #4ab3ad;
+  background-color: rgba(74, 179, 173, 0.1);
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.44px;
+  text-align: center;
+  color: #ffffff;
 }
 
 .bottom-hr {
-  height: 1px;	width: 100%;	background-color: #F2F2FA; box-shadow: none; margin-top: 50px !important;
+  height: 1px;	width: 100%;
+  box-shadow: none;
+  margin-top: 50px !important;
+  opacity: 0.05;
+  background-color: #f2f2fa;
 }
 
 .alt-text {
-  color: #3C4152;	font-family: "Montserrat Medium";	font-size: 14px;	line-height: 18px;	text-align: center;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
 }
 
 .alt-link {
-  color: #6975FF;	font-family: Montserrat;	font-size: 14px;	font-weight: bold;	line-height: 18px;	text-align: center;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4ab3ad;
 }
 
 .footer {
-  max-width: 515px;
   text-align: center;
   margin-top: 40px;
 }
 
 .footer p {
-  opacity: 0.6;	color: #525766;	font-family: "Montserrat SemiBold";	font-size: 16px;	letter-spacing: 0.89px;	line-height: 19px;
+  opacity: 0.4;
+  font-family: 'MontserratRegular' !important;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.89px;
+  color: #ffffff;
 }
 
 .logo-container img {
