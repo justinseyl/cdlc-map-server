@@ -7,7 +7,7 @@ const morgan        = require('morgan');
 const cookieParser  = require('cookie-parser');
 const bodyParser    = require('body-parser');
 const session       = require('express-session');
-const Q = require('q');
+const Q             = require('q');
 
 var port            = process.env.PORT || 8080;
 
@@ -20,7 +20,7 @@ app.use(bodyParser());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));
+app.use(session({ secret: 'roadrecon' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

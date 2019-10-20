@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Sign In</title>
+    <title>Forgot Password</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600" rel="stylesheet">
@@ -19,39 +19,26 @@
     <img class="bl" src="/assets/bl-corner.svg"></img>
     <img class="br" src="/assets/br-corner.svg"></img>
 
-    <h1>SIGN IN</h1>
+    <h1><a href="/login"><img class="back-arrow" src="/assets/icon-close-copy.svg"></img></a>FORGOT PASSWORD</h1>
     <hr class="txt-hr">
 
+    <p class="free-text">Please enter your email address below and we will send you a link to reset your password.</p>
+
     <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+    <% if (errMessage.length > 0) { %>
+        <div class="alert alert-danger"><%= errMessage %></div>
     <% } %>
 
-    <form action="/login" method="post">
+    <form action="/forgot" method="post">
         <div class="form-group">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">EMAIL ADDRESS</p>
             <input id="email-input" type="text" class="form-control" placeholder="Enter Your Email..." name="email" required>
         </div>
-        <div class="form-group">
-            <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">PASSWORD</p>
-            <input type="password" class="form-control" placeholder="Enter Your Password..." name="password" required>
-        </div>
 
-        <div class="mid-lin">
-          <div class="checkbox col-sm-6">
-             <input type="checkbox" id="checkbox" name="remember" value="">
-             <label for="checkbox"><span>Stay signed in</span></label>
-          </div>
-          <div class="forgot-pass col-sm-6">
-            <a href="/forgot">Forgot your password?</a>
-          </div>
-        </div>
-
-        <button type="submit" class="signup-button">SIGN IN</button>
+        <button type="submit" class="signup-button-frg">SEND MY LINK</button>
     </form>
-
-    <hr class="bottom-hr">
-
-    <p class="alt-text">Don’t have an account?<a class="alt-link" href="/signup">  SIGN UP</a></p>
 
 </div>
 

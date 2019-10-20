@@ -28,14 +28,14 @@ module.exports = function(passport) {
         if (err) return done(err);
 
         if (result.length <= 0) {
-          return done(null, false, req.flash('loginMessage', 'No user found.'));
+          return done(null, false, req.flash('loginMessage', 'No User Found.'));
         } else {
           if (result[0].password) {
             bcrypt.compare(password, result[0].password, function(err, res) {
               if(res) {
                 return done(null, email);
               } else {
-                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong Password.'));
               }
             });
           }
