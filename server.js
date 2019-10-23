@@ -26,6 +26,6 @@ app.use(passport.session());
 app.use(flash());
 app.use(express.static(__dirname + '/public'))
 
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport);
 
 app.listen(port,'0.0.0.0', () => console.log(`CDLC app listening on port ${port}!`))

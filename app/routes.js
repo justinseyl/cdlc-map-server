@@ -6,9 +6,11 @@ const nodemailer    = require('nodemailer');
 
 module.exports = function(app, passport) {
 
-    app.get('/', isLoggedIn, function(req, res) {
+    app.get('/', function(req, res) {
         res.render('home.ejs', {
-            user : req.user
+            user : req.user,
+            page:'Home',
+            menuId:'home'
         });
     });
 
@@ -16,16 +18,14 @@ module.exports = function(app, passport) {
         res.render('login.ejs', { message: req.flash('loginMessage') });
     });
 
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/',
-        failureRedirect : '/login',
-        failureFlash : true
-    }), function(req, res) {
-      if (req.body.remember) {
-        req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
-      } else {
-        req.session.cookie.expires = false;
-      }
+    app.post('/login',
+      passport.authenticate('local-login', { failureRedirect: '/login', failureFlash: true }),
+      function(req, res, next) {
+        if (!req.body.remember_me) { return next(); }
+
+      },
+      function(req, res) {
+        res.redirect('/');
     });
 
     app.get('/signup', function(req, res) {
@@ -38,9 +38,17 @@ module.exports = function(app, passport) {
         failureFlash : true
     }));
 
-    app.get('/profile', isLoggedIn, function(req, res) {
+    // app.get('/profile', isLoggedIn, function(req, res) {
+    //     res.render('profile.ejs', {
+    //         user : req.user
+    //     });
+    // });
+
+    app.get('/profile', function(req, res) {
         res.render('profile.ejs', {
-            user : req.user
+            user : req.user,
+            page:'My Profile',
+            menuId:'profile'
         });
     });
 

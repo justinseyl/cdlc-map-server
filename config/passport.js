@@ -1,8 +1,9 @@
-var LocalStrategy   = require('passport-local').Strategy;
-const bcrypt        = require('bcrypt');
-const saltRounds    = 10;
-const moment        = require('moment');
-var db              = require('./conn.js');
+var LocalStrategy       = require('passport-local').Strategy;
+var RememberMeStrategy  = require('passport-remember-me').Strategy;
+const bcrypt            = require('bcrypt');
+const saltRounds        = 10;
+const moment            = require('moment');
+var db                  = require('./conn.js');
 
 module.exports = function(passport) {
 
