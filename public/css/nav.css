@@ -15,6 +15,18 @@
 }
 .nav-custom-header {
   float: left;
+  display: inline-flex;
+}
+.nav-custom-header h1 {
+  margin: 0px;
+  font-size: 24px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin-left: 15px;
 }
 .nav-custom-ul {
   text-align: center;
@@ -23,11 +35,11 @@
   height: 100%;
 }
 .nav-custom-ul>li {
-    position: relative;
     display: inline-block;
     margin-right: 70px;
     height: 100%;
     position: relative;
+    line-height: 40px;
 }
 .nav-custom-ul>li:last-child {
   margin-right: 0px;
@@ -40,6 +52,9 @@
   line-height: normal;
   letter-spacing: normal;
   color: #43484b;
+}
+.nav-custom-ul>li>img {
+  vertical-align: middle;
 }
 .nav-custom-ul>li.active>a {
   font-size: 13px;
