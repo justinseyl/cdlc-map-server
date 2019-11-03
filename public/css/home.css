@@ -133,9 +133,13 @@ path:hover, circle:hover {
   float: right;
   margin-top: 35px;
   padding-left: 30px;
+  height: 528px;
+  overflow-y: scroll;
+  direction: rtl;
 }
 #state-tbl {
   width: 100%;
+  direction: ltr;
 }
 #state-tbl tr th {
   font-size: 11px;
@@ -171,4 +175,35 @@ path:hover, circle:hover {
 .records-bubble {
   background-color: rgba(74, 179, 173, 0.1);
   padding: 2px 13px;
+}
+.footer-map {
+  position: absolute;
+  bottom: -30px;
+  opacity: 0.6;
+  text-align: center;
+}
+svg[stateLevel] {
+  display: block;
+  margin: auto;
+  padding: 20px;
+  padding-bottom: 50px;
+}
+#back-to-home {
+  position: absolute;
+  top: 0;
+  display: inline-flex;
+  cursor: pointer;
+}
+#back-to-home h1 {
+  margin: 0px;
+  margin-left: 10px;
+  padding: 0px;
+  opacity: 0.89;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: normal;
+  color: #ffffff;
 }

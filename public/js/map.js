@@ -15,3 +15,11 @@ if(ios) {
     return false;
   });
 }
+
+$('#map-states path').on('click', function() {
+  var st = $(this).attr('id');
+
+  $("#map-states").hide();
+  $("#back-to-home").show();
+  $("svg[stateLevel=" + st + "]").show();
+});
