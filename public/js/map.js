@@ -23,3 +23,9 @@ $('#map-states path').on('click', function() {
   $("#back-to-home").show();
   $("svg[stateLevel=" + st + "]").show();
 });
+
+$('#back-to-home').on('click', function() {
+  $("#map-states").show();
+  $("#back-to-home").hide();
+  $("svg[stateLevel]").hide();
+});
