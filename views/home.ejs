@@ -8,6 +8,21 @@
 
   <% include partials/menu %>
 
+  <div id="add-trouble-popup" class="popup-panel" style="display:none;">
+  	<div class="card-popup">
+      <img class="tr" src="/assets/tr-corner.svg"></img>
+      <img class="tl" src="/assets/tl-corner.svg"></img>
+      <img class="bl" src="/assets/bl-corner.svg"></img>
+      <img class="br" src="/assets/br-corner.svg"></img>
+
+  		<div class="popup-header">ADD TROUBLE AREA</div>
+  		<img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
+  		<hr class="popup-hr">
+      <p class="popup-desc">Please tell us where the trouble area is within the state and a brief description about the issue.</p>
+  		<form id="edit-book-form"></form>
+  	</div>
+  </div>
+
   <div class="container-main">
 
     <div class="card card-main">
@@ -36,7 +51,7 @@
       <div class="inner-card-block">
         <div class="map-header">
           <h1>TROUBLE AREA EVENTS</h1>
-          <div class="custom-buttons">ADD TROUBLE AREA</div>
+          <div class="custom-buttons" onclick="popAddTrouble()">ADD TROUBLE AREA</div>
         </div>
 
         <div id="map-container">
@@ -214,6 +229,9 @@
     </div>
 
   </div>
+
+  <div id="cover" style="display:none;"></div>
+
 </body>
 <% include partials/script %>
 <script src="/js/map.js"></script>
