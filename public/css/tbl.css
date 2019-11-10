@@ -1,0 +1,67 @@
+.table>thead>tr>th {
+  font-size: 11px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.25);
+  border: none;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  border: none !important;
+}
+.table>tbody>tr>td {
+  opacity: 0.9;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+.table>tbody>tr:nth-child(even) {
+  background-color: transparent;
+}
+.table>tbody>tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+.new {
+  width: 37px;
+  background-color: rgba(74, 179, 173, 0.1);
+  display: inline-flex;
+  vertical-align: text-top;
+  margin-right: 15px;
+  margin-left: 7px;
+}
+.new img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.table-headers {
+  padding-top: 10px;
+  height: 40px;
+  padding-bottom: 30px;
+}
+.county-label {
+  display: inline-flex;
+  padding: 0px;
+}
+.county-label h1 {
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    margin: 0;
+    text-align: left;
+    margin-left: 15px;
+}
+.county-label img {
+  cursor: pointer;
+}

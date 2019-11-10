@@ -11,8 +11,8 @@ module.exports = function(passport) {
         done(null, user);
     });
 
-    passport.deserializeUser(function(email, done) {
-  		db.query("select * from users where email = '" + email + "'", (err, result) => {
+    passport.deserializeUser(function(li_usr, done) {
+  		db.query("select * from users where email = '" + li_usr.email + "'", (err, result) => {
           done(err, result[0]);
       });
     });
@@ -34,7 +34,8 @@ module.exports = function(passport) {
           if (result[0].password) {
             bcrypt.compare(password, result[0].password, function(err, res) {
               if(res) {
-                return done(null, email);
+                let li_usr = {email:email,state:result[0].state};
+                return done(null, li_usr);
               } else {
                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong Password.'));
               }

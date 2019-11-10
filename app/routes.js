@@ -3,6 +3,7 @@ const db            = require('../config/conn.js');
 const async         = require("async");
 const crypto        = require('crypto');
 const nodemailer    = require('nodemailer');
+const uuidv4 = require('uuid/v4');
 
 module.exports = function(app, passport) {
 
@@ -10,7 +11,8 @@ module.exports = function(app, passport) {
         res.render('home.ejs', {
             user : req.user,
             page:'Home',
-            menuId:'home'
+            menuId:'home',
+            statecode: req.user.state
         });
     });
 
@@ -32,11 +34,10 @@ module.exports = function(app, passport) {
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
 
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/',
-        failureRedirect : '/signup',
-        failureFlash : true
-    }));
+    app.post('/signup', passport.authenticate('local-signup', { failureRedirect : '/signup', failureFlash : true }),
+    function(req, res) {
+      res.redirect('/');
+    });
 
     // app.get('/profile', isLoggedIn, function(req, res) {
     //     res.render('profile.ejs', {
@@ -50,6 +51,29 @@ module.exports = function(app, passport) {
             page:'My Profile',
             menuId:'profile'
         });
+    });
+
+    app.post('/submitNewTrouble', function(req, res, next){
+      let query = "insert into tr_area (id,state,county,description,created_at,status) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active')";
+      db.query(query, (err, result) => {
+        if (err) throw err;
+
+        res.redirect('county_table?state=' + req.body.state + '&county=' + req.body.county + '');
+      });
+   });
+
+    app.get('/county_table', function(req, res) {
+      let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from tr_area where status = 'active' and state = '" + req.query.state + "' and county = '" + req.query.county + "'";
+      db.query(query, (err, result) => {
+        if (err) throw err;
+console.log(result);
+        res.render('county_table.ejs', {
+            user : req.user,
+            page:'Home',
+            menuId:'home',
+            formdata: result
+        });
+      });
     });
 
     app.get('/reset/:token', function(req, res) {

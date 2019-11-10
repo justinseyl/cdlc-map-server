@@ -1,5 +1,4 @@
-
-var state_specific: {
+var state_specific = {
     "12001": {
       name: "Alachua",
       description: "default",
@@ -21994,4 +21993,4 @@ var state_specific: {
       hover_color: "default",
       url: "default"
     }
-  }
+  };
