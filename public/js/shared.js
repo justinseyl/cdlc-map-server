@@ -16,12 +16,21 @@ function popAddTrouble(user) {
   setCountyPicker(state);
 }
 
+function popAddTroubleTbl(st,ct) {
+  $("#cover").css('display','block');
+  $("#add-trouble-popup").css('display','block');
+
+  $("#add-trouble-state-id").val(st);
+
+  setCountyPicker(st,ct);
+}
+
 $("#add-trouble-state-id").on('change', function (e) {
     var valueSelected = this.value;
     setCountyPicker(valueSelected);
 });
 
-function setCountyPicker(state) {
+function setCountyPicker(state,ct) {
   $("#add-trouble-county-id").empty();
 
   var svg = $("svg[stateLevel='" + state + "'] path");
@@ -39,8 +48,12 @@ function setCountyPicker(state) {
     return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
   }));
 
-  var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
-  $("#add-trouble-county-id").prepend(initHtml);
+  if (ct) {
+    $("#add-trouble-county-id").val(ct);
+  } else {
+    var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    $("#add-trouble-county-id").prepend(initHtml);
+  }
 }
 
 function popViewEmerg() {

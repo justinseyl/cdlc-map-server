@@ -13,18 +13,19 @@ var port            = process.env.PORT || 8080;
 
 require('./config/passport')(passport);
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.use(flash());
+app.use(express.static(__dirname + '/public'))
+
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser());
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
 app.use(session({ secret: 'roadrecon' }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
-app.use(express.static(__dirname + '/public'))
 
 require('./app/routes.js')(app, passport);
 

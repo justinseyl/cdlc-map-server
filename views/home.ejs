@@ -225,102 +225,25 @@
             </div>
         </div>
         <div class="list-states">
-          <table id="state-tbl">
+          <table id="state-tbl" class="state-tbl">
             <tr>
               <th>STATE</th>
               <th>REPORTS</th>
             </tr>
-            <tr>
-              <td>FLORIDA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>TEXAS</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>CALIFORNIA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>FLORIDA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>TEXAS</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>CALIFORNIA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>FLORIDA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>TEXAS</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>CALIFORNIA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>FLORIDA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>TEXAS</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>CALIFORNIA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>FLORIDA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>TEXAS</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
-            <tr>
-              <td>CALIFORNIA</td>
-              <td>
-                <span class="records-bubble">22</span>
-              </td>
-            </tr>
+            <% for (var i = 0; i < groupstate.length; i++) { %>
+              <tr>
+                <td>
+                  <%= groupstate[i].state %>
+                </td>
+                <td>
+                  <span class="records-bubble">
+                    <%= groupstate[i].num %>
+                  </span>
+                </td>
+              </tr>
+            <% }; %>
           </table>
+          <table id="county-tbl" class="state-tbl" style="display:none;"></table>
         </div>
       </div>
 

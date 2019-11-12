@@ -152,3 +152,15 @@ textarea {
   letter-spacing: normal;
   color: #e2e5ee;
 }
+.county-label h2 {
+  opacity: 0.9;
+  font-size: 12px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: 0.46px;
+  color: #4ab3ad;
+  margin: 0px;
+  margin-left: 10px;
+}

@@ -7,13 +7,19 @@ const uuidv4 = require('uuid/v4');
 
 module.exports = function(app, passport) {
 
-    app.get('/', function(req, res) {
+    app.get('/', isLoggedIn, function(req, res) {
+      let query = "select state,count(*) as num from tr_area where status = 'active' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
+      db.query(query, (err, result) => {
+        if (err) throw err;
+
         res.render('home.ejs', {
-            user : req.user,
-            page:'Home',
-            menuId:'home',
-            statecode: req.user.state
+              user : req.user,
+              page:'Home',
+              menuId:'home',
+              statecode: req.user.state,
+              groupstate: result
         });
+      });
     });
 
     app.get('/login', function(req, res) {
@@ -39,12 +45,6 @@ module.exports = function(app, passport) {
       res.redirect('/');
     });
 
-    // app.get('/profile', isLoggedIn, function(req, res) {
-    //     res.render('profile.ejs', {
-    //         user : req.user
-    //     });
-    // });
-
     app.get('/profile', function(req, res) {
         res.render('profile.ejs', {
             user : req.user,
@@ -62,11 +62,22 @@ module.exports = function(app, passport) {
       });
    });
 
+   app.get('/getCountyByState', function(req, res, next){
+     let state = req.query.state;
+     let query = "select Upper(county) as county,count(*) as num from tr_area where status = 'active' and state = '" + state + "' group by 1 order by 1";
+
+     db.query(query, (err, rescty) => {
+       if (err) throw err;
+
+       res.send(rescty);
+     });
+   });
+
     app.get('/county_table', function(req, res) {
       let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from tr_area where status = 'active' and state = '" + req.query.state + "' and county = '" + req.query.county + "'";
       db.query(query, (err, result) => {
         if (err) throw err;
-console.log(result);
+
         res.render('county_table.ejs', {
             user : req.user,
             page:'Home',

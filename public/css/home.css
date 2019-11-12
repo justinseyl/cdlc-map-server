@@ -144,11 +144,11 @@ path:hover, circle:hover {
   direction: rtl;
   border-left: 1px solid rgba(239, 242, 255, 0.05);
 }
-#state-tbl {
+.state-tbl {
   width: 100%;
   direction: ltr;
 }
-#state-tbl tr th {
+.state-tbl tr th {
   font-size: 11px;
   font-weight: bold;
   font-stretch: normal;
@@ -157,19 +157,19 @@ path:hover, circle:hover {
   letter-spacing: 0.5px;
   color: rgba(255, 255, 255, 0.25);
 }
-#state-tbl th:last-child,
-#state-tbl td:last-child {
+.state-tbl th:last-child,
+.state-tbl td:last-child {
     text-align: right;
 }
-#state-tbl tr {
+.state-tbl tr {
   height: 55px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-#state-tbl tr:first-child {
+.state-tbl tr:first-child {
   height: 30px;
   border: none;
 }
-#state-tbl tr td {
+.state-tbl tr td {
   opacity: 0.9;
   font-size: 16px;
   font-weight: 500;

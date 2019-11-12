@@ -26,12 +26,19 @@ $('#map-states path').on('click', function() {
   $("#map-states").hide();
   $("#back-to-home").show();
   $("svg[stateLevel=" + st + "]").show();
+  $("#state-tbl").hide();
+
+  $.get("/getCountyByState?state=" + st, function (data) {
+    buildTable(data);
+  });
 });
 
 $('#back-to-home').on('click', function() {
   $("#map-states").show();
   $("#back-to-home").hide();
   $("svg[stateLevel]").hide();
+  $("#county-tbl").hide();
+  $("#state-tbl").show();
 
   global_state = '';
   global_county = '';
@@ -46,3 +53,33 @@ $("svg[stateLevel] path").on('click', function() {
 
   window.location.href = 'county_table?state=' + global_state + '&county=' + global_county;
 });
+
+function buildTable(data) {
+  let cty = $("#county-tbl");
+
+  cty.empty();
+  cty.show();
+
+  var header = '<tr>'+
+  '              <th>COUNTY</th>'+
+  '              <th>REPORTS</th>'+
+  '            </tr>';
+
+  cty.append(header);
+
+  $.each(data, function(i,item){
+
+    var html = '<tr>'+
+    '                <td>'+
+    '                  ' + item.county +
+    '                </td>'+
+    '                <td>'+
+    '                  <span class="records-bubble">'+
+    '                    ' + item.num +
+    '                  </span>'+
+    '                </td>'+
+    '              </tr>';
+
+    cty.append(html);
+  });
+}
