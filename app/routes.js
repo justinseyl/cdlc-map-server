@@ -53,8 +53,22 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/events', isLoggedIn, function(req, res) {
+      let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from tr_area where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+      db.query(query, (err, result) => {
+        if (err) throw err;
+
+        res.render('events.ejs', {
+            user : req.user,
+            page:'My Events',
+            menuId:'events',
+            event: result
+        });
+      });
+    });
+
     app.post('/submitNewTrouble', function(req, res, next){
-      let query = "insert into tr_area (id,state,county,description,created_at,status) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active')";
+      let query = "insert into tr_area (id,state,county,description,created_at,status,userid) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "')";
       db.query(query, (err, result) => {
         if (err) throw err;
 
