@@ -183,6 +183,7 @@ path:hover, circle:hover {
   line-height: normal;
   letter-spacing: normal;
   color: #ffffff;
+  cursor: pointer;
 }
 .records-bubble {
   background-color: rgba(74, 179, 173, 0.1);

@@ -19,8 +19,17 @@ if(ios) {
   });
 }
 
+$('#state-tbl tbody tr td').on('click', function() {
+  var st = $(this).html().trim();
+  clickstate(st);
+});
+
 $('#map-states path').on('click', function() {
   var st = $(this).attr('id');
+  clickstate(st);
+});
+
+function clickstate(st) {
   global_state = st;
 
   $("#map-states").hide();
@@ -31,7 +40,7 @@ $('#map-states path').on('click', function() {
   $.get("/getCountyByState?state=" + st, function (data) {
     buildTable(data);
   });
-});
+}
 
 $('#back-to-home').on('click', function() {
   $("#map-states").show();
@@ -49,10 +58,14 @@ $("svg[stateLevel] path").on('click', function() {
   var statecode = cl.split('_').pop();
   let st = state_specific[statecode].name;
 
+  countyClick(st);
+});
+
+function countyClick(st) {
   global_county = st;
 
   window.location.href = 'county_table?state=' + global_state + '&county=' + global_county;
-});
+}
 
 function buildTable(data) {
   let cty = $("#county-tbl");
@@ -81,5 +94,10 @@ function buildTable(data) {
     '              </tr>';
 
     cty.append(html);
+  });
+
+  $('#county-tbl tr td').on('click', function() {
+    var st = $(this).html().trim();
+    countyClick(st);
   });
 }
