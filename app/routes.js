@@ -8,7 +8,7 @@ const uuidv4 = require('uuid/v4');
 module.exports = function(app, passport) {
 
     app.get('/', isLoggedIn, function(req, res) {
-      let query = "select state,count(*) as num from tr_area where status = 'active' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
+      let query = "select state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
       db.query(query, (err, result) => {
         if (err) throw err;
 
@@ -54,7 +54,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/events', isLoggedIn, function(req, res) {
-      let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from tr_area where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+      let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from tr_area where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
       db.query(query, (err, result) => {
         if (err) throw err;
 
@@ -68,7 +68,7 @@ module.exports = function(app, passport) {
     });
 
     app.post('/submitNewTrouble', function(req, res, next){
-      let query = "insert into tr_area (id,state,county,description,created_at,status,userid) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "')";
+      let query = "insert into tr_area (id,state,county,description,created_at,status,userid,manage) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','pending')";
       db.query(query, (err, result) => {
         if (err) throw err;
 
@@ -76,9 +76,9 @@ module.exports = function(app, passport) {
       });
    });
 
-   app.get('/getCountyByState', function(req, res, next){
+    app.get('/getCountyByState', function(req, res, next){
      let state = req.query.state;
-     let query = "select Upper(county) as county,count(*) as num from tr_area where status = 'active' and state = '" + state + "' group by 1 order by 1";
+     let query = "select Upper(county) as county,count(*) as num from tr_area where status = 'active' and manage = 'accepted' and state = '" + state + "' group by 1 order by 1";
 
      db.query(query, (err, rescty) => {
        if (err) throw err;
@@ -88,7 +88,7 @@ module.exports = function(app, passport) {
    });
 
     app.get('/county_table', function(req, res) {
-      let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from tr_area where status = 'active' and state = '" + req.query.state + "' and county = '" + req.query.county + "' order by created_at desc";
+      let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from tr_area where status = 'active' and manage = 'accepted' and state = '" + req.query.state + "' and county = '" + req.query.county + "' order by created_at desc";
       db.query(query, (err, result) => {
         if (err) throw err;
 

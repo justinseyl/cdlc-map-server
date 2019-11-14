@@ -1,14 +1,13 @@
-import "typeface-montserrat";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap');
 
 html * {
-   font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
   background-image: url("/assets/background.svg");
   background-size: cover;
   background-repeat: no-repeat;
-  font-family: 'MontserratRegular' !important;
 }
 
 html, body {

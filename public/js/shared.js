@@ -68,6 +68,11 @@ function closepopup() {
   location.reload();
 }
 
-function setLocalState(st) {
-console.log(st);
-}
+$(document).ready(function() {
+  $('table').DataTable({
+    "ordering": true,
+    "searching": false,
+    "pagingType": "full_numbers",
+    "dom": '<bottam>p'
+  });
+});
