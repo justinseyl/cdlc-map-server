@@ -86,3 +86,12 @@ html * {
   bottom: -15px;
   left: 25%;
 }
+.click-header {
+  display: flex;
+  cursor: pointer;
+}
+.click-header:hover,.click-header:focus,.click-header:active {
+  color: transparent;
+  background: transparent;
+  border: transparent;
+}
