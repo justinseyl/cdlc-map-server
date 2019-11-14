@@ -73,6 +73,16 @@ $(document).ready(function() {
     "ordering": true,
     "searching": false,
     "pagingType": "full_numbers",
-    "dom": '<bottam>p'
+    "dom": '<bottam>p',
+    "fnDrawCallback": function(oSettings) {
+        if ($('table tr').length < 11) {
+            $('.dataTables_paginate').hide();
+        }
+    },
+    "fnInitComplete" : function() {
+      if ($(this).find('tbody tr').length<=0) {
+         $(this).parent().hide();
+      }
+   }
   });
 });
