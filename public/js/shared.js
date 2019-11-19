@@ -73,16 +73,18 @@ $(document).ready(function() {
     "ordering": true,
     "searching": false,
     "pagingType": "full_numbers",
-    "dom": '<bottam>p',
-    "fnDrawCallback": function(oSettings) {
-        if ($('table tr').length < 11) {
-            $('.dataTables_paginate').hide();
-        }
+    "drawCallback": function(settings) {
+      var pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate');
+      pagination.toggle(this.api().page.info().pages > 1);
     },
     "fnInitComplete" : function() {
-      if ($(this).find('tbody tr').length<=0) {
+      if ($(this).find('.dataTables_empty').length==1) {
          $(this).parent().hide();
       }
-   }
+   },
+   "pageLength": 10,
+   "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+   "dom": 'Bfrt<"bottom"lip>r',
+   "responsive": true
   });
 });

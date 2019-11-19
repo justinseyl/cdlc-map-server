@@ -90,6 +90,7 @@ html * {
 .custom-buttons-tbl {
   display: inline-flex;
     height: 40px;
+    margin-top: -10px;
     float: right;
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
@@ -180,4 +181,14 @@ table tbody td:last-child,table thead tr th:last-child {
   color: #fff;
   background-color: #4ab3ad;
   border-color: #4ab3ad;
+}
+.dataTables_info {
+  color: #4ab3ad;
+  opacity: 0.9;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
 }
