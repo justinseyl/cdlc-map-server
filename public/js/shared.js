@@ -73,6 +73,7 @@ $(document).ready(function() {
     "ordering": true,
     "searching": false,
     "pagingType": "full_numbers",
+    "dom": '<bottam>p',
     "drawCallback": function(settings) {
       var pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate');
       pagination.toggle(this.api().page.info().pages > 1);
@@ -82,9 +83,6 @@ $(document).ready(function() {
          $(this).parent().hide();
       }
    },
-   "pageLength": 10,
-   "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-   "dom": 'Bfrt<"bottom"lip>r',
    "responsive": true
   });
 });

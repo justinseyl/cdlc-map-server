@@ -45,7 +45,8 @@ module.exports = function(app, passport) {
       res.redirect('/');
     });
 
-    app.get('/profile', function(req, res) {
+    app.get('/profile', isLoggedIn, function(req, res) {
+      console.log(req.user);
         res.render('profile.ejs', {
             user : req.user,
             page:'My Profile',
