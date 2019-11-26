@@ -169,3 +169,7 @@ textarea {
   margin: 0px;
   margin-left: 10px;
 }
+.lnk-inline {
+  display: inline-block;
+  padding: 0px;
+}

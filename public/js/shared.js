@@ -1,3 +1,8 @@
+function verify(id) {
+  $("#cover").css('display','block');
+  $(id).css('display','block');
+}
+
 function popAddTrouble(user) {
   var state = '';
   var county = '';
