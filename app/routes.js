@@ -33,6 +33,9 @@ module.exports = function(app, passport) {
 
       },
       function(req, res) {
+        if (req.user.role && req.user.role == 'admin') {
+          app.set('views', 'views_admin');
+        }
         res.redirect('/');
     });
 
@@ -176,6 +179,10 @@ module.exports = function(app, passport) {
       ], function(err) {
         res.redirect('/');
       });
+    });
+
+    app.get('/deleteaccount', function(req, res) {
+      console.log(req.user);
     });
 
     app.get('/forgot', function(req, res) {
