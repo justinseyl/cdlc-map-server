@@ -63,8 +63,21 @@ module.exports = function(app, passport) {
 			});
 
 		app.get('/profile', isLoggedIn, function(req, res) {
-				console.log(req.user);
-				res.render('profile.ejs', {
+
+				let role = 'driver';
+
+				if (req.user.role) {
+						role = req.user.role
+				}
+
+				let route_map = {
+						'admin': 'adminprofile.ejs',
+						'driver': 'profile.ejs',
+						'sales'  : 'salesprofile.ejs',
+						'processor': 'processorprofile.ejs'
+				}
+
+				res.render(route_map[role], {
 						user : req.user,
 						page:'My Profile',
 						menuId:'profile'
