@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <% include partials/head %>
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/tbl.css">
+</head>
+<body>
+
+  <% include partials/adminmenu %>
+  <% include partials/map-counties %>
+
+  <div class="container-main">
+
+    <div class="card card-main">
+      <img class="tr" src="/assets/tr-corner.svg"></img>
+      <img class="tl" src="/assets/tl-corner.svg"></img>
+      <img class="bl" src="/assets/bl-corner.svg"></img>
+      <img class="br" src="/assets/br-corner.svg"></img>
+
+      <div class="inner-card-block">
+
+        <div class="table-headers">
+          <div class="col-md-7 county-label">
+            <h1 style="margin-left:8px;">DRIVERS</h1>
+            <% var count = 0; %>
+            <% for (var i = 0; i < event.length; i++) { %>
+              <% if (event[i].isnew) { %>
+                <% count ++ %>
+              <% } %>
+            <% } %>
+            <% if (count > 0) { %>
+              <h2>(<%= count %> NEW)
+              </h2>
+            <% } %>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>EMAIL</th>
+              <th>FIRST NAME</th>
+              <th>LAST NAME</th>
+              <th>CREATED</th>
+            </tr>
+          </thead>
+          <colgroup>
+                  <col class="col-md-7">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+              </colgroup>
+          <tbody>
+            <% for (var i = 0; i < event.length; i++) { %>
+              <tr>
+                <td><%= event[i].email %> </td>
+                <td><%= event[i].first %> </td>
+                <td><%= event[i].last %> </td>
+                <td><%= event[i].created %> </td>
+              </tr>
+            <% }; %>
+          </tbody>
+        </table>
+        <% if (event.length <= 0) { %>
+          <div class="no-data">No drivers</div>
+        <% }; %>
+      </div>
+    </div>
+  </div>
+
+  <div id="cover" style="display:none;"></div>
+
+</body>
+<% include partials/script %>
+<script src="/js/map-counties.js"></script>
+<script src="/js/county-tbl.js"></script>
+</html>

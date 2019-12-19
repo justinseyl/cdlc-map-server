@@ -20,13 +20,29 @@ module.exports = function(app, passport) {
 						}
 
 						if (req.user.role) {
-								res.render(route_map[req.user.role], {
-										user : req.user,
-										page:'Home',
-										menuId:'home',
-										statecode: req.user.state,
-										groupstate: result
-								})
+								if (req.user.role == 'admin') {
+										let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + "tr_area" + " where status = 'active' ";
+										db.query(query, (err, result2) => {
+												if (err) throw err;
+
+												res.render(route_map[req.user.role], {
+														user : req.user,
+														page:'Home',
+														menuId:'home',
+														event: result2,
+														statecode: req.user.state,
+														groupstate: result
+												});
+										});
+								} else {
+										res.render(route_map[req.user.role], {
+												user : req.user,
+												page:'Home',
+												menuId:'home',
+												statecode: req.user.state,
+												groupstate: result
+										})
+								}
 						} else {
 								res.render('home.ejs', {
 										user : req.user,
@@ -56,8 +72,6 @@ module.exports = function(app, passport) {
 		app.get('/signup', function(req, res) {
 				res.render('signup.ejs', { message: req.flash('signupMessage') });
 		});
-
-		//
 
 		app.post('/signup', passport.authenticate('local-signup', { failureRedirect : '/signup', failureFlash : true }),
 			function(req, res) {
@@ -115,6 +129,40 @@ module.exports = function(app, passport) {
 								user : req.user,
 								page:'My Events',
 								menuId:'events',
+								event: result
+						});
+				});
+		});
+
+		app.get('/drivers', isLoggedIn, function(req, res) {
+
+				// let role = 'driver';
+				//
+				// if (req.user.role) {
+				// 		role = req.user.role
+				// }
+				//
+				// let route_map = {
+				// 		'admin': 'adminevents.ejs',
+				// 		'driver': 'events.ejs',
+				// 		'sales'  : 'salesevents.ejs',
+				// 		'processor': 'processorevents.ejs'
+				// }
+				//
+				// let dbs = {
+				// 		'driver': 'tr_area',
+				// 		'sales'  : 'tr_area_sales',
+				// 		'processor': 'tr_area_processor'
+				// }
+
+				let query = "select email, first, last, date_format(updated_at, '%m/%d/%y') as created from users where role IS NULL";
+				db.query(query, (err, result) => {
+						if (err) throw err;
+
+						res.render('drivers.ejs', {
+								user : req.user,
+								page:'drivers',
+								menuId:'event',
 								event: result
 						});
 				});

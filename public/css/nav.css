@@ -95,3 +95,10 @@ html * {
   background: transparent;
   border: transparent;
 }
+
+.iefix {
+  /*position:absolute;*/
+  /*top:0;*/
+  /*width:100%;*/
+  overflow: auto;
+}

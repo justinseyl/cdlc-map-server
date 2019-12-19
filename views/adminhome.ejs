@@ -3,10 +3,9 @@
 <head>
   <% include partials/head %>
   <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/tbl.css">
 </head>
 <body>
-
-  <% include partials/adminmenu %>
 
   <div id="add-trouble-popup" class="popup-panel" style="display:none;">
   	<div class="card-popup">
@@ -121,6 +120,10 @@
   	</div>
   </div>
 
+
+  <div class="iefix">
+      <% include partials/adminmenu %>
+  </div>
   <div class="container-main">
 
     <div class="card card-main">
@@ -146,7 +149,7 @@
       <img class="bl" src="/assets/bl-corner.svg"></img>
       <img class="br" src="/assets/br-corner.svg"></img>
 
-      <div class="inner-card-block">
+        <div class="inner-card-block">
         <div class="map-header">
           <h1>TROUBLE AREA EVENTS</h1>
           <div class="custom-buttons" onclick="popAddTrouble('<%= statecode %>')">ADD TROUBLE AREA</div>
@@ -249,7 +252,86 @@
 
     </div>
 
+      <div class="card card-main">
+          <img class="tr" src="/assets/tr-corner.svg"></img>
+          <img class="tl" src="/assets/tl-corner.svg"></img>
+          <img class="bl" src="/assets/bl-corner.svg"></img>
+          <img class="br" src="/assets/br-corner.svg"></img>
+
+          <div class="inner-card-block">
+
+              <div class="table-headers">
+                  <div class="col-md-7 county-label">
+                      <h1 style="margin-left:8px;">DRIVER EVENTS</h1>
+                      <% var count = 0; %>
+                      <% for (var i = 0; i < event.length; i++) { %>
+                          <% if (event[i].isnew) { %>
+                              <% count ++ %>
+                          <% } %>
+                      <% } %>
+                      <% if (count > 0) { %>
+                          <h2>(<%= count %> NEW)
+                          </h2>
+                      <% } %>
+                  </div>
+                  <div class="col-md-5">
+                      <div id="popTroubleTbl" class="custom-buttons-tbl">ADD TROUBLE AREA</div>
+                  </div>
+              </div>
+
+              <table class="table">
+                  <thead>
+                  <tr>
+                      <th>DESCRIPTION</th>
+                      <th>STATE</th>
+                      <th>COUNTY</th>
+                      <th>DATE</th>
+                      <th>TIME</th>
+                      <th>AUDIT</th>
+                  </tr>
+                  </thead>
+                  <colgroup>
+                      <col class="col-md-7">
+                      <col class="col-md-1">
+                      <col class="col-md-1">
+                      <col class="col-md-1">
+                      <col class="col-md-1">
+                      <col class="col-md-1">
+                  </colgroup>
+                  <tbody>
+                  <% for (var i = 0; i < event.length; i++) { %>
+                      <tr>
+                          <td class="expand">
+                              <% if (event[i].isnew) { %>
+                                  <div class="new"><img src="/assets/new.svg"></img></div>
+                              <% } %>
+                              <%= event[i].description %>
+                          </td>
+                          <td><%= event[i].state %> </td>
+                          <td><%= event[i].county %> </td>
+                          <td><%= event[i].created %> </td>
+                          <td><%= event[i].ctime %> </td>
+                          <% if (event[i].manage == 'ACCEPTED') { %>
+                              <td><div class="tbl-audit-green"><%= event[i].manage %></div></td>
+                          <% } else if (event[i].manage == 'PENDING') { %>
+                              <td><div class="tbl-audit-yellow"><%= event[i].manage %></div></td>
+                          <% } else { %>
+                              <td><div class="tbl-audit-red"><%= event[i].manage %></div></td>
+                          <% }; %>
+                      </tr>
+                  <% }; %>
+                  </tbody>
+              </table>
+              <% if (event.length <= 0) { %>
+                  <div class="no-data">We are sorry, we are not able to help in this area.</div>
+              <% }; %>
+          </div>
+
+      </div>
+
   </div>
+
+
 
   <div id="cover" style="display:none;"></div>
 
@@ -257,4 +339,5 @@
 <% include partials/script %>
 <script src="/js/map-counties.js"></script>
 <script src="/js/map.js"></script>
+<script src="/js/county-tbl.js"></script>
 </html>
