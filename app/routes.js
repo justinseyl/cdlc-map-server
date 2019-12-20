@@ -3,7 +3,7 @@ const db            = require('../config/conn.js');
 const async         = require("async");
 const crypto        = require('crypto');
 const nodemailer    = require('nodemailer');
-const uuidv4 = require('uuid/v4');
+const uuidv4 				= require('uuid/v4');
 
 module.exports = function(app, passport) {
 
@@ -31,7 +31,8 @@ module.exports = function(app, passport) {
 														menuId:'home',
 														event: result2,
 														statecode: req.user.state,
-														groupstate: result
+														groupstate: result,
+														picker: 'driver'
 												});
 										});
 								} else {

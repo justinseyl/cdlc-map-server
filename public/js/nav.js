@@ -8,4 +8,11 @@ $(document).ready(function(){
     var x = str.split('-un')[0];
 
     var i = $('#' + element + ' img').attr('src','/assets/' + x + '.svg');
+
+    var picker = $('meta[name="admin-picker"]').attr('content');
+    console.log(picker);
+});
+
+$('#admin-select').on('change', function() {
+  picker = this.value;
 });

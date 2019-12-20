@@ -22,24 +22,19 @@
           <a href="/alerts">EMERGENCY ALERTS</a>
           <div class="nav-hr" style="display:none;"></div>
         </li>
-          <li>
-              <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-                      <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                      <li><a href="#">HTML</a></li>
-                      <li><a href="#">CSS</a></li>
-                      <li><a href="#">JavaScript</a></li>
-                  </ul>
-              </div>
-          </li>
       </ul>
     </div>
-    <div class="col-sm-3">
-        <a href="/profile"><img class="nav-custom-icon" src="/assets/icon-my-profile-un.svg"></img></a>
-    </div>
-    <div class="col-sm-3">
-      <img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img>
+    <div class="col-sm-3" style="display:inline-flex;margin-top:5px;">
+      <div class="col-6 dropdown">
+        <select id="admin-select" class="dropdown-toggle" name="state" required>
+          <option value="driver">DRIVER</option>
+          <option value="proc">PROCESSOR</option>
+          <option value="sales">SALES</option>
+        </select>
+      </div>
+      <div class="col-6">
+        <img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img>
+        <a href="/profile"><img class="nav-custom-icon" style="margin-right:25px;" src="/assets/icon-my-profile-un.svg"></img></a>
+      </div>
     </div>
 </nav>
-

@@ -170,6 +170,10 @@ path:hover, circle:hover {
   height: 55px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
+.state-tbl tr:hover {
+  background-color: rgba(74, 179, 173, 0.1);
+  cursor: pointer;
+}
 .state-tbl tr:first-child {
   height: 30px;
   border: none;
