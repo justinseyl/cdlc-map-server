@@ -15,4 +15,5 @@ $(document).ready(function(){
 
 $('#admin-select').on('change', function() {
   picker = this.value;
+  $('meta[name="admin-picker"]').attr('content',picker);
 });
