@@ -41,7 +41,8 @@ module.exports = function(app, passport) {
 												page:'Home',
 												menuId:'home',
 												statecode: req.user.state,
-												groupstate: result
+												groupstate: result,
+												picker: 'driver'
 										})
 								}
 						} else {
@@ -50,7 +51,8 @@ module.exports = function(app, passport) {
 										page:'Home',
 										menuId:'home',
 										statecode: req.user.state,
-										groupstate: result
+										groupstate: result,
+										picker: 'driver'
 								});
 						}
 				});
@@ -97,7 +99,8 @@ module.exports = function(app, passport) {
 				res.render(route_map[role], {
 						user : req.user,
 						page:'My Profile',
-						menuId:'profile'
+						menuId:'profile',
+						picker: 'driver'
 				});
 		});
 
@@ -130,7 +133,8 @@ module.exports = function(app, passport) {
 								user : req.user,
 								page:'My Events',
 								menuId:'events',
-								event: result
+								event: result,
+								picker: 'driver'
 						});
 				});
 		});
@@ -164,7 +168,8 @@ module.exports = function(app, passport) {
 								user : req.user,
 								page:'drivers',
 								menuId:'event',
-								event: result
+								event: result,
+								picker: 'driver'
 						});
 				});
 		});
@@ -226,7 +231,8 @@ module.exports = function(app, passport) {
 								user : req.user,
 								page:'Home',
 								menuId:'home',
-								formdata: result
+								formdata: result,
+								picker: 'driver'
 						});
 				});
 		});
