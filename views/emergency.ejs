@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+    <title>Road Recon | Emergency Alerts</title>
+    <% include partials/head %>
+</head>
+<body>
+
+<nav class="nav-custom">
+    <div class="nav-custom-header col-sm-3">
+        <a href="/" class="click-header">
+            <img class="nav-custom-logo" src="/assets/icon.svg"></img>
+            <h1>ADMIN</h1>
+        </a>
+    </div>
+    <div class="nav-custom-collapse col-sm-6" id="myNavbar">
+        <ul class="nav-custom-ul">
+            <li id="home">
+                <img class="nav-custom-icon-main" src="/assets/icon-home-un.svg"></img>
+                <a href="/">HOME</a>
+                <div class="nav-hr" style="display:none;"></div>
+            </li>
+            <li id="events">
+                <img class="nav-custom-icon-main" src="/assets/icon-my-profile-un.svg"></img>
+                <a href="/<%=menuitem%>"><%=menuitem%></a>
+                <div class="nav-hr" style="display:none;"></div>
+            </li>
+            <li id="alerts">
+                <img class="nav-custom-icon-main" src="/assets/emergencyalerts.svg"></img>
+                <a href="/alerts">EMERGENCY ALERTS</a>
+                <div class="nav-hr" style="display:none;"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-3" style="display:inline-flex;margin-top:5px;">
+        <div class="col-6 dropdown">
+            <select id="admin-select" class="dropdown-toggle" onChange="window.location.href=this.value" name="state" required>
+                <option value="" selected="selected" hidden="hidden"><%= picker %></option>
+                <option value="/adminhome/driver">DRIVER</option>
+                <option value="/adminhome/processor">PROCESSOR</option>
+                <option value="/adminhome/sales">SALES</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img>
+            <a href="/profile"><img class="nav-custom-icon" style="margin-right:25px;" src="/assets/icon-my-profile-un.svg"></img></a>
+        </div>
+    </div>
+</nav>
+
+
+<div id="logout-verify-popup" class="popup-panel" style="display:none;">
+    <div class="card-popup">
+        <img class="tr" src="/assets/tr-corner.svg"></img>
+        <img class="tl" src="/assets/tl-corner.svg"></img>
+        <img class="bl" src="/assets/bl-corner.svg"></img>
+        <img class="br" src="/assets/br-corner.svg"></img>
+
+        <div class="popup-header">LOG OUT</div>
+        <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
+        <hr class="popup-hr">
+        <p class="popup-desc">Are you sure you wish to sign out of your account?</p>
+
+        <form action="/logout" method="get">
+            <button type="submit" class="submit-btn">YES, I'M SURE</button>
+        </form>
+
+        <div class="cancel-btn" onclick="closepopup()">NO, I CHANGED MY MIND</div>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="card col-6 mx-auto">
+
+        <img class="tr" src="/assets/tr-corner.svg"></img>
+        <img class="tl" src="/assets/tl-corner.svg"></img>
+        <img class="bl" src="/assets/bl-corner.svg"></img>
+        <img class="br" src="/assets/br-corner.svg"></img>
+
+        <h1>EMERGENCY ALERT</h1>
+        <hr class="txt-hr" style="margin:auto;margin-bottom:30px;">
+
+        <form method="post">
+            <div class="form-group" style="padding-right:20px;">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">Title</p>
+                <input type="text" class="form-control" placeholder="First Name..." name="first" value="" required>
+            </div>
+            <div class="form-group">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">State</p>
+                <input type="text" class="form-control" placeholder="Last Name..." name="last" value="" required>
+            </div>
+            <div class="form-group">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">County</p>
+                <input id="email-input" type="text" class="form-control" placeholder="Enter Your Email..." name="email" value="" readonly>
+            </div>
+            <div class="form-group">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">Description</p>
+                <input id="email-input" type="text" class="form-control" placeholder="Enter Your Email..." name="email" value="" readonly>
+            </div>
+
+            <button type="submit" class="signup-button" style="margin-top:25px;">Activate Alert</button>
+        </form>
+
+
+    </div>
+
+    <% include partials/cover %>
+
+</div>
+</body>
+<% include partials/script %>
+<script src="/js/signup.js"></script>
+</html>

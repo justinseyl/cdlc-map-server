@@ -180,6 +180,31 @@ module.exports = function(app, passport) {
 				});
 		});
 
+		app.get('/alerts', isLoggedIn, function(req, res) {
+
+				// let role = 'driver';
+				//
+				// if (req.user.role) {
+				// 		role = req.user.role
+				// }
+				//
+				// let route_map = {
+				// 		'admin': 'adminprofile.ejs',
+				// 		'driver': 'profile.ejs',
+				// 		'sales'  : 'salesprofile.ejs',
+				// 		'processor': 'processorprofile.ejs'
+				// }
+
+				res.render('emergency.ejs', {
+						user : req.user,
+						page:'Emergency Alerts',
+						menuId:'emergency',
+						picker: 'DRIVER',
+						menuitem: 'DRIVERS',
+						router: 'drivers'
+				});
+		});
+
 		app.get('/profile/sales', isLoggedIn, function(req, res) {
 
 				let query = "select * from users where email='sales@test' ";
@@ -277,7 +302,7 @@ module.exports = function(app, passport) {
 						res.render('drivers.ejs', {
 								user : req.user,
 								page:'drivers',
-								menuId:'event',
+								menuId:'drivers',
 								event: result,
 								picker: 'DRIVER',
 								menuitem: 'PROFILE',
