@@ -6,7 +6,48 @@
 </head>
 <body>
 
-<% include partials/adminmenu %>
+<nav class="nav-custom">
+	<div class="nav-custom-header col-sm-3">
+		<a href="/" class="click-header">
+			<img class="nav-custom-logo" src="/assets/icon.svg"></img>
+			<h1>ADMIN</h1>
+		</a>
+	</div>
+	<div class="nav-custom-collapse col-sm-6" id="myNavbar">
+		<ul class="nav-custom-ul">
+			<li id="home">
+				<img class="nav-custom-icon-main" src="/assets/icon-home-un.svg"></img>
+				<a href="/">HOME</a>
+				<div class="nav-hr" style="display:none;"></div>
+			</li>
+			<li id="events">
+				<img class="nav-custom-icon-main" src="/assets/icon-my-profile-un.svg"></img>
+				<a href="/<%=menuitem%>"><%=menuitem%></a>
+				<div class="nav-hr" style="display:none;"></div>
+			</li>
+			<li id="alerts">
+				<img class="nav-custom-icon-main" src="/assets/emergencyalerts.svg"></img>
+				<a href="/alerts">EMERGENCY ALERTS</a>
+				<div class="nav-hr" style="display:none;"></div>
+			</li>
+		</ul>
+	</div>
+	<div class="col-sm-3" style="display:inline-flex;margin-top:5px;">
+		<div class="col-6 dropdown">
+			<select id="admin-select" class="dropdown-toggle" onChange="window.location.href=this.value" name="state" required>
+				<option value="" selected="selected" hidden="hidden"><%= picker %></option>
+				<option value="/adminhome/driver">DRIVER</option>
+				<option value="/adminhome/processor">PROCESSOR</option>
+				<option value="/adminhome/sales">SALES</option>
+			</select>
+		</div>
+		<div class="col-6">
+			<img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img>
+			<a href="/profile"><img class="nav-custom-icon" style="margin-right:25px;" src="/assets/icon-my-profile-un.svg"></img></a>
+		</div>
+	</div>
+</nav>
+
 
 <div id="logout-verify-popup" class="popup-panel" style="display:none;">
   <div class="card-popup">

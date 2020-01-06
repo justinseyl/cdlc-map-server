@@ -32,7 +32,72 @@ module.exports = function(app, passport) {
 														event: result2,
 														statecode: req.user.state,
 														groupstate: result,
-														picker: 'driver'
+														picker: 'DRIVER',
+														menuitem: 'DRIVERS'
+												});
+										});
+								} else {
+										res.render(route_map[req.user.role], {
+												user : req.user,
+												page:'Home',
+												menuId:'home',
+												statecode: req.user.state,
+												groupstate: result,
+												picker: 'DRIVER'
+										})
+								}
+						} else {
+								res.render('home.ejs', {
+										user : req.user,
+										page:'Home',
+										menuId:'home',
+										statecode: req.user.state,
+										groupstate: result,
+										picker: 'DRIVER',
+								});
+						}
+				});
+		});
+
+		app.get('/adminhome/:role', isLoggedIn, function(req, res) {
+				let query = "select state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
+				db.query(query, (err, result) => {
+						if (err) throw err;
+
+						let role = req.params.role;
+
+						let route_map = {
+								'admin': 'adminhome.ejs',
+								'driver': 'driverhome.ejs',
+								'sales'  : 'saleshome.ejs',
+								'processor': 'processorhome.ejs'
+						}
+
+						let dbs = {
+								'driver': 'tr_area',
+								'sales'  : 'tr_area_sales',
+								'processor': 'tr_area_processor'
+						}
+
+						if (req.user.role) {
+								if (req.user.role == 'admin') {
+										let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' ";
+										db.query(query, (err, result2) => {
+												if (err) throw err;
+
+												let mitem = 'DRIVERS'
+												if (role != 'driver')
+														mitem = 'PROFILE'
+
+												res.render(route_map[req.user.role], {
+														user : req.user,
+														page:'Home',
+														menuId:'home',
+														event: result2,
+														statecode: req.user.state,
+														groupstate: result,
+														picker: role.toUpperCase(),
+														menuitem: mitem
 												});
 										});
 								} else {
@@ -56,7 +121,7 @@ module.exports = function(app, passport) {
 								});
 						}
 				});
-		});
+		})
 
 		app.get('/login', function(req, res) {
 				res.render('login.ejs', { message: req.flash('loginMessage') });
@@ -100,7 +165,8 @@ module.exports = function(app, passport) {
 						user : req.user,
 						page:'My Profile',
 						menuId:'profile',
-						picker: 'driver'
+						picker: 'DRIVER',
+						menuitem: 'DRIVERS'
 				});
 		});
 
@@ -134,7 +200,8 @@ module.exports = function(app, passport) {
 								page:'My Events',
 								menuId:'events',
 								event: result,
-								picker: 'driver'
+								picker: 'DRIVER',
+								menuitem: 'PROFILE'
 						});
 				});
 		});
@@ -169,7 +236,8 @@ module.exports = function(app, passport) {
 								page:'drivers',
 								menuId:'event',
 								event: result,
-								picker: 'driver'
+								picker: 'DRIVER',
+								menuitem: 'PROFILE'
 						});
 				});
 		});

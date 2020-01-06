@@ -26,10 +26,11 @@
     </div>
     <div class="col-sm-3" style="display:inline-flex;margin-top:5px;">
       <div class="col-6 dropdown">
-        <select id="admin-select" class="dropdown-toggle" name="state" required>
-          <option value="driver">DRIVER</option>
-          <option value="proc">PROCESSOR</option>
-          <option value="sales">SALES</option>
+        <select id="admin-select" class="dropdown-toggle" onChange="window.location.href=this.value" name="state" required>
+          <option value="" selected="selected" hidden="hidden"></option>
+          <option value="/adminhome/driver">DRIVER</option>
+          <option value="/adminhome/processor">PROCESSOR</option>
+          <option value="/adminhome/sales">SALES</option>
         </select>
       </div>
       <div class="col-6">

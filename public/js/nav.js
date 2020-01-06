@@ -10,6 +10,7 @@ $(document).ready(function(){
     var i = $('#' + element + ' img').attr('src','/assets/' + x + '.svg');
 
     var picker = $('meta[name="admin-picker"]').attr('content');
+    var menuitem = '';
     console.log(picker);
 });
 
