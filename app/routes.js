@@ -33,7 +33,8 @@ module.exports = function(app, passport) {
 														statecode: req.user.state,
 														groupstate: result,
 														picker: 'DRIVER',
-														menuitem: 'DRIVERS'
+														menuitem: 'DRIVERS',
+														router: 'drivers'
 												});
 										});
 								} else {
@@ -86,8 +87,15 @@ module.exports = function(app, passport) {
 												if (err) throw err;
 
 												let mitem = 'DRIVERS'
+												let route = ''
+
 												if (role != 'driver')
 														mitem = 'PROFILE'
+
+												if (role == 'sales')
+														route = 'profile/sales'
+												if (role == 'processor')
+														route = 'profile/processor'
 
 												res.render(route_map[req.user.role], {
 														user : req.user,
@@ -97,7 +105,8 @@ module.exports = function(app, passport) {
 														statecode: req.user.state,
 														groupstate: result,
 														picker: role.toUpperCase(),
-														menuitem: mitem
+														menuitem: mitem,
+														router: route
 												});
 										});
 								} else {
@@ -166,7 +175,40 @@ module.exports = function(app, passport) {
 						page:'My Profile',
 						menuId:'profile',
 						picker: 'DRIVER',
-						menuitem: 'DRIVERS'
+						menuitem: 'DRIVERS',
+						router: 'drivers'
+				});
+		});
+
+		app.get('/profile/sales', isLoggedIn, function(req, res) {
+
+				let query = "select * from users where email='sales@test' ";
+				db.query(query, (err, result) => {
+
+						res.render('salesadminprofile.ejs', {
+								user: result[0],
+								page: 'My Profile',
+								menuId: 'profile',
+								picker: 'SALES',
+								menuitem: 'PROFILE',
+								router: 'profile/sales'
+						});
+				});
+		});
+
+		app.get('/profile/processor', isLoggedIn, function(req, res) {
+
+				let query = "select * from users where email = 'processor@test'";
+				db.query(query, (err, result) => {
+
+						res.render('processoradminprofile.ejs', {
+								user:result[0],
+								page: 'My Profile',
+								menuId: 'profile',
+								picker: 'PROCESSOR',
+								menuitem: 'PROFILE',
+								router: 'profile/processor'
+						});
 				});
 		});
 
@@ -201,7 +243,8 @@ module.exports = function(app, passport) {
 								menuId:'events',
 								event: result,
 								picker: 'DRIVER',
-								menuitem: 'PROFILE'
+								menuitem: 'PROFILE',
+								router: 'drivers'
 						});
 				});
 		});
@@ -237,7 +280,8 @@ module.exports = function(app, passport) {
 								menuId:'event',
 								event: result,
 								picker: 'DRIVER',
-								menuitem: 'PROFILE'
+								menuitem: 'PROFILE',
+								router: 'drivers'
 						});
 				});
 		});
