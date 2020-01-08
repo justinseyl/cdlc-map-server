@@ -8,60 +8,69 @@ const uuidv4 				= require('uuid/v4');
 module.exports = function(app, passport) {
 
 		app.get('/', isLoggedIn, function(req, res) {
+				let alertquery = "select description from ealerts where status='active'"
 				let query = "select state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
-				db.query(query, (err, result) => {
-						if (err) throw err;
+				db.query(alertquery, (err, ares) => {
+						db.query(query, (err, result) => {
+								if (err) throw err;
 
-						let route_map = {
-								'admin': 'adminhome.ejs',
-								'driver': 'driverhome.ejs',
-								'sales'  : 'saleshome.ejs',
-								'processor': 'processorhome.ejs'
-						}
+								let route_map = {
+										'admin': 'adminhome.ejs',
+										'driver': 'driverhome.ejs',
+										'sales': 'saleshome.ejs',
+										'processor': 'processorhome.ejs'
+								}
 
-						if (req.user.role) {
-								if (req.user.role == 'admin') {
-										let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + "tr_area" + " where status = 'active' ";
-										db.query(query, (err, result2) => {
-												if (err) throw err;
+								if (req.user.role) {
+										if (req.user.role == 'admin') {
+												let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + "tr_area" + " where status = 'active' ";
+												db.query(query, (err, result2) => {
+														if (err) throw err;
 
+														res.render(route_map[req.user.role], {
+																user: req.user,
+																page: 'Home',
+																menuId: 'home',
+																event: result2,
+																statecode: req.user.state,
+																groupstate: result,
+																picker: 'DRIVER',
+																menuitem: 'DRIVERS',
+																router: 'drivers',
+																alert: ares[0].description
+														});
+												});
+										} else {
 												res.render(route_map[req.user.role], {
-														user : req.user,
-														page:'Home',
-														menuId:'home',
-														event: result2,
+														user: req.user,
+														page: 'Home',
+														menuId: 'home',
 														statecode: req.user.state,
 														groupstate: result,
 														picker: 'DRIVER',
-														menuitem: 'DRIVERS',
-														router: 'drivers'
-												});
-										});
+														alert: ares[0].description
+												})
+										}
 								} else {
-										res.render(route_map[req.user.role], {
-												user : req.user,
-												page:'Home',
-												menuId:'home',
+										res.render('home.ejs', {
+												user: req.user,
+												page: 'Home',
+												menuId: 'home',
 												statecode: req.user.state,
 												groupstate: result,
-												picker: 'DRIVER'
-										})
+												picker: 'DRIVER',
+											alert: ares[0].description
+										});
 								}
-						} else {
-								res.render('home.ejs', {
-										user : req.user,
-										page:'Home',
-										menuId:'home',
-										statecode: req.user.state,
-										groupstate: result,
-										picker: 'DRIVER',
-								});
-						}
+						});
 				});
 		});
 
 		app.get('/adminhome/:role', isLoggedIn, function(req, res) {
+				let alertquery = "select description from ealerts where status='active'"
 				let query = "select state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
+
+				db.query(alertquery, (err, ares) => {
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
@@ -70,13 +79,13 @@ module.exports = function(app, passport) {
 						let route_map = {
 								'admin': 'adminhome.ejs',
 								'driver': 'driverhome.ejs',
-								'sales'  : 'saleshome.ejs',
+								'sales': 'saleshome.ejs',
 								'processor': 'processorhome.ejs'
 						}
 
 						let dbs = {
 								'driver': 'tr_area',
-								'sales'  : 'tr_area_sales',
+								'sales': 'tr_area_sales',
 								'processor': 'tr_area_processor'
 						}
 
@@ -98,37 +107,41 @@ module.exports = function(app, passport) {
 														route = 'profile/processor'
 
 												res.render(route_map[req.user.role], {
-														user : req.user,
-														page:'Home',
-														menuId:'home',
+														user: req.user,
+														page: 'Home',
+														menuId: 'home',
 														event: result2,
 														statecode: req.user.state,
 														groupstate: result,
 														picker: role.toUpperCase(),
 														menuitem: mitem,
-														router: route
+														router: route,
+														alert: ares[0].description
 												});
 										});
 								} else {
 										res.render(route_map[req.user.role], {
-												user : req.user,
-												page:'Home',
-												menuId:'home',
+												user: req.user,
+												page: 'Home',
+												menuId: 'home',
 												statecode: req.user.state,
 												groupstate: result,
-												picker: 'driver'
+												picker: 'driver',
+												alert: ares[0].description
 										})
 								}
 						} else {
 								res.render('home.ejs', {
-										user : req.user,
-										page:'Home',
-										menuId:'home',
+										user: req.user,
+										page: 'Home',
+										menuId: 'home',
 										statecode: req.user.state,
 										groupstate: result,
-										picker: 'driver'
+										picker: 'driver',
+										alert: ares[0].description
 								});
 						}
+				});
 				});
 		})
 
@@ -182,26 +195,22 @@ module.exports = function(app, passport) {
 
 		app.get('/alerts', isLoggedIn, function(req, res) {
 
-				// let role = 'driver';
-				//
-				// if (req.user.role) {
-				// 		role = req.user.role
-				// }
-				//
-				// let route_map = {
-				// 		'admin': 'adminprofile.ejs',
-				// 		'driver': 'profile.ejs',
-				// 		'sales'  : 'salesprofile.ejs',
-				// 		'processor': 'processorprofile.ejs'
-				// }
+				let query = "select * from ealerts where status='active' ";
+				db.query(query, (err, result) => {
 
-				res.render('emergency.ejs', {
-						user : req.user,
-						page:'Emergency Alerts',
-						menuId:'emergency',
-						picker: 'DRIVER',
-						menuitem: 'DRIVERS',
-						router: 'drivers'
+						let rtn = result[0];
+
+						res.render('emergency.ejs', {
+								user: req.user,
+								page: 'Emergency Alerts',
+								menuId: 'emergency',
+								picker: 'DRIVER',
+								menuitem: 'DRIVERS',
+								router: 'drivers',
+								title: rtn.title,
+								state: rtn.state,
+								description: rtn.description
+						});
 				});
 		});
 
@@ -328,6 +337,19 @@ module.exports = function(app, passport) {
 						if (err) throw err;
 
 						res.redirect('/county_table/' + req.body.state + '/' + req.body.county);
+				});
+		});
+
+		app.post('/submitEmergency', function(req, res, next){
+				let query1 = "update ealerts set status='inactive' where status='active'"
+				db.query(query1, (err, result) => {
+
+						let query = "insert into " + "ealerts" + " (id,state,county,description,created_at,status,title) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.body.title + "')";
+						db.query(query, (err, result) => {
+								if (err) throw err;
+
+								res.redirect('/alerts');
+						});
 				});
 		});
 
