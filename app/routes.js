@@ -26,7 +26,7 @@ module.exports = function(app, passport) {
 
 								if (req.user.role) {
 										if (req.user.role == 'admin') {
-												let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + "tr_area" + " where status = 'active' ";
+												let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + "tr_area" + " where status = 'active' order by created_at desc";
 												db.query(query, (err, result2) => {
 														if (err) throw err;
 
@@ -156,7 +156,7 @@ module.exports = function(app, passport) {
 
 						if (req.user.role) {
 								if (req.user.role == 'admin') {
-										let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' ";
+										let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
 										db.query(query, (err, result2) => {
 												if (err) throw err;
 
@@ -402,7 +402,8 @@ module.exports = function(app, passport) {
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
-						res.redirect('/county_table/' + req.body.state + '/' + req.body.county);
+						// res.redirect('/county_table/' + req.body.state + '/' + req.body.county);
+						res.redirect('/events');
 				});
 		});
 
