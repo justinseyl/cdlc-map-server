@@ -8,11 +8,14 @@ const uuidv4 				= require('uuid/v4');
 module.exports = function(app, passport) {
 
 		app.get('/', isLoggedIn, function(req, res) {
-				let alertquery = "select description from ealerts where status='active'"
+				let alertquery = "select description, county, state, created_at from ealerts where status='active'"
 				let query = "select state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
 				db.query(alertquery, (err, ares) => {
 						db.query(query, (err, result) => {
 								if (err) throw err;
+
+								let date = moment(ares[0].created_at).format('MM/DD/YYYY');
+								let time = moment(ares[0].created_at).format('HH:MM A');
 
 								let route_map = {
 										'admin': 'adminhome.ejs',
@@ -37,7 +40,11 @@ module.exports = function(app, passport) {
 																picker: 'DRIVER',
 																menuitem: 'DRIVERS',
 																router: 'drivers',
-																alert: ares[0].description
+																alert: ares[0].description,
+																date: date,
+																time: time,
+																state: ares[0].state.toUpperCase(),
+																county: ares[0].county,
 														});
 												});
 										} else {
@@ -48,7 +55,11 @@ module.exports = function(app, passport) {
 														statecode: req.user.state,
 														groupstate: result,
 														picker: 'DRIVER',
-														alert: ares[0].description
+														alert: ares[0].description,
+														date: date,
+														time: time,
+														state: ares[0].state.toUpperCase(),
+														county: ares[0].county,
 												})
 										}
 								} else {
@@ -59,20 +70,74 @@ module.exports = function(app, passport) {
 												statecode: req.user.state,
 												groupstate: result,
 												picker: 'DRIVER',
-											alert: ares[0].description
+												alert: ares[0].description,
+												date: date,
+												time: time,
+												state: ares[0].state.toUpperCase(),
+												county: ares[0].county,
 										});
 								}
 						});
 				});
 		});
 
+		app.get('/edituser/:email', isLoggedIn, function(req, res) {
+				let email = req.params.email;
+
+				let query = "select first, last, state, email from users where email='" +email + "'" ;
+
+				db.query(query, (err, result) => {
+
+						let userinfo = result[0];
+						let firstname = userinfo.first;
+						let lastname = userinfo.last;
+						let state = userinfo.state;
+						let email = userinfo.email;
+						let name = firstname + " " + lastname;
+
+						let eventquery = "select state, county, description, created_at, manage from tr_area where userid='" + email + "'";
+
+						db.query(eventquery, (err, events) => {
+								res.render('driverdetail.ejs', {
+										user: req.user,
+										page: 'Driver Detail',
+										menuId: 'detail',
+										event: events,
+										picker: 'DRIVER',
+										menuitem: 'DRIVERS',
+										router: 'drivers',
+										firstname: firstname,
+										lastname: lastname,
+										state: state,
+										email: email,
+										name: name
+								});
+						})
+				})
+
+		})
+
+		app.get('/makeadmin/:email', isLoggedIn, function(req, res) {
+				let email = req.params.email;
+
+				let query = "update users set role='admin' where email='" +email + "'" ;
+
+				db.query(query, (err, result) => {
+						res.redirect('/drivers')
+				})
+
+		})
+
 		app.get('/adminhome/:role', isLoggedIn, function(req, res) {
-				let alertquery = "select description from ealerts where status='active'"
+				let alertquery = "select description, county, state, created_at from ealerts where status='active'"
 				let query = "select state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
 
 				db.query(alertquery, (err, ares) => {
 				db.query(query, (err, result) => {
 						if (err) throw err;
+
+						let date = moment(ares[0].created_at).format('MM/DD/YYYY');
+						let time = moment(ares[0].created_at).format('HH:MM A');
 
 						let role = req.params.role;
 
@@ -96,7 +161,7 @@ module.exports = function(app, passport) {
 												if (err) throw err;
 
 												let mitem = 'DRIVERS'
-												let route = ''
+												let route = 'drivers'
 
 												if (role != 'driver')
 														mitem = 'PROFILE'
@@ -116,7 +181,12 @@ module.exports = function(app, passport) {
 														picker: role.toUpperCase(),
 														menuitem: mitem,
 														router: route,
-														alert: ares[0].description
+														alert: ares[0].description,
+														date: date,
+														time: time,
+														county: ares[0].county,
+														state: ares[0].state.toUpperCase(),
+														county: ares[0].county,
 												});
 										});
 								} else {
@@ -127,7 +197,11 @@ module.exports = function(app, passport) {
 												statecode: req.user.state,
 												groupstate: result,
 												picker: 'driver',
-												alert: ares[0].description
+												alert: ares[0].description,
+												date: date,
+												time: time,
+												state: ares[0].state.toUpperCase(),
+												county: ares[0].county,
 										})
 								}
 						} else {
@@ -138,7 +212,11 @@ module.exports = function(app, passport) {
 										statecode: req.user.state,
 										groupstate: result,
 										picker: 'driver',
-										alert: ares[0].description
+										alert: ares[0].description,
+										date: date,
+										time: time,
+										state: ares[0].state.toUpperCase(),
+										county: ares[0].county,
 								});
 						}
 				});
@@ -284,26 +362,6 @@ module.exports = function(app, passport) {
 		});
 
 		app.get('/drivers', isLoggedIn, function(req, res) {
-
-				// let role = 'driver';
-				//
-				// if (req.user.role) {
-				// 		role = req.user.role
-				// }
-				//
-				// let route_map = {
-				// 		'admin': 'adminevents.ejs',
-				// 		'driver': 'events.ejs',
-				// 		'sales'  : 'salesevents.ejs',
-				// 		'processor': 'processorevents.ejs'
-				// }
-				//
-				// let dbs = {
-				// 		'driver': 'tr_area',
-				// 		'sales'  : 'tr_area_sales',
-				// 		'processor': 'tr_area_processor'
-				// }
-
 				let query = "select email, first, last, date_format(updated_at, '%m/%d/%y') as created from users where role IS NULL";
 				db.query(query, (err, result) => {
 						if (err) throw err;
@@ -319,6 +377,14 @@ module.exports = function(app, passport) {
 						});
 				});
 		});
+
+		app.get('/deleteuser/:email', isLoggedIn, function(req, res) {
+				let query = "DELETE FROM users where email='" + req.params.email + "'";
+
+				db.query(query, (err, result) => {
+						res.redirect('/drivers')
+				})
+		})
 
 		app.post('/submitNewTrouble', function(req, res, next){
 
@@ -344,7 +410,59 @@ module.exports = function(app, passport) {
 				let query1 = "update ealerts set status='inactive' where status='active'"
 				db.query(query1, (err, result) => {
 
-						let query = "insert into " + "ealerts" + " (id,state,county,description,created_at,status,title) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.body.title + "')";
+						let statemap = {
+								"AL":"Alabama",
+								"AZ":"Arizona" ,
+								"AR":"Arkansas",
+								"CA":"California",
+								"CO":"Colorado",
+								"CT":"Connecticut",
+								"DE":"Delaware",
+								"DC":"District Of Columbia",
+								"FL":"Florida",
+								"GA":"Georgia",
+								"ID":"Idaho",
+								"IL":"Illinois",
+								"IN":"Indiana",
+								"IA":"Iowa",
+								"KS":"Kansas",
+								"KY":"Kentucky",
+								"LA":"Louisiana",
+								"ME":"Maine",
+								"MD":"Maryland",
+								"MA":"Massachusetts",
+								"MI":"Michigan",
+								"MN":"Minnesota",
+								"MS":"Mississippi",
+								"MO":"Missouri",
+								"MT":"Montana",
+								"NE":"Nebraska",
+								"NV":"Nevada",
+								"NH":"New Hampshire",
+								"NJ":"New Jersey",
+								"NM":"New Mexico",
+								"NY":"New York",
+								"NC":"North Carolina",
+								"ND":"North Dakota",
+								"OH":"Ohio",
+								"OK":"Oklahoma",
+								"OR":"Oregon",
+								"PA":"Pennsylvania",
+								"RI":"Rhode Island",
+								"SC":"South Carolina",
+								"SD":"South Dakota",
+								"TN":"Tennessee",
+								"TX":"Texas",
+								"UT":"Utah",
+								"VT":"Vermont",
+								"VA":"Virginia",
+								"WA":"Washington",
+								"WV":"West Virginia",
+								"WI":"Wisconsin",
+								"WY":"Wyoming"
+									}
+
+						let query = "insert into " + "ealerts" + " (id,state,county,description,created_at,status,title) values ('" + uuidv4() + "','" + statemap[req.body.state] + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.body.title + "')";
 						db.query(query, (err, result) => {
 								if (err) throw err;
 

@@ -96,7 +96,7 @@
           <tbody>
             <% for (var i = 0; i < event.length; i++) { %>
               <tr>
-                <td><%= event[i].email %> </td>
+                <td><a href="/edituser/<%=event[i].email%>"><%= event[i].email %> </a></td>
                 <td><%= event[i].first %> </td>
                 <td><%= event[i].last %> </td>
                 <td><%= event[i].created %> </td>
