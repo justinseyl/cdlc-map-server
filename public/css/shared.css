@@ -4,6 +4,11 @@ html * {
   font-family: 'Montserrat', sans-serif;
 }
 .card-popup {
+  background-image: url(/assets/card-bkg.svg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
   position: relative;
   height: auto;
   -webkit-backdrop-filter: blur(3px);
