@@ -11,6 +11,9 @@ html * {
 .container-main {
   margin: 20px 40px;
 }
+#map-states {
+  margin: auto;
+}
 .card-main {
   padding: 0px;
   margin-bottom: 20px;
@@ -57,14 +60,16 @@ html * {
   height: 50px;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
-  background-color: rgba(239, 242, 255, 0.05);
+  box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+  border: solid 1px #4ab3ad;
+  background-color: rgba(74, 179, 173, 0.1);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   text-align: center;
-  color: #4ab3ad;
+  color: #fff;
   padding: 15px;
   margin: auto;
   margin-right: 0px;
@@ -168,7 +173,6 @@ path:hover, circle:hover {
 }
 .state-tbl tr {
   height: 55px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .state-tbl tr:hover {
   background-color: rgba(74, 179, 173, 0.1);
@@ -188,6 +192,7 @@ path:hover, circle:hover {
   letter-spacing: normal;
   color: #ffffff;
   cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .records-bubble {
   background-color: rgba(74, 179, 173, 0.1);
@@ -197,7 +202,7 @@ path:hover, circle:hover {
   position: absolute;
   bottom: -30px;
   opacity: 0.6;
-  text-align: center;
+  text-align: left;
 }
 svg[stateLevel] {
   display: block;
@@ -223,4 +228,68 @@ svg[stateLevel] {
   line-height: 24px;
   letter-spacing: normal;
   color: #ffffff;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .container-main {
+    margin: 20px;
+  }
+  .inner-card {
+    display: block;
+    text-align: center;
+    padding: 15px;
+  }
+  .emergency-logo {
+    margin-bottom: 20px;
+  }
+  .emergency-title {
+    width: 100%;
+    padding: 0px;
+  }
+  .emergency-title h1 {
+    text-align: center;
+    font-size: 26px;
+  }
+  .emergency-title p {
+    font-size: 14px;
+    text-align: left;
+    margin-top: 15px;
+  }
+  .view-emergency {
+    height: 40px;
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    padding: 10px;
+  }
+  .map-header h1 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .custom-buttons {
+    width: 32px;
+    height: 32px;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    border: solid 1px #4ab3ad;
+    background-color: rgba(74, 179, 173, 0.1);
+    padding: 7px;
+  }
+  .custom-buttons img {
+    transform: rotate(45deg);
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+  .list-states {
+    width: 100%;
+    margin-top: 25px;
+    padding-left: 15px;
+    border: none;
+    height: auto;
+  }
 }

@@ -1,5 +1,5 @@
 <nav class="nav-custom">
-    <div class="nav-custom-header col-sm-3">
+    <div class="nav-custom-header col-xs-1 col-sm-3">
       <a href="/" class="click-header">
         <img class="nav-custom-logo" src="/assets/icon.svg"></img>
         <h1>ADMIN</h1>
@@ -22,9 +22,15 @@
           <a href="/alerts">EMERGENCY ALERTS</a>
           <div class="nav-hr" style="display:none;"></div>
         </li>
+        <li id="profile" class="show-mobile">
+          <img class="nav-custom-icon-main" src="/assets/icon-my-notifications.svg"></img>
+        </li>
+        <li class="show-mobile">
+          <a href="/profile"><img class="nav-custom-icon" src="/assets/icon-my-profile-un.svg"></img></a>
+        </li>
       </ul>
     </div>
-    <div class="col-sm-3" style="display:inline-flex;margin-top:5px;">
+    <div class="col-sm-3 hide-mobile" style="display:inline-flex;margin-top:5px;">
       <div class="col-6 dropdown">
         <select id="admin-select" class="dropdown-toggle" onChange="window.location.href=this.value" name="state" required>
           <option value="" selected="selected" hidden="hidden"></option>
