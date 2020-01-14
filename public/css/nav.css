@@ -125,3 +125,61 @@ html * {
   /*width:100%;*/
   overflow: auto;
 }
+.show-mobile {
+  display: none;
+}
+.hide-mobile {
+  display: inline-flex;
+}
+
+@media only screen and (max-width: 720px) {
+  [class*="col-"] {
+    width: 100%;
+  }
+  .nav-custom-header h1,.nav-custom-ul>li>a,.dropdown {
+    display: none;
+  }
+  .nav-custom-header {
+    width: 10%;
+    padding: 0px;
+  }
+  .nav-custom-ul {
+    position: absolute;
+  }
+  .nav-custom-ul>li {
+    margin-right: 30px;
+    vertical-align: top;
+  }
+  .nav-custom {
+    padding: 15px 20px;
+    overflow: hidden;
+  }
+  .show-mobile {
+    display: block;
+  }
+  .hide-mobile {
+    display: none;
+  }
+  .nav-custom-collapse {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .nav-add-icons-mobile {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0px;
+  }
+  #profile {
+    margin-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .nav-custom-ul>li {
+    margin-right: 15px;
+  }
+  #profile {
+    margin-right: 10px;
+  }
+}

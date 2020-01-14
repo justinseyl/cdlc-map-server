@@ -123,14 +123,14 @@
 
   <div class="iefix">
       <nav class="nav-custom">
-          <div class="nav-custom-header col-sm-3">
+          <div class="nav-custom-header col-xs-1 col-sm-3">
               <a href="/" class="click-header">
                   <img class="nav-custom-logo" src="/assets/icon.svg"></img>
                   <h1>ADMIN</h1>
               </a>
           </div>
           <div class="nav-custom-collapse col-sm-6" id="myNavbar">
-              <ul class="nav-custom-ul">
+              <ul class="nav-custom-ul col-xs-6 col-md-12 mx-auto">
                   <li id="home">
                       <img class="nav-custom-icon-main" src="/assets/icon-home-un.svg"></img>
                       <a href="/">HOME</a>
@@ -147,8 +147,17 @@
                       <div class="nav-hr" style="display:none;"></div>
                   </li>
               </ul>
+              <ul class="nav-custom-ul nav-add-icons-mobile show-mobile">
+                <li id="profile">
+                  <img class="nav-custom-icon-main" src="/assets/icon-my-profile-un.svg"></img>
+                  <a href="/profile"></a>
+                </li>
+                <li>
+                  <img class="nav-custom-icon-main" src="/assets/icon-my-notifications.svg"></img>
+                </li>
+              </ul>
           </div>
-          <div class="col-sm-3" style="display:inline-flex;margin-top:5px;">
+          <div class="col-sm-3 hide-mobile">
               <div class="col-6 dropdown">
                   <select id="admin-select" class="dropdown-toggle" onChange="window.location.href=this.value" name="state" required>
                       <option value="" selected="selected" hidden="hidden"><%= picker %></option>
@@ -259,15 +268,18 @@
 
             <% include partials/map-counties %>
 
-            <div class="footer-map col-sm-12">
-              <div class="logo-container">
-                <img src="/assets/logo1.svg"></img>
-                <img src="/assets/logo2.svg"></img>
-                <img src="/assets/logo3.svg"></img>
-                <img src="/assets/logo4.png"></img>
-              </div>
-            </div>
         </div>
+
+
+        <div class="footer-map col-sm-12">
+          <div class="logo-container">
+            <img src="/assets/logo1.svg"></img>
+            <img src="/assets/logo2.svg"></img>
+            <img src="/assets/logo3.svg"></img>
+            <img src="/assets/logo4.png"></img>
+          </div>
+        </div>
+
         <div class="list-states">
           <table id="state-tbl" class="state-tbl">
             <tr>
@@ -315,9 +327,9 @@
                           </h2>
                       <% } %>
                   </div>
-                  <div class="col-md-5">
+                  <!-- <div class="col-md-5">
                       <div id="popTroubleTbl" class="custom-buttons-tbl">ADD TROUBLE AREA</div>
-                  </div>
+                  </div> -->
               </div>
 
               <table class="table">

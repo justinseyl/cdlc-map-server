@@ -372,3 +372,12 @@ input::placeholder {
   margin-top: 10px;
   margin-bottom: 25px;
 }
+
+
+
+@media only screen and (max-width: 768px) {
+  .container {
+    margin: 10px 20px !important;
+    width: 100%;
+  }
+}
