@@ -271,6 +271,17 @@ module.exports = function(app, passport) {
 				});
 		});
 
+		app.post('/profile', isLoggedIn, function(req, res) {
+				let data = req.body;
+
+				let query1 = "update users set first='" + data.first + "', last='" + data.last + "',email='" + data.email + "', state='" + data.state + "' where email='" + data.email +"'";
+
+				db.query(query1, (err, result) => {
+						res.redirect('/')
+				})
+
+		});
+
 		app.get('/alerts', isLoggedIn, function(req, res) {
 
 				let query = "select * from ealerts where status='active' ";
@@ -485,6 +496,10 @@ module.exports = function(app, passport) {
 
 		app.get('/county_table/:state/:county', function(req, res) {
 				let role = 'driver';
+				let pick = 'DRIVER';
+
+				if (req.query.picker)
+						pick = req.query.picker;
 
 				if (req.user.role) {
 					role = req.user.role
@@ -492,16 +507,22 @@ module.exports = function(app, passport) {
 				let dbs = {
 						'driver': 'tr_area',
 						'sales'  : 'tr_area_sales',
-						'processor': 'tr_area_processor'
+						'processor': 'tr_area_processor',
+						'admin': 'tr_area'
 				}
+
+				let dbchoice = dbs[role];
+				if (req.query.picker)
+						dbchoice = dbs[req.query.picker]
 
 				let route_map = {
 						'driver': 'county_table.ejs',
 						'sales'  : 'sales_county_table.ejs',
-						'processor': 'processor_county_table.ejs'
+						'processor': 'processor_county_table.ejs',
+						'admin': 'admin_county_table.ejs'
 				}
 
-				let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbs[role] + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and county = '" + req.params.county + "' order by created_at desc";
+				let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and county = '" + req.params.county + "' order by created_at desc";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
@@ -510,7 +531,11 @@ module.exports = function(app, passport) {
 								page:'Home',
 								menuId:'home',
 								formdata: result,
-								picker: 'driver'
+								picker: pick.toUpperCase(),
+								router: 'drivers',
+								menuitem: 'DRIVERS',
+								state: req.params.state,
+								county: req.params.county
 						});
 				});
 		});

@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<% include partials/menu %>
+<% include partials/processormenu %>
 
 <div id="logout-verify-popup" class="popup-panel" style="display:none;">
   <div class="card-popup">
@@ -44,19 +44,19 @@
     <form method="post">
         <div class="form-group split-top col-sm-6" style="padding-right:20px;">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">FIRST NAME</p>
-            <input type="text" class="form-control" placeholder="First Name..." name="first" value="<%= user.first %>" required>
+            <input type="text" class="form-control" placeholder="First Name..." name="first" value="<%= user.first %>" required readonly>
         </div>
         <div class="form-group split-btm col-sm-6">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">LAST NAME</p>
-            <input type="text" class="form-control" placeholder="Last Name..." name="last" value="<%= user.last %>" required>
+            <input type="text" class="form-control" placeholder="Last Name..." name="last" value="<%= user.last %>" required readonly>
         </div>
         <div class="form-group">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">E-MAIL ADDRESS</p>
-            <input id="email-input" type="text" class="form-control" placeholder="Enter Your Email..." name="email" value="<%= user.email %>" readonly>
+            <input id="email-input" type="text" class="form-control" placeholder="Enter Your Email..." name="email" value="<%= user.email %>" readonly readonly>
         </div>
         <div class="form-group">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-            <select class="form-control" placeholder="Select Your State..." name="state" required>
+            <select class="form-control" placeholder="Select Your State..." name="state" required readonly>
             	<option value="AL">Alabama</option>
             	<option value="AZ">Arizona</option>
             	<option value="AR">Arkansas</option>
@@ -109,20 +109,16 @@
             </select>
         </div>
 
-        <button type="submit" class="signup-button" style="margin-top:25px;">SAVE</button>
+        <button disabled type="text" class="signup-button" style="margin-top:25px;">SAVE</button>
     </form>
 
     <hr class="bottom-hr">
 
     <div style="display:inline-flex;">
-      <p class="lnk-inline col-6"><a class="alt-link ml-0" href="/forgot">CHANGE PASSWORD</a></p>
+      <p class="lnk-inline col-6"><a class="alt-link ml-0" href="">CHANGE PASSWORD</a></p>
       <p class="lnk-inline col-6" style="text-align:right;"><a class="alt-link ml-0" onclick="verify('#logout-verify-popup')">LOG OUT</a></p>
     </div>
 
-</div>
-
-<div class="footer col-sm-6 col-sm-offset-3">
-  <p><a class="alt-link" href="/deleteaccount">DELETE ACCOUNT</a></p>
 </div>
 
 <% include partials/cover %>

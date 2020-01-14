@@ -50,6 +50,18 @@ html * {
   width: 40%;
   margin-left: -20%;
 }
+
+.popup-panel2 {
+  padding: 40px;
+  position:absolute;
+  top:10%;
+  left:50%;
+  z-index:1002;
+  overflow:auto;
+  width: 40%;
+  margin-left: -20%;
+}
+
 .popup-header {
   font-size: 32px;
   font-weight: normal;

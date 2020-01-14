@@ -73,6 +73,12 @@ function closepopup() {
   location.reload();
 }
 
+function closepopup2() {
+  $("#cover").css('display','none');
+  $(".popup-panel").css('display','none');
+
+}
+
 $(document).ready(function() {
   $('table').DataTable({
     "ordering": true,

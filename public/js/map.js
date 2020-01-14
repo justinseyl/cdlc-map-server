@@ -1,5 +1,6 @@
 var global_state = '';
 var global_county = '';
+var global_picker = '';
 
 $("path, circle").hover(function(e) {
   $('#info-box').css('display','block');
