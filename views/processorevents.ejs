@@ -82,8 +82,28 @@
                 </select>
             </div>
             <div class="form-group">
-              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
-              <textarea id="add-trouble-desc" name="description" placeholder="Enter brief description..." required></textarea>
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FEE</p>
+                <textarea id="add-trouble-desc" name="fee" placeholder="Enter fee..." required></textarea>
+            </div>
+            <div class="form-group">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY NAME</p>
+                <textarea id="add-trouble-desc" name="attorneyname" placeholder="Enter name..." required></textarea>
+            </div>
+            <div class="form-group">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY ADDRESS</p>
+                <textarea id="add-trouble-desc" name="address" placeholder="Enter address..." required></textarea>
+            </div>
+            <div class="form-group">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FAX</p>
+                <textarea id="add-trouble-desc" name="fax" placeholder="Enter fax..." required></textarea>
+            </div>
+            <div class="form-group">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY EMAIL</p>
+                <textarea id="add-trouble-desc" name="email" placeholder="Enter email..." required></textarea>
+            </div>
+            <div class="form-group">
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY NOTES</p>
+              <textarea id="add-trouble-desc" name="description" placeholder="Enter notes..." required></textarea>
             </div>
 
             <button type="submit" class="submit-btn" onclick="submitNewTrouble()">SUBMIT</button>
@@ -127,17 +147,25 @@
         <table class="table">
           <thead>
             <tr>
-              <th>DESCRIPTION</th>
+              <th>ATTORNEY NOTES</th>
+                <th>ATTORNEY FEE</th>
+                <th>ATTORNEY NAME</th>
+                <th>ATTORNEY FAX</th>
+                <th>ATTORNEY EMAIL</th>
+                <th>ATTORNEY ADDRESS</th>
               <th>STATE</th>
               <th>COUNTY</th>
               <th>DATE</th>
               <th>TIME</th>
-              <th>AUDIT</th>
             </tr>
           </thead>
           <colgroup>
-                  <col class="col-md-7">
-                  <col class="col-md-1">
+                  <col class="col-md-5">
+              <col class="col-md-1">
+              <col class="col-md-1">
+              <col class="col-md-1">
+              <col class="col-md-1">
+              <col class="col-md-1">
                   <col class="col-md-1">
                   <col class="col-md-1">
                   <col class="col-md-1">
@@ -152,17 +180,15 @@
                   <% } %>
                   <%= event[i].description %>
                 </td>
+                  <td>$<%= event[i].fee %> </td>
+                  <td><%= event[i].attorneyname %> </td>
+                  <td><%= event[i].fax %> </td>
+                  <td><%= event[i].email %> </td>
+                  <td><%= event[i].address %> </td>
                 <td><%= event[i].state %> </td>
                 <td><%= event[i].county %> </td>
                 <td><%= event[i].created %> </td>
                 <td><%= event[i].ctime %> </td>
-                <% if (event[i].manage == 'ACCEPTED') { %>
-                  <td><div class="tbl-audit-green"><%= event[i].manage %></div></td>
-                <% } else if (event[i].manage == 'PENDING') { %>
-                  <td><div class="tbl-audit-yellow"><%= event[i].manage %></div></td>
-                <% } else { %>
-                  <td><div class="tbl-audit-red"><%= event[i].manage %></div></td>
-                <% }; %>
               </tr>
             <% }; %>
           </tbody>

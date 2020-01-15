@@ -82,6 +82,10 @@
                 </select>
             </div>
             <div class="form-group">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">SALES PRICE</p>
+                <textarea id="add-trouble-state-id" name="salesprice" placeholder="Enter sales price..." required></textarea>
+            </div>
+            <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
               <textarea id="add-trouble-desc" name="description" placeholder="Enter brief description..." required></textarea>
             </div>
@@ -129,10 +133,10 @@
             <tr>
               <th>DESCRIPTION</th>
               <th>STATE</th>
+              <th>SALES PRICE</th>
               <th>COUNTY</th>
               <th>DATE</th>
               <th>TIME</th>
-              <th>AUDIT</th>
             </tr>
           </thead>
           <colgroup>
@@ -153,16 +157,10 @@
                   <%= event[i].description %>
                 </td>
                 <td><%= event[i].state %> </td>
+                  <td>$<%= event[i].saleprice %> </td>
                 <td><%= event[i].county %> </td>
                 <td><%= event[i].created %> </td>
                 <td><%= event[i].ctime %> </td>
-                <% if (event[i].manage == 'ACCEPTED') { %>
-                  <td><div class="tbl-audit-green"><%= event[i].manage %></div></td>
-                <% } else if (event[i].manage == 'PENDING') { %>
-                  <td><div class="tbl-audit-yellow"><%= event[i].manage %></div></td>
-                <% } else { %>
-                  <td><div class="tbl-audit-red"><%= event[i].manage %></div></td>
-                <% }; %>
               </tr>
             <% }; %>
           </tbody>

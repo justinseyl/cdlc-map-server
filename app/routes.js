@@ -356,7 +356,15 @@ module.exports = function(app, passport) {
 						'processor': 'tr_area_processor'
 				}
 
-				let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+				let query = ''
+				if (role == 'sales') {
+						query = "select  id, description, saleprice, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+				} else if (role == 'processor') {
+						query = "select attorneyname, fee, address, email, fax, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+				} else {
+						query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+				}
+
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
@@ -389,6 +397,34 @@ module.exports = function(app, passport) {
 				});
 		});
 
+		app.get('/notifications', isLoggedIn, function(req, res) {
+
+				let role = 'driver';
+				if (req.user.role)
+					role = req.user.role;
+				let route_map = {
+						'admin': 'adminnoti.ejs',
+						'driver': 'drivernoti.ejs',
+						'sales'  : 'salesnoti.ejs',
+						'processor': 'processornoti.ejs'
+				}
+
+				let query = "select description, created_at as time from ealerts";
+				db.query(query, (err, result) => {
+						if (err) throw err;
+
+						res.render(route_map[role], {
+								user : req.user,
+								page:'drivers',
+								menuId:'drivers',
+								event: result,
+								picker: 'DRIVER',
+								menuitem: 'PROFILE',
+								router: 'drivers'
+						});
+				});
+		});
+
 		app.get('/deleteuser/:email', isLoggedIn, function(req, res) {
 				let query = "DELETE FROM users where email='" + req.params.email + "'";
 
@@ -401,15 +437,22 @@ module.exports = function(app, passport) {
 
 				let role = 'driver'
 				if (req.user.role)
-						role = req.role.user;
+						role = req.user.role;
 
 				let dbs = {
 						'driver': 'tr_area',
 						'sales'  : 'tr_area_sales',
 						'processor': 'tr_area_processor'
 				}
+				let query = '';
+				if (role == 'sales') {
+						query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage, saleprice) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','pending','" + req.body.salesprice + "')";
+				} else if (role == 'processor') {
+						query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage, attorneyname, fee, fax, address, email) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','pending','" + req.body.attorneyname + "','" + req.body.fee + "','" + req.body.fax + "','" + req.body.address + "','" + req.body.email +  "')";
+				} else {
+						query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','pending')";
+				}
 
-				let query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','pending')";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
