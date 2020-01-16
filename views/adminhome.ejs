@@ -358,7 +358,8 @@
                               <% if (event[i].isnew) { %>
                                   <div class="new"><img src="/assets/new.svg"></img></div>
                               <% } %>
-                                  <a class="alt-link ml-0" onclick="verify('#click-event')"><%= event[i].description %></a>
+<!--                                  <a class="alt-link ml-0" onclick="verify('#click-event')"></a>-->
+                                  <a class="alt-link ml-0" onclick="getEventDetails('<%= event[i].id %>')"><%= event[i].description %></a>
                           </td>
                           <td><%= event[i].state %> </td>
                           <td><%= event[i].county %> </td>
@@ -397,25 +398,32 @@
           <hr class="popup-hr">
           <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">value</p>
+              <p type="text" name="number" id="number" style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
+              <input type="text" name="county" id="county">
           </div>
           <div class="form-group" style="padding-right:20px;">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DATE</p>
-              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">value</p>
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
+                  <input type="text" name="date" id="date">
           </div>
           <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">TIME</p>
-              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">value</p>
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
+              <input type="text" name="time" id="time">
           </div>
           <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
-              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">value</p>
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
+              <input type="text" name="desc" id="desc">
           </div>
           <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">UPLOADED BY</p>
-              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">value</p>
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
+              <input type="text" name="upl" id="upl">
           </div>
-          <div class="cancel-btn" onclick="verify('#edit-event')"><a class="alt-link ml-0" onclick="closepopup2()">EDIT EVENT</a></div>
+              <div id="pending1" class="cancel-btn" onclick="verify('#edit-event')"><a class="alt-link ml-0" onclick="closepopup2()">ACCEPT EVENT</a></div>
+              <div id="pending2" class="cancel-btn" onclick="verify('#edit-event')"><a class="alt-link ml-0" onclick="closepopup2()">REJECT EVENT</a></div>
+              <div id="accepted" class="cancel-btn" onclick="verify('#edit-event')"><a class="alt-link ml-0" onclick="closepopup2()">EDIT EVENT</a></div>
           <form action="" method="get">
               <button type="submit" class="submit-btn">DELETE EVENT</button>
           </form>
@@ -424,7 +432,7 @@
       </div>
   </div>
 
-  <div id="edit-event" class="popup-panel2" style="display:none;">
+  <div id="edit-event" class="popup-panel" style="display:none;">
       <div class="card-popup">
           <img class="tr" src="/assets/tr-corner.svg"></im g>
           <img class="tl" src="/assets/tl-corner.svg"></img>

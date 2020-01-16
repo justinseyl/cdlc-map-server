@@ -66,6 +66,24 @@ function popViewEmerg() {
   $("#view-emergency-popup").css('display','block');
 }
 
+function getEventDetails(id) {
+
+  $.get("/getevent/" + id, function (data) {
+    let results = data[0];
+    $("#county").val(results.county);
+    $("#date").val(results.date);
+    $("#time").val(results.time);
+    $("#desc").val(results.description);
+    $("#upl").val(results.userid);
+    $("#pending1").hide();
+    $("#pending2").hide();
+    $("#accepted").show();
+    $("#cover").css('display','block');
+    $("#click-event").css('display', 'block');
+  });
+
+}
+
 function closepopup() {
   $("#cover").css('display','none');
   $(".popup-panel").css('display','none');

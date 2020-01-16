@@ -26,7 +26,7 @@ module.exports = function(app, passport) {
 
 								if (req.user.role) {
 										if (req.user.role == 'admin') {
-												let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + "tr_area" + " where status = 'active' order by created_at desc";
+												let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + "tr_area" + " where status = 'active' order by created_at desc";
 												db.query(query, (err, result2) => {
 														if (err) throw err;
 
@@ -156,7 +156,7 @@ module.exports = function(app, passport) {
 
 						if (req.user.role) {
 								if (req.user.role == 'admin') {
-										let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
+										let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
 										db.query(query, (err, result2) => {
 												if (err) throw err;
 
@@ -534,6 +534,19 @@ module.exports = function(app, passport) {
 						if (err) throw err;
 
 						res.send(rescty);
+				});
+		});
+
+		app.get('/getevent/:id', function(req, res, next){
+				let id = req.params.id;
+				// let table = req.query.table;
+
+				let query = "select manage, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid  from tr_area where id = '" + id + "'";
+
+				db.query(query, (err, result) => {
+						if (err) throw err;
+
+						res.send(result);
 				});
 		});
 
