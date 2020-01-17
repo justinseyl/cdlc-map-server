@@ -35,6 +35,7 @@ function clickstate(st) {
 
   $("#map-states").hide();
   $("#back-to-home").show();
+  if ($(window).width() < 720) {$("#back-to-home-mobile").show();}
   $("svg[stateLevel=" + st + "]").show();
   $("#state-tbl").hide();
 
@@ -47,6 +48,15 @@ $('#back-to-home').on('click', function() {
   $("#map-states").show();
   $("#back-to-home").hide();
   $("svg[stateLevel]").hide();
+  $("#county-tbl").hide();
+  $("#state-tbl").show();
+
+  global_state = '';
+  global_county = '';
+});
+
+$('#back-to-home-mobile').on('click', function() {
+  $("#back-to-home-mobile").hide();
   $("#county-tbl").hide();
   $("#state-tbl").show();
 

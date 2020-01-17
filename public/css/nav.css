@@ -153,6 +153,7 @@ html * {
   .nav-custom {
     padding: 15px 20px;
     overflow: hidden;
+    display: flex;
   }
   .show-mobile {
     display: block;

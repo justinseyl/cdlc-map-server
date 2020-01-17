@@ -1,6 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
-const county = urlParams.get('county');
-const state = urlParams.get('state');
+// const county = urlParams.get('county');
+// const state = urlParams.get('state');
+const county = window.location.pathname.split('/')[3];
+const state = window.location.pathname.split('/')[2];
 
 if (state && county) {
   $("#county-label-id").html(state + ' - ' + county.toUpperCase());

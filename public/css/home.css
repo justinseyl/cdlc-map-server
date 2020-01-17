@@ -229,7 +229,30 @@ svg[stateLevel] {
   letter-spacing: normal;
   color: #ffffff;
 }
+#back-to-home-mobile {
+  margin-top: 20px;
+  display: inline-flex;
+}
 
+#back-to-home-mobile img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+#back-to-home-mobile h1 {
+  margin: 0px;
+  padding: 0px;
+  opacity: 0.89;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin-left: 10px;
+}
 
 @media only screen and (max-width: 768px) {
   .container-main {
@@ -291,5 +314,8 @@ svg[stateLevel] {
     padding-left: 15px;
     border: none;
     height: auto;
+  }
+  th:nth-child(n+2),td:nth-child(n+2) {
+    display: none;
   }
 }
