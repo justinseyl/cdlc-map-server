@@ -1,3 +1,5 @@
+var eventid = '';
+
 function verify(id) {
   $("#cover").css('display','block');
   $(id).css('display','block');
@@ -75,13 +77,45 @@ function getEventDetails(id) {
     $("#time").val(results.time);
     $("#desc").val(results.description);
     $("#upl").val(results.userid);
-    $("#pending1").hide();
-    $("#pending2").hide();
-    $("#accepted").show();
+
+    if (results.manage == 'pending') {
+      $("#acceptevent").attr("href", `/accept/${id}`);
+      $("#rejectevent").attr("href", `/reject/${id}`);
+      $("#pending1").show();
+      $("#pending2").show();
+      $("#accepted").hide();
+    } else {
+      $("#accepted").attr("onClick", `getedit(${id})`);
+      $("#pending1").hide();
+      $("#pending2").hide();
+      $("#accepted").show();
+    }
+
+    eventid = id;
+
     $("#cover").css('display','block');
     $("#click-event").css('display', 'block');
   });
 
+}
+
+function getedit() {
+  $.get("/getevent/" + eventid, function(data) {
+    let results = data[0];
+
+    $("#county2").val(results.county);
+    $("#date2").val(results.date);
+    $("#time2").val(results.time);
+    $("#desc2").val(results.description);
+    $("#upl2").val(results.userid);
+
+    $("#edit").attr("action", `/edit/${eventid}`);
+
+    $("#cover").css('display','none');
+    $("#click-event").css('display', 'none');
+    $("#cover").css('display','block');
+    $("#edit-event").css('display', 'block');
+  });
 }
 
 function closepopup() {

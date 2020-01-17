@@ -128,6 +128,39 @@ module.exports = function(app, passport) {
 
 		})
 
+		app.post('/edit/:id', isLoggedIn, function(req, res) {
+				let id = req.params.id;
+
+				let query = "update tr_area set manage='accepted' where id='" +id + "'" ;
+
+				db.query(query, (err, result) => {
+						res.redirect('/')
+				})
+
+		})
+
+		app.get('/accept/:id', isLoggedIn, function(req, res) {
+				let id = req.params.id;
+
+				let query = "update tr_area set manage='accepted' where id='" +id + "'" ;
+
+				db.query(query, (err, result) => {
+						res.redirect('/')
+				})
+
+		})
+
+		app.get('/reject/:id', isLoggedIn, function(req, res) {
+				let id = req.params.id;
+
+				let query = "update tr_area set manage='denied' where id='" +id + "'" ;
+
+				db.query(query, (err, result) => {
+						res.redirect('/')
+				})
+
+		})
+
 		app.get('/adminhome/:role', isLoggedIn, function(req, res) {
 				let alertquery = "select description, county, state, created_at from ealerts where status='active'"
 				let query = "select state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
