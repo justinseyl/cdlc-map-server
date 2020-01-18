@@ -95,7 +95,7 @@ module.exports = function(app, passport) {
 						let email = userinfo.email;
 						let name = firstname + " " + lastname;
 
-						let eventquery = "select state, county, description, created_at, manage from tr_area where userid='" + email + "'";
+						let eventquery = "select id, state, county, description, created_at, manage from tr_area where userid='" + email + "'";
 
 						db.query(eventquery, (err, events) => {
 								res.render('driverdetail.ejs', {
@@ -403,9 +403,9 @@ module.exports = function(app, passport) {
 				if (role == 'sales') {
 						query = "select  id, description, saleprice, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
 				} else if (role == 'processor') {
-						query = "select attorneyname, fee, address, email, fax, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+						query = "select id, attorneyname, fee, address, email, fax, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
 				} else {
-						query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+						query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
 				}
 
 				db.query(query, (err, result) => {
@@ -716,7 +716,7 @@ module.exports = function(app, passport) {
 		});
 
 		app.get('/deleteaccount', function(req, res) {
-				console.log(req.user);
+
 				let email = req.user.email;
 
 				let query = "DELETE FROM users where email='" +email + "'";

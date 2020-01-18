@@ -67,7 +67,7 @@ function popViewEmerg() {
   $("#view-emergency-popup").css('display','block');
 }
 
-function getEventDetails(id) {
+function getEventDetails(id, role) {
 
   $.get("/getevent/" + id, function (data) {
     let results = data[0];
