@@ -3,6 +3,10 @@
 html * {
   font-family: 'Montserrat', sans-serif;
 }
+html {
+  min-width: 100%;
+  min-height: 100%;
+}
 .card-popup {
   background-image: url(/assets/card-bkg.svg);
     background-repeat: no-repeat;
@@ -189,4 +193,43 @@ textarea {
 .lnk-inline {
   display: inline-block;
   padding: 0px;
+}
+
+@media only screen and (max-width: 768px) {
+  .popup-panel {
+    padding: 0px;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    z-index: 1002;
+    overflow: auto;
+    width: 80%;
+    margin-left: 0px;
+  }
+  .card-popup {
+    padding: 15px;
+  }
+  .popup-header {
+    font-size: 26px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  }
+  .popup-desc {
+    opacity: 0.8;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #e2e5ee;
+  }
+  .submit-btn {
+    height: 40px;
+  }
 }

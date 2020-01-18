@@ -290,7 +290,7 @@ svg[stateLevel] {
   .map-header h1 {
     font-size: 16px;
     font-weight: 500;
-    line-height: normal;
+    line-height: 32px;;
   }
   .custom-buttons {
     width: 32px;

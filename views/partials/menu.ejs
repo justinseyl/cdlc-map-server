@@ -5,26 +5,23 @@
         <h1>DRIVER</h1>
       </a>
     </div>
-    <div class="nav-custom-collapse col-xs-6 col-xs-offset-1 col-sm-6" id="myNavbar">
+    <div class="nav-custom-collapse col-xs-6 col-sm-6" id="myNavbar">
       <ul class="nav-custom-ul">
-        <li id="home">
+        <li id="home" onclick="window.location.href = '/'">
           <img class="nav-custom-icon-main" src="/assets/icon-home-un.svg"></img>
-          <a href="/">HOME</a>
           <div class="nav-hr" style="display:none;"></div>
         </li>
-        <li id="events">
+        <li id="events" onclick="window.location.href = '/events'">
           <img class="nav-custom-icon-main" src="/assets/icon-my-reports-un.svg"></img>
-          <a href="/events">MY EVENTS</a>
           <div class="nav-hr" style="display:none;"></div>
         </li>
-        <li id="profile">
+        <li id="profile" onclick="window.location.href = '/profile'">
           <img class="nav-custom-icon-main" src="/assets/icon-my-profile-un.svg"></img>
-          <a href="/profile">MY PROFILE</a>
           <div class="nav-hr" style="display:none;"></div>
         </li>
       </ul>
     </div>
-    <div class="col-sm-3 hide-mobile">
+    <div class="notifications show-mobile">
       <a href="/notifications"><img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img></a>
     </div>
 </nav>

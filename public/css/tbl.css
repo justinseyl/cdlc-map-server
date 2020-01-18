@@ -196,6 +196,7 @@ table tbody td:last-child,table thead tr th:last-child {
 @media only screen and (max-width: 768px) {
 
   .custom-buttons-tbl {
+    margin-top: -32px;
     width: 32px;
     height: 32px;
     -webkit-backdrop-filter: blur(2px);
