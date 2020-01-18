@@ -130,8 +130,18 @@ module.exports = function(app, passport) {
 
 		app.post('/edit/:id', isLoggedIn, function(req, res) {
 				let id = req.params.id;
+				let data = req.body;
+				let query = `update tr_area set county='${data.county}', description='${data.desc}',state='${data.state}' where id='${id}'` ;
 
-				let query = "update tr_area set manage='accepted' where id='" +id + "'" ;
+				db.query(query, (err, result) => {
+						res.redirect('/')
+				})
+
+		})
+
+		app.get('/deleteevent/:id', isLoggedIn, function(req, res) {
+				let id = req.params.id;
+				let query = `update tr_area set status='inactive' where id='${id}'` ;
 
 				db.query(query, (err, result) => {
 						res.redirect('/')
@@ -574,7 +584,7 @@ module.exports = function(app, passport) {
 				let id = req.params.id;
 				// let table = req.query.table;
 
-				let query = "select manage, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid  from tr_area where id = '" + id + "'";
+				let query = "select manage, state, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid  from tr_area where id = '" + id + "'";
 
 				db.query(query, (err, result) => {
 						if (err) throw err;

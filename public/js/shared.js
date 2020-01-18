@@ -1,5 +1,4 @@
 var eventid = '';
-
 function verify(id) {
   $("#cover").css('display','block');
   $(id).css('display','block');
@@ -99,15 +98,21 @@ function getEventDetails(id) {
 
 }
 
+function deleteevent() {
+  $.get("/deleteevent/" + eventid, function(rlt) {
+    $(".popup-panel").css('display','none');
+    $("#cover").css('display','none');
+    location.reload();
+  })
+}
+
 function getedit() {
   $.get("/getevent/" + eventid, function(data) {
     let results = data[0];
 
     $("#county2").val(results.county);
-    $("#date2").val(results.date);
-    $("#time2").val(results.time);
     $("#desc2").val(results.description);
-    $("#upl2").val(results.userid);
+    $("#state2").val(results.state);
 
     $("#edit").attr("action", `/edit/${eventid}`);
 
