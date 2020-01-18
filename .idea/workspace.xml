@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="382d3daa-4656-4d40-9205-bb73e2af2e7a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/shared.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/shared.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/adminhome.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminhome.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
+            <state relative-caret-position="273">
+              <caret line="725" column="42" selection-start-line="725" selection-start-column="42" selection-end-line="725" selection-end-column="42" />
               <folding>
                 <element signature="n#!!block;n#isLoggedIn#0" />
               </folding>
@@ -30,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/shared.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="104" column="22" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+            <state relative-caret-position="349">
+              <caret line="102" column="44" lean-forward="true" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -76,6 +73,7 @@
       <find>popAddTrouble</find>
       <find>add-trouble-state</find>
       <find>query =</find>
+      <find>deleteaccount</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -118,8 +116,8 @@
         <option value="$PROJECT_DIR$/views/partials/salesmenu.ejs" />
         <option value="$PROJECT_DIR$/views/partials/menu.ejs" />
         <option value="$PROJECT_DIR$/views/adminhome.ejs" />
-        <option value="$PROJECT_DIR$/app/routes.js" />
         <option value="$PROJECT_DIR$/public/js/shared.js" />
+        <option value="$PROJECT_DIR$/app/routes.js" />
       </list>
     </option>
   </component>
@@ -262,12 +260,12 @@
       <workItem from="1579155909544" duration="7062000" />
       <workItem from="1579229042811" duration="4832000" />
       <workItem from="1579292936065" duration="18000" />
-      <workItem from="1579310636007" duration="2483000" />
+      <workItem from="1579310636007" duration="4489000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73251000" />
+    <option name="totallyTimeSpent" value="75257000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="2" width="1913" height="1405" extended-state="0" />
@@ -636,16 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
-          <folding>
-            <element signature="n#!!block;n#isLoggedIn#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/adminhome.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
@@ -655,8 +643,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/shared.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="104" column="22" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+        <state relative-caret-position="349">
+          <caret line="102" column="44" lean-forward="true" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="725" column="42" selection-start-line="725" selection-start-column="42" selection-end-line="725" selection-end-column="42" />
+          <folding>
+            <element signature="n#!!block;n#isLoggedIn#0" />
+          </folding>
         </state>
       </provider>
     </entry>

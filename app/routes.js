@@ -717,6 +717,15 @@ module.exports = function(app, passport) {
 
 		app.get('/deleteaccount', function(req, res) {
 				console.log(req.user);
+				let email = req.user.email;
+
+				let query = "DELETE FROM users where email='" +email + "'";
+
+				db.query(query, (err, result) => {
+						req.logout();
+						res.redirect('/');
+				})
+
 		});
 
 		app.get('/forgot', function(req, res) {
