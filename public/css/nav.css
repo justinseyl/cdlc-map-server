@@ -171,7 +171,7 @@ html * {
     margin: auto;
     position: absolute;
     bottom: 0px;
-    left: 20%;
+    left: 18%;
   }
   .notifications {
     margin-top: 15px;
@@ -180,7 +180,7 @@ html * {
     display: block;
   }
   .hide-mobile {
-    display: none;
+    display: none !important;
   }
   .nav-custom-collapse {
     padding-left: 0px;
