@@ -6,7 +6,7 @@ html * {
 .form-inline {
   display: block !important;
 }
-.table>thead>tr>th {
+.table>thead>tr>th,.table-notifications>thead>tr>th {
   font-size: 11px;
   font-weight: bold;
   font-stretch: normal;
@@ -17,10 +17,11 @@ html * {
   border: none;
   cursor: pointer;
 }
-.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td,
+.table-notifications>thead>tr>th,.table-notifications>tbody>tr>th, .table-notifications>tfoot>tr>th, .table-notifications>thead>tr>td, .table-notifications>tbody>tr>td, .table-notifications>tfoot>tr>td {
   border: none !important;
 }
-.table>tbody>tr>td {
+.table>tbody>tr>td,.table-notifications>tbody>tr>td {
   opacity: 0.9;
   font-size: 16px;
   font-weight: 500;
@@ -30,10 +31,17 @@ html * {
   letter-spacing: normal;
   color: #ffffff;
 }
-.table>tbody>tr:nth-child(even) {
+.table-notifications {
+  overflow: hidden;
+}
+.table-notifications>tbody>tr>td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.table>tbody>tr:nth-child(even),.table-notifications>tbody>tr:nth-child(even) {
   background-color: transparent;
 }
-.table>tbody>tr:nth-child(odd) {
+.table>tbody>tr:nth-child(odd),.table-notifications>tbody>tr:nth-child(odd) {
   background-color: rgba(255, 255, 255, 0.03);
 }
 .new {
@@ -219,6 +227,33 @@ table tbody td:last-child,table thead tr th:last-child {
     font-weight: 500;
     color: #ffffff;
     line-height: 24px;
+  }
+  .tbl-audit-yellow {
+    width: 12px;
+    height: 12px;
+    border-radius: 7px;
+    background-color: #fedf66;
+    margin-top: 2px;
+  }
+  .tbl-audit-green {
+    width: 12px;
+    height: 12px;
+    border-radius: 7px;
+    background-color: #4ab3ad;
+    margin-top: 2px;
+  }
+  .tbl-audit-red {
+    width: 12px;
+    height: 12px;
+    border-radius: 7px;
+    background-color: #ff6969;
+    margin-top: 2px;
+  }
+  .table>tbody>tr>td, .table-notifications>tbody>tr>td {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
 }

@@ -10,7 +10,7 @@ function popAddTrouble(user) {
 
   $("#cover").css('display','block');
   $("#add-trouble-popup").css('display','block');
-
+  
   if (global_state && global_state != '') {
     state = global_state;
   } else {
@@ -20,6 +20,10 @@ function popAddTrouble(user) {
   $("#add-trouble-state-id").val(state);
 
   setCountyPicker(state);
+}
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 function popAddTroubleTbl(st,ct) {
@@ -55,7 +59,7 @@ function setCountyPicker(state,ct) {
   }));
 
   if (ct) {
-    $("#add-trouble-county-id").val(ct);
+    $("#add-trouble-county-id").val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
     $("#add-trouble-county-id").prepend(initHtml);
@@ -153,4 +157,9 @@ $(document).ready(function() {
    },
    "responsive": true
   });
+
+  if ($(window).width() < 720) {
+     $("#DataTables_Table_0 tr td:last-child").show();
+     $("#DataTables_Table_0 tr td:last-child div").html('');
+  }
 });

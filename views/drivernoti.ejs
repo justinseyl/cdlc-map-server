@@ -36,22 +36,18 @@
                   </div> -->
               </div>
 
-              <table class="table">
+              <table class="table-notifications">
                   <thead>
                   <tr>
                       <th>DESCRIPTION</th>
                       <th>TIME</th>
                   </tr>
                   </thead>
-                  <colgroup>
-                      <col class="col-md-7">
-                      <col class="col-md-1">
-                  </colgroup>
                   <tbody>
                   <% for (var i = 0; i < event.length; i++) { %>
                       <tr>
-                          <td><%= event[i].description %></td>
-                          <td><%= event[i].time %> </td>
+                          <td width="70%"><%= event[i].description %></td>
+                          <td width="10%"><%= event[i].time %> </td>
                       </tr>
                   <% }; %>
                   </tbody>

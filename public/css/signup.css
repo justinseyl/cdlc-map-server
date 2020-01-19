@@ -4,6 +4,11 @@ html * {
   font-family: 'Montserrat', sans-serif;
 }
 
+html {
+  min-height: 100%;
+  min-width: 100%;
+}
+
 body {
   background-image: url("/assets/background.svg");
   background-size: cover;
@@ -374,10 +379,24 @@ input::placeholder {
 }
 
 
-
-@media only screen and (max-width: 768px) {
-  .container {
+@media only screen and (max-width: 720px) {
+  .mobile-container {
     margin: 10px 20px !important;
-    width: 100%;
+    width: calc(100% - 40px);
+    padding: 0px;
+  }
+  .card h1 {
+    font-size: 26px;
+  }
+  .card {
+    margin: 0px !important;
+    padding: 20px;
+    margin-bottom: 20px !important;
+  }
+  .signup-button {
+    height: 40px;
+  }
+  .alt-link {
+    font-size: 10px;
   }
 }

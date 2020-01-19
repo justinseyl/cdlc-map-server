@@ -196,6 +196,11 @@ textarea {
 }
 
 @media only screen and (max-width: 768px) {
+  .container {
+    width: 100% !important;
+    padding: 20px;
+    margin: 0px !important;
+  }
   .popup-panel {
     padding: 0px;
     position: absolute;
@@ -208,6 +213,7 @@ textarea {
   }
   .card-popup {
     padding: 15px;
+    padding-top: 29px;
   }
   .popup-header {
     font-size: 26px;

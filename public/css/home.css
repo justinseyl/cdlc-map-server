@@ -318,4 +318,7 @@ svg[stateLevel] {
   th:nth-child(n+2),td:nth-child(n+2) {
     display: none;
   }
+  #state-tbl th,#state-tbl td {
+    display: table-cell;
+  }
 }
