@@ -377,7 +377,11 @@ input::placeholder {
   margin-top: 10px;
   margin-bottom: 25px;
 }
-
+.mobile-container {
+  margin: 10px 20px !important;
+  width: calc(100% - 40px);
+  padding: 0px;
+}
 
 @media only screen and (max-width: 720px) {
   .mobile-container {

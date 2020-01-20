@@ -10,7 +10,64 @@
     <link rel="stylesheet" href="/css/signup.css">
 </head>
 <body>
-<div class="container mobile-container">
+<div class="container">
+
+  <div class="card col-xs-12 col-sm-12 col-md-6 col-md-offset-6 col-lg-6 col-lg-offset-3">
+
+    <img class="tr" src="/assets/tr-corner.svg"></img>
+    <img class="tl" src="/assets/tl-corner.svg"></img>
+    <img class="bl" src="/assets/bl-corner.svg"></img>
+    <img class="br" src="/assets/br-corner.svg"></img>
+
+    <h1>SIGN IN</h1>
+    <hr class="txt-hr">
+
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
+    <form action="/login" method="post">
+        <div class="form-group">
+            <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">EMAIL ADDRESS</p>
+            <input id="email-input" type="text" class="form-control" placeholder="Enter Your Email..." name="email" required>
+        </div>
+        <div class="form-group">
+            <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">PASSWORD</p>
+            <input type="password" class="form-control" placeholder="Enter Your Password..." name="password" required>
+        </div>
+
+        <div class="mid-lin">
+          <div class="checkbox col-sm-6">
+             <input type="checkbox" id="checkbox" name="remember_me" value="">
+             <label for="checkbox"><span>Stay signed in</span></label>
+          </div>
+          <div class="forgot-pass col-sm-6">
+            <a href="/forgot">Forgot your password?</a>
+          </div>
+        </div>
+
+        <button type="submit" class="signup-button">SIGN IN</button>
+    </form>
+
+    <hr class="bottom-hr">
+
+    <p class="alt-text">Don’t have an account?<a class="alt-link" href="/signup">  SIGN UP</a></p>
+
+</div>
+
+<div class="footer col-sm-12 col-md-6 col-md-offset-3">
+  <p>OUR COMPANIES</p>
+  <div class="logo-container">
+    <img src="/assets/logo1.svg"></img>
+    <img src="/assets/logo2.svg"></img>
+    <img src="/assets/logo3.svg"></img>
+    <img src="/assets/logo4.png"></img>
+  </div>
+</div>
+
+</div>
+
+<div class="mobile-container" style="display:none;">
 
   <div class="card col-xs-12 col-sm-12 col-md-6 col-md-offset-6 col-lg-6 col-lg-offset-3">
 
