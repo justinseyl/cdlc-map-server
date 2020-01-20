@@ -434,7 +434,7 @@ module.exports = function(app, passport) {
 								menuId:'drivers',
 								event: result,
 								picker: 'DRIVER',
-								menuitem: 'PROFILE',
+								menuitem: 'DRIVERS',
 								router: 'drivers'
 						});
 				});
@@ -462,7 +462,7 @@ module.exports = function(app, passport) {
 								menuId:'drivers',
 								event: result,
 								picker: 'DRIVER',
-								menuitem: 'PROFILE',
+								menuitem: 'DRIVERS',
 								router: 'drivers'
 						});
 				});
@@ -632,7 +632,7 @@ module.exports = function(app, passport) {
 						'admin': 'admin_county_table.ejs'
 				}
 
-				let query = "select description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and county = '" + req.params.county + "' order by created_at desc";
+				let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and county = '" + req.params.county + "' order by created_at desc";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 

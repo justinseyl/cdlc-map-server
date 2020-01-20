@@ -262,7 +262,7 @@
                   <% if (event[i].isnew) { %>
                     <div class="new"><img src="/assets/new.svg"></img></div>
                   <% } %>
-                      <a class="alt-link ml-0" onclick="getEventDetails('<%= event[i].id %>')"><%= event[i].description %></a>
+                      <a class="alt-link ml-0" onclick="getEventDetails('<%= event[i].id %>', '<%= picker %>')"><%= event[i].description %></a>
                 </td>
                 <td><%= event[i].state %> </td>
                 <td><%= event[i].county %> </td>
