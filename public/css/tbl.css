@@ -17,6 +17,10 @@ html * {
   border: none;
   cursor: pointer;
 }
+.table>tbody>tr>td {
+  padding: 15px 8px;
+  cursor: pointer;
+}
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td,
 .table-notifications>thead>tr>th,.table-notifications>tbody>tr>th, .table-notifications>tfoot>tr>th, .table-notifications>thead>tr>td, .table-notifications>tbody>tr>td, .table-notifications>tfoot>tr>td {
   border: none !important;
@@ -214,6 +218,35 @@ table tbody td:last-child,table thead tr th:last-child {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
+}
+.detail-header-driver {
+  display: inline-flex;
+  margin-bottom: 35px;
+}
+.detail-header-driver img {
+  line-height: 24px;
+  cursor: pointer;
+}
+.detail-header-driver h1 {
+  font-size: 24px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin: 0px;
+  margin-left: 15px;
+}
+.make-admin {
+  position: absolute;
+  right: 0;
+  display: inline-flex;
+}
+.make-admin p:first-child {
+  margin-right: 40px;
+}
+.make-admin p:last-child {
+  margin-right: 50px;
 }
 
 @media only screen and (max-width: 768px) {

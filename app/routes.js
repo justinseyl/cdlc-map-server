@@ -95,7 +95,7 @@ module.exports = function(app, passport) {
 						let email = userinfo.email;
 						let name = firstname + " " + lastname;
 
-						let eventquery = "select id, state, county, description, created_at, manage from tr_area where userid='" + email + "'";
+						let eventquery = "select id, state, county, description, date_format(created_at, '%m/%d/%y') as created,date_format(created_at, '%h:%i %p') as ctime, manage from tr_area where userid='" + email + "'";
 
 						db.query(eventquery, (err, events) => {
 								res.render('driverdetail.ejs', {
@@ -424,7 +424,7 @@ module.exports = function(app, passport) {
 		});
 
 		app.get('/drivers', isLoggedIn, function(req, res) {
-				let query = "select email, first, last, date_format(updated_at, '%m/%d/%y') as created from users where role IS NULL";
+				let query = "select concat(u.first,' ',u.last) as name, u.email as email, u.state as state,(select count(*) from tr_area t where t.status = 'active' and t.userid = u.email and t.manage='accepted') as accept,(select count(*) from tr_area t where t.status = 'active' and t.userid = u.email and t.manage='pending') as pending,(select count(*) from tr_area t where t.status = 'active' and t.userid = u.email and t.manage='denied') as denied from users u where u.role IS NULL and u.status = 'active'";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 

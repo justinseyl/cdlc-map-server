@@ -27,8 +27,8 @@
                   <a href="/<%=router%>"><%=menuitem%></a>
                   <div class="nav-hr" style="display:none;"></div>
               </li>
-              <li id="alerts">
-                  <img class="nav-custom-icon-main" src="/assets/icon-alerts-un.svg"></img>
+              <li id="emergency">
+                  <img class="nav-custom-icon-main" src="/assets/icon-emergency-un.svg"></img>
                   <a href="/alerts">EMERGENCY ALERTS</a>
                   <div class="nav-hr" style="display:none;"></div>
               </li>
@@ -89,25 +89,31 @@
         <table class="table">
           <thead>
             <tr>
-              <th>EMAIL</th>
-              <th>FIRST NAME</th>
-              <th>LAST NAME</th>
-              <th>CREATED</th>
+              <th>NAME</th>
+              <th>EMAIL ADDRESS</th>
+              <th>STATE</th>
+              <th>ACCEPTED EVENTS</th>
+              <th>PENDING EVENTS</th>
+              <th>DENIED EVENTS</th>
             </tr>
           </thead>
           <colgroup>
-                  <col class="col-md-7">
+                  <col class="col-md-4">
+                  <col class="col-md-4">
+                  <col class="col-md-1">
                   <col class="col-md-1">
                   <col class="col-md-1">
                   <col class="col-md-1">
               </colgroup>
           <tbody>
             <% for (var i = 0; i < event.length; i++) { %>
-              <tr>
-                <td><a href="/edituser/<%=event[i].email%>"><%= event[i].email %> </a></td>
-                <td><%= event[i].first %> </td>
-                <td><%= event[i].last %> </td>
-                <td><%= event[i].created %> </td>
+              <tr onclick='window.location.href="/edituser/<%=event[i].email%>"'>
+                <td><%= event[i].name %> </td>
+                <td><%= event[i].email %> </td>
+                <td><%= event[i].state %> </td>
+                <td><%= event[i].accept %> </td>
+                <td><%= event[i].pending %> </td>
+                <td><%= event[i].denied %> </td>
               </tr>
             <% }; %>
           </tbody>
