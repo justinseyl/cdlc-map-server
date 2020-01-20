@@ -27,8 +27,6 @@ String.prototype.capitalize = function() {
 }
 
 function popAddTroubleTbl(st,ct) {
-  console.log(st);
-  console.log(ct);
   $("#cover").css('display','block');
   $("#add-trouble-popup").css('display','block');
 
@@ -42,7 +40,12 @@ $("#add-trouble-state-id").on('change', function (e) {
     setCountyPicker(valueSelected);
 });
 
+String.prototype.capitalize = function(){
+       return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
+      };
+
 function setCountyPicker(state,ct) {
+  console.log(ct);
   $("#add-trouble-county-id").empty();
 
   var svg = $("svg[stateLevel='" + state + "'] path");
@@ -59,7 +62,7 @@ function setCountyPicker(state,ct) {
   $("#add-trouble-county-id").html($("#add-trouble-county-id option").sort(function (a, b) {
     return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
   }));
-
+console.log(ct.toLowerCase().capitalize());
   if (ct) {
     $("#add-trouble-county-id").val(ct.toLowerCase().capitalize());
   } else {

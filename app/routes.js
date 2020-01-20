@@ -341,6 +341,7 @@ module.exports = function(app, passport) {
 								router: 'drivers',
 								title: rtn.title,
 								state: rtn.state,
+								county: rtn.county,
 								description: rtn.description
 						});
 				});
@@ -505,71 +506,6 @@ module.exports = function(app, passport) {
 
 						// res.redirect('/county_table/' + req.body.state + '/' + req.body.county);
 						res.redirect('/events');
-				});
-		});
-
-		app.post('/submitEmergency', function(req, res, next){
-				let query1 = "update ealerts set status='inactive' where status='active'"
-				db.query(query1, (err, result) => {
-
-						let statemap = {
-								"AL":"Alabama",
-								"AZ":"Arizona" ,
-								"AR":"Arkansas",
-								"CA":"California",
-								"CO":"Colorado",
-								"CT":"Connecticut",
-								"DE":"Delaware",
-								"DC":"District Of Columbia",
-								"FL":"Florida",
-								"GA":"Georgia",
-								"ID":"Idaho",
-								"IL":"Illinois",
-								"IN":"Indiana",
-								"IA":"Iowa",
-								"KS":"Kansas",
-								"KY":"Kentucky",
-								"LA":"Louisiana",
-								"ME":"Maine",
-								"MD":"Maryland",
-								"MA":"Massachusetts",
-								"MI":"Michigan",
-								"MN":"Minnesota",
-								"MS":"Mississippi",
-								"MO":"Missouri",
-								"MT":"Montana",
-								"NE":"Nebraska",
-								"NV":"Nevada",
-								"NH":"New Hampshire",
-								"NJ":"New Jersey",
-								"NM":"New Mexico",
-								"NY":"New York",
-								"NC":"North Carolina",
-								"ND":"North Dakota",
-								"OH":"Ohio",
-								"OK":"Oklahoma",
-								"OR":"Oregon",
-								"PA":"Pennsylvania",
-								"RI":"Rhode Island",
-								"SC":"South Carolina",
-								"SD":"South Dakota",
-								"TN":"Tennessee",
-								"TX":"Texas",
-								"UT":"Utah",
-								"VT":"Vermont",
-								"VA":"Virginia",
-								"WA":"Washington",
-								"WV":"West Virginia",
-								"WI":"Wisconsin",
-								"WY":"Wyoming"
-									}
-
-						let query = "insert into " + "ealerts" + " (id,state,county,description,created_at,status,title) values ('" + uuidv4() + "','" + statemap[req.body.state] + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.body.title + "')";
-						db.query(query, (err, result) => {
-								if (err) throw err;
-
-								res.redirect('/alerts');
-						});
 				});
 		});
 
@@ -739,6 +675,16 @@ module.exports = function(app, passport) {
 				db.query(query, (err, result) => {
 						req.logout();
 						res.redirect('/');
+				})
+
+		});
+
+		app.get('/deacAlert', function(req, res) {
+
+				let query = "update ealerts set status = 'inactive'";
+
+				db.query(query, (err, result) => {
+						res.redirect('/alerts');
 				})
 
 		});
