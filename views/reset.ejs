@@ -19,14 +19,11 @@
   <img class="bl" src="/assets/bl-corner.svg"></img>
   <img class="br" src="/assets/br-corner.svg"></img>
 
-    <h1>NEW PASSWORD</h1>
     <hr class="txt-hr">
+    <h1 style="margin-left:8px;">CHANGE PASSWORD</h1>
+    <p>Please enter new password</p>
 
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
-
-    <form action="/reset" method="post">
+    <form action="/reset/<%=token%>" method="post">
         <div class="form-group">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">PASSWORD</p>
             <input type="password" class="form-control" placeholder="Enter Your Password..." name="password" required>

@@ -4,6 +4,7 @@ const async         = require("async");
 const crypto        = require('crypto');
 const nodemailer    = require('nodemailer');
 const uuidv4 				= require('uuid/v4');
+const bcrypt = require('bcrypt');
 
 module.exports = function(app, passport) {
 
@@ -621,7 +622,8 @@ module.exports = function(app, passport) {
 								return res.redirect('/forgot');
 						} else {
 								res.render('reset', {
-										user: req.user
+										user: req.user,
+										token: req.params.token
 								});
 						}
 				});
@@ -645,7 +647,7 @@ module.exports = function(app, passport) {
 												} else {
 														var user = result[0].email;
 
-														bcrypt.hash(password, saltRounds, function(err, hash) {
+														bcrypt.hash(req.body.password, 10, function(err, hash) {
 																let queryAdd = "update users set password = '" + hash + "',resetPasswordToken = null, resetPasswordExpires = null where email = '" + user + "'";
 
 																db.query(queryAdd, (err, result) => {
@@ -759,7 +761,7 @@ module.exports = function(app, passport) {
 								});
 								var mailOptions = {
 										to: user,
-										from: 'passwordreset@demo.com',
+										from: 'automated@cdlchappiness.com',
 										subject: 'Node.js Password Reset',
 										text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
 											'Please click on the following link, or paste this into your browser to complete the process:\n\n' +

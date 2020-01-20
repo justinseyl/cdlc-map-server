@@ -85,12 +85,12 @@ function changelink(type) {
   $("#cover").css('display','none');
   $("#add-trouble-popup").css('display', 'none');
 
-  if (type == 'driver') {
-    $("#cover").css('display','block');
-    $("#add-trouble-popup-driver").css('display','block');
-  } else if (type == 'sales') {
+  if (type == 'sales') {
     $("#cover").css('display','block');
     $("#add-trouble-popup-sales").css('display','block');
+  } else if (type == 'driver') {
+    $("#cover").css('display','block');
+    $("#add-trouble-popup-driver").css('display','block');
   } else {
     $("#cover").css('display','block');
     $("#add-trouble-popup-processor").css('display','block');

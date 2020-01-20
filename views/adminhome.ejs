@@ -18,97 +18,14 @@
         <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
         <hr class="popup-hr">
         <p class="popup-desc">Please select which type of event you would like to create</p>
-        <div class="view-emergency" onclick="changetype('driver')"><a onclick="changetype('driver')">DRIVER</a> </div>
         <div class="view-emergency" onclick="changetype('sales')"><a onclick="changetype('sales')">SALES</a> </div>
+        <div class="view-emergency" onclick="changetype('driver')"><a onclick="changetype('driver')">DRIVER</a> </div>
         <div class="view-emergency" onclick="changetype('processor')"><a onclick="changetype('processor')">PROCESSOR</a> </div>
 
             <div id="cont" class="cancel-btn"><a id="trouble3" class="alt-link ml-0">CONTINUE</a></div>
             <div class="cancel-btn" onclick="closepopup()">CANCEL</div>
     </div>
 </div>
-  <div id="add-trouble-popup-driver" class="popup-panel" style="display:none;">
-  	<div class="card-popup">
-      <img class="tr" src="/assets/tr-corner.svg"></img>
-      <img class="tl" src="/assets/tl-corner.svg"></img>
-      <img class="bl" src="/assets/bl-corner.svg"></img>
-      <img class="br" src="/assets/br-corner.svg"></img>
-
-  		<div class="popup-header">ADD TROUBLE AREA DRIVER</div>
-  		<img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
-  		<hr class="popup-hr">
-      <p class="popup-desc">Please tell us where the trouble area is within the state and a brief description about the issue.</p>
-      <form action="/submitNewTrouble?db=driver" method="post">
-          <div class="form-group">
-              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-              <select id="add-trouble-state-id" class="form-control" placeholder="Enter State..." name="state" required>
-              	<option value="AL">Alabama</option>
-              	<option value="AZ">Arizona</option>
-              	<option value="AR">Arkansas</option>
-              	<option value="CA">California</option>
-              	<option value="CO">Colorado</option>
-              	<option value="CT">Connecticut</option>
-              	<option value="DE">Delaware</option>
-              	<option value="DC">District Of Columbia</option>
-              	<option value="FL">Florida</option>
-              	<option value="GA">Georgia</option>
-              	<option value="ID">Idaho</option>
-              	<option value="IL">Illinois</option>
-              	<option value="IN">Indiana</option>
-              	<option value="IA">Iowa</option>
-              	<option value="KS">Kansas</option>
-              	<option value="KY">Kentucky</option>
-              	<option value="LA">Louisiana</option>
-              	<option value="ME">Maine</option>
-              	<option value="MD">Maryland</option>
-              	<option value="MA">Massachusetts</option>
-              	<option value="MI">Michigan</option>
-              	<option value="MN">Minnesota</option>
-              	<option value="MS">Mississippi</option>
-              	<option value="MO">Missouri</option>
-              	<option value="MT">Montana</option>
-              	<option value="NE">Nebraska</option>
-              	<option value="NV">Nevada</option>
-              	<option value="NH">New Hampshire</option>
-              	<option value="NJ">New Jersey</option>
-              	<option value="NM">New Mexico</option>
-              	<option value="NY">New York</option>
-              	<option value="NC">North Carolina</option>
-              	<option value="ND">North Dakota</option>
-              	<option value="OH">Ohio</option>
-              	<option value="OK">Oklahoma</option>
-              	<option value="OR">Oregon</option>
-              	<option value="PA">Pennsylvania</option>
-              	<option value="RI">Rhode Island</option>
-              	<option value="SC">South Carolina</option>
-              	<option value="SD">South Dakota</option>
-              	<option value="TN">Tennessee</option>
-              	<option value="TX">Texas</option>
-              	<option value="UT">Utah</option>
-              	<option value="VT">Vermont</option>
-              	<option value="VA">Virginia</option>
-              	<option value="WA">Washington</option>
-              	<option value="WV">West Virginia</option>
-              	<option value="WI">Wisconsin</option>
-              	<option value="WY">Wyoming</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-              <select id="add-trouble-county-id" class="form-control" name="county" required>
-                <option value="" disabled selected hidden>Enter County...</option>
-              </select>
-          </div>
-          <div class="form-group">
-            <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
-            <textarea id="add-trouble-desc" name="description" placeholder="Enter brief description..." required></textarea>
-          </div>
-
-          <button type="submit" class="submit-btn" onclick="submitNewTrouble()">SUBMIT</button>
-
-          <div class="cancel-btn" onclick="closepopup()">CANCEL</div>
-      </form>
-  	</div>
-  </div>
 <div id="add-trouble-popup-sales" class="popup-panel" style="display:none;">
     <div class="card-popup">
         <img class="tr" src="/assets/tr-corner.svg"></img>
@@ -196,6 +113,89 @@
         </form>
     </div>
 </div>
+  <div id="add-trouble-popup-driver" class="popup-panel" style="display:none;">
+  	<div class="card-popup">
+      <img class="tr" src="/assets/tr-corner.svg"></img>
+      <img class="tl" src="/assets/tl-corner.svg"></img>
+      <img class="bl" src="/assets/bl-corner.svg"></img>
+      <img class="br" src="/assets/br-corner.svg"></img>
+
+  		<div class="popup-header">ADD TROUBLE AREA DRIVER</div>
+  		<img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
+  		<hr class="popup-hr">
+      <p class="popup-desc">Please tell us where the trouble area is within the state and a brief description about the issue.</p>
+      <form action="/submitNewTrouble?db=driver" method="post">
+          <div class="form-group">
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
+              <select id="add-trouble-state-id" class="form-control" placeholder="Enter State..." name="state" required>
+              	<option value="AL">Alabama</option>
+              	<option value="AZ">Arizona</option>
+              	<option value="AR">Arkansas</option>
+              	<option value="CA">California</option>
+              	<option value="CO">Colorado</option>
+              	<option value="CT">Connecticut</option>
+              	<option value="DE">Delaware</option>
+              	<option value="DC">District Of Columbia</option>
+              	<option value="FL">Florida</option>
+              	<option value="GA">Georgia</option>
+              	<option value="ID">Idaho</option>
+              	<option value="IL">Illinois</option>
+              	<option value="IN">Indiana</option>
+              	<option value="IA">Iowa</option>
+              	<option value="KS">Kansas</option>
+              	<option value="KY">Kentucky</option>
+              	<option value="LA">Louisiana</option>
+              	<option value="ME">Maine</option>
+              	<option value="MD">Maryland</option>
+              	<option value="MA">Massachusetts</option>
+              	<option value="MI">Michigan</option>
+              	<option value="MN">Minnesota</option>
+              	<option value="MS">Mississippi</option>
+              	<option value="MO">Missouri</option>
+              	<option value="MT">Montana</option>
+              	<option value="NE">Nebraska</option>
+              	<option value="NV">Nevada</option>
+              	<option value="NH">New Hampshire</option>
+              	<option value="NJ">New Jersey</option>
+              	<option value="NM">New Mexico</option>
+              	<option value="NY">New York</option>
+              	<option value="NC">North Carolina</option>
+              	<option value="ND">North Dakota</option>
+              	<option value="OH">Ohio</option>
+              	<option value="OK">Oklahoma</option>
+              	<option value="OR">Oregon</option>
+              	<option value="PA">Pennsylvania</option>
+              	<option value="RI">Rhode Island</option>
+              	<option value="SC">South Carolina</option>
+              	<option value="SD">South Dakota</option>
+              	<option value="TN">Tennessee</option>
+              	<option value="TX">Texas</option>
+              	<option value="UT">Utah</option>
+              	<option value="VT">Vermont</option>
+              	<option value="VA">Virginia</option>
+              	<option value="WA">Washington</option>
+              	<option value="WV">West Virginia</option>
+              	<option value="WI">Wisconsin</option>
+              	<option value="WY">Wyoming</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+              <select id="add-trouble-county-id" class="form-control" name="county" required>
+                <option value="" disabled selected hidden>Enter County...</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
+            <textarea id="add-trouble-desc" name="description" placeholder="Enter brief description..." required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" onclick="submitNewTrouble()">SUBMIT</button>
+
+          <div class="cancel-btn" onclick="closepopup()">CANCEL</div>
+      </form>
+  	</div>
+  </div>
 <div id="add-trouble-popup-processor" class="popup-panel" style="display:none;">
     <div class="card-popup">
         <img class="tr" src="/assets/tr-corner.svg"></img>
