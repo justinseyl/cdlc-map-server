@@ -93,33 +93,34 @@
   </div>
 
   <div id="view-emergency-popup" class="popup-panel" style="display:none;">
-  	<div class="card-popup">
-      <img class="tr" src="/assets/tr-corner.svg"></img>
-      <img class="tl" src="/assets/tl-corner.svg"></img>
-      <img class="bl" src="/assets/bl-corner.svg"></img>
-      <img class="br" src="/assets/br-corner.svg"></img>
+      <div class="card-popup">
+          <img class="tr" src="/assets/tr-corner.svg"></img>
+          <img class="tl" src="/assets/tl-corner.svg"></img>
+          <img class="bl" src="/assets/bl-corner.svg"></img>
+          <img class="br" src="/assets/br-corner.svg"></img>
 
-  		<div class="popup-header">EMERGENCY ALERT IN FLORIDA</div>
-  		<img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
-  		<hr class="popup-hr">
-      <div class="col-md-12">
-        <div class="col-md-4">
-          <p class="popup-header-row">COUNTY</p>
-          <p class="popup-desc-emerg-col">Pinellas</p>
-        </div>
-        <div class="col-md-4">
-          <p class="popup-header-row">DATE</p>
-          <p class="popup-desc-emerg-col">09/27/19</p>
-        </div>
-        <div class="col-md-4">
-          <p class="popup-header-row">TIME</p>
-          <p class="popup-desc-emerg-col">12:33 PM</p>
-        </div>
+          <div class="popup-header">EMERGENCY ALERT IN <%= state%></div>
+          <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
+          <hr class="popup-hr">
+          <div class="col-md-12">
+              <div class="col-md-4">
+                  <p class="popup-header-row">COUNTY</p>
+                  <p class="popup-desc-emerg-col"><%= county%></p>
+              </div>
+              <div class="col-md-4">
+                  <p class="popup-header-row">DATE</p>
+                  <p class="popup-desc-emerg-col"><%= date%></p>
+              </div>
+              <div class="col-md-4">
+                  <p class="popup-header-row">TIME</p>
+                  <p class="popup-desc-emerg-col"><%= time%></p>
+              </div>
+          </div>
+          <p class="popup-header-row">DESCRIPTION</p>
+          <p class="popup-desc-emerg"><%= alert%></p>
       </div>
-      <p class="popup-header-row">DESCRIPTION</p>
-      <p class="popup-desc-emerg">Hella narwhal Cosby sweater McSweeney's, salvia kitsch before they sold out High Life. Umami tattooed sriracha meggings pickled Marfa Blue Bottle High Life next level four loko PBR. Keytar pickled next level keffiyeh drinking vinegar street art. Art party vinyl Austin, retro whatever keytar mixtape. Pickled ethnic farm-to-table distillery ugh chia. Ethical Odd Future narwhal, mlkshk fap asymmetrical next level High Life literally cred blog. Banh mi swag art party, fashion axe you probably haven't heard of them stumptown tousled food truck post-ironic quinoa bicycle rights aesthetic keytar Pitchfork.</p>
-  	</div>
   </div>
+
 
   <div class="container-main">
 
@@ -129,14 +130,14 @@
       <img class="bl" src="/assets/bl-corner.svg"></img>
       <img class="br" src="/assets/br-corner.svg"></img>
 
-      <div class="inner-card">
-        <img class="emergency-logo" src="/assets/emergency.svg"></img>
-        <div class="emergency-title">
-          <h1>EMERGENCY ALERT IN FLORIDA</h1>
-          <p><p><%= alert %> </p></p>
+        <div class="inner-card">
+            <img class="emergency-logo" src="/assets/emergency.svg"></img>
+            <div class="emergency-title">
+                <h1>EMERGENCY ALERT IN <%= state%></h1>
+                <p><%= alert %> </p>
+            </div>
+            <div class="view-emergency" onclick="popViewEmerg()">VIEW DETAILS</div>
         </div>
-        <div class="view-emergency" onclick="popViewEmerg()">VIEW DETAILS</div>
-      </div>
 
     </div>
 
