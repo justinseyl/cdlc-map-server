@@ -73,6 +73,27 @@ function popViewEmerg() {
   $("#view-emergency-popup").css('display','block');
 }
 
+function changetype(type) {
+    $("#trouble3").attr("onClick", `changelink('${type}')`);
+}
+
+function changelink(type) {
+
+  $("#cover").css('display','none');
+  $("#add-trouble-popup").css('display', 'none');
+
+  if (type == 'driver') {
+    $("#cover").css('display','block');
+    $("#add-trouble-popup-driver").css('display','block');
+  } else if (type == 'sales') {
+    $("#cover").css('display','block');
+    $("#add-trouble-popup-sales").css('display','block');
+  } else {
+    $("#cover").css('display','block');
+    $("#add-trouble-popup-processor").css('display','block');
+  }
+}
+
 function getEventDetails(id, role) {
   console.log(role);
   $.get(`/getevent/${id}?role=${role}`, function (data) {

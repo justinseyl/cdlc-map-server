@@ -482,6 +482,10 @@ module.exports = function(app, passport) {
 				if (req.user.role)
 						role = req.user.role;
 
+				if (req.query.db) {
+						role = req.query.db;
+				}
+
 				let dbs = {
 						'driver': 'tr_area',
 						'sales'  : 'tr_area_sales',
