@@ -74,14 +74,13 @@ function popViewEmerg() {
 }
 
 function getEventDetails(id, role) {
-
   $.get(`/getevent/${id}?role=${role}`, function (data) {
     let results = data[0];
-    $("#county").val(results.county);
-    $("#date").val(results.date);
-    $("#time").val(results.time);
-    $("#desc").val(results.description);
-    $("#upl").val(results.userid);
+    $("#county").html(results.county);
+    $("#date").html(results.date);
+    $("#time").html(results.time);
+    $("#desc").html(results.description);
+    $("#upl").html(results.userid);
 
     if (results.manage == 'pending') {
       $("#acceptevent").attr("href", `/accept/${id}`);
