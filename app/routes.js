@@ -582,9 +582,20 @@ module.exports = function(app, passport) {
 
 		app.get('/getevent/:id', function(req, res, next){
 				let id = req.params.id;
+				let role = 'driver';
+
+				if (req.query.role) {
+						role = req.query.role;
+				}
+
+				let dbs = {
+						'driver': 'tr_area',
+						'sales'  : 'tr_area_sales',
+						'processor': 'tr_area_processor'
+				}
 				// let table = req.query.table;
 
-				let query = "select manage, state, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid  from tr_area where id = '" + id + "'";
+				let query = `select manage, state, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid  from ${dbs[role.toLowerCase()]} where id = '${id}'`;
 
 				db.query(query, (err, result) => {
 						if (err) throw err;

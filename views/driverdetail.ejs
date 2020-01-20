@@ -9,14 +9,14 @@
 
 <div class="iefix">
     <nav class="nav-custom">
-        <div class="nav-custom-header col-sm-3">
+        <div class="nav-custom-header col-xs-1 col-sm-3">
             <a href="/" class="click-header">
                 <img class="nav-custom-logo" src="/assets/icon.svg"></img>
                 <h1>ADMIN</h1>
             </a>
         </div>
         <div class="nav-custom-collapse col-sm-6" id="myNavbar">
-            <ul class="nav-custom-ul">
+            <ul class="nav-custom-ul col-xs-6 col-md-12 mx-auto">
                 <li id="home">
                     <img class="nav-custom-icon-main" src="/assets/icon-home-un.svg"></img>
                     <a href="/">HOME</a>
@@ -24,7 +24,7 @@
                 </li>
                 <li id="events">
                     <img class="nav-custom-icon-main" src="/assets/icon-my-profile-un.svg"></img>
-                    <a href="/drivers">DRIVERS</a>
+                    <a href="/<%=router%>"><%=menuitem%></a>
                     <div class="nav-hr" style="display:none;"></div>
                 </li>
                 <li id="alerts">
@@ -33,8 +33,17 @@
                     <div class="nav-hr" style="display:none;"></div>
                 </li>
             </ul>
+            <ul class="nav-custom-ul nav-add-icons-mobile show-mobile">
+                <li id="profile">
+                    <img class="nav-custom-icon-main" src="/assets/icon-my-profile-un.svg"></img>
+                    <a href="/profile"></a>
+                </li>
+                <li>
+                    <img class="nav-custom-icon-main" src="/assets/icon-my-notifications.svg"></img>
+                </li>
+            </ul>
         </div>
-        <div class="col-sm-3" style="display:inline-flex;margin-top:5px;">
+        <div class="col-sm-3 hide-mobile">
             <div class="col-6 dropdown">
                 <select id="admin-select" class="dropdown-toggle" onChange="window.location.href=this.value" name="state" required>
                     <option value="" selected="selected" hidden="hidden"><%= picker %></option>
@@ -44,11 +53,12 @@
                 </select>
             </div>
             <div class="col-6">
-                <img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img>
+                <a href="/notifications"><img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img></a>
                 <a href="/profile"><img class="nav-custom-icon" style="margin-right:25px;" src="/assets/icon-my-profile-un.svg"></img></a>
             </div>
         </div>
     </nav>
+
 </div>
 
   <div id="add-trouble-popup" class="popup-panel" style="display:none;">
