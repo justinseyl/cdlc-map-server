@@ -484,14 +484,13 @@ module.exports = function(app, passport) {
 		})
 
 		app.post('/submitEmergency', function(req, res, next){
-				db.query(query1, (err, result) => {
+			
 						let query = "insert into " + "ealerts" + " (id,state,county,description,created_at,status,title) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.body.title + "')";
 						db.query(query, (err, result) => {
 								if (err) throw err;
 
 								res.redirect('/alerts');
 						});
-				});
 		});
 
 		app.post('/submitNewTrouble', function(req, res, next){
