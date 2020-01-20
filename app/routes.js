@@ -8,7 +8,7 @@ const uuidv4 				= require('uuid/v4');
 module.exports = function(app, passport) {
 
 		app.get('/', isLoggedIn, function(req, res) {
-				let alertquery = "select description, county, state, created_at from ealerts where status='active'"
+				let alertquery = "select title, description, county, state, created_at,status from ealerts order by created_at desc limit 1"
 				let query = "select id, state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";
 				db.query(alertquery, (err, ares) => {
 						db.query(query, (err, result) => {
@@ -45,6 +45,7 @@ module.exports = function(app, passport) {
 																time: time,
 																state: ares[0].state.toUpperCase(),
 																county: ares[0].county,
+																showEmergency: ares[0].status
 														});
 												});
 										} else {
@@ -172,7 +173,7 @@ module.exports = function(app, passport) {
 		})
 
 		app.get('/adminhome/:role', isLoggedIn, function(req, res) {
-				let alertquery = "select description, county, state, created_at from ealerts where status='active'"
+				let alertquery = "select title, description, county, state, created_at,status from ealerts order by created_at desc limit 1"
 				let query = "select id, state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
 
 				db.query(alertquery, (err, ares) => {
@@ -230,6 +231,7 @@ module.exports = function(app, passport) {
 														county: ares[0].county,
 														state: ares[0].state.toUpperCase(),
 														county: ares[0].county,
+														showEmergency: ares[0].status
 												});
 										});
 								} else {
@@ -245,6 +247,7 @@ module.exports = function(app, passport) {
 												time: time,
 												state: ares[0].state.toUpperCase(),
 												county: ares[0].county,
+												showEmergency: ares[0].status
 										})
 								}
 						} else {
@@ -260,6 +263,7 @@ module.exports = function(app, passport) {
 										time: time,
 										state: ares[0].state.toUpperCase(),
 										county: ares[0].county,
+										showEmergency: ares[0].status
 								});
 						}
 				});
@@ -327,7 +331,7 @@ module.exports = function(app, passport) {
 
 		app.get('/alerts', isLoggedIn, function(req, res) {
 
-				let query = "select * from ealerts where status='active' ";
+				let query = "select id, title, description, county, state, created_at,status from ealerts order by created_at desc limit 1";
 				db.query(query, (err, result) => {
 
 						let rtn = result[0];
@@ -342,7 +346,9 @@ module.exports = function(app, passport) {
 								title: rtn.title,
 								state: rtn.state,
 								county: rtn.county,
-								description: rtn.description
+								description: rtn.description,
+								showEmergency: rtn.status,
+								emergencyId: rtn.id
 						});
 				});
 		});
@@ -453,7 +459,7 @@ module.exports = function(app, passport) {
 						'processor': 'processornoti.ejs'
 				}
 
-				let query = "select description, Concat(DATEDIFF(Now(),created_at),' Days Ago') as time,case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from ealerts order by created_at desc";
+				let query = "select title, description, Concat(DATEDIFF(Now(),created_at),' Days Ago') as time,case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from ealerts order by created_at desc";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
@@ -476,6 +482,17 @@ module.exports = function(app, passport) {
 						res.redirect('/drivers')
 				})
 		})
+
+		app.post('/submitEmergency', function(req, res, next){
+				db.query(query1, (err, result) => {
+						let query = "insert into " + "ealerts" + " (id,state,county,description,created_at,status,title) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.body.title + "')";
+						db.query(query, (err, result) => {
+								if (err) throw err;
+
+								res.redirect('/alerts');
+						});
+				});
+		});
 
 		app.post('/submitNewTrouble', function(req, res, next){
 

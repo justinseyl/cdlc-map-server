@@ -78,12 +78,20 @@
         <img class="bl" src="/assets/bl-corner.svg"></img>
         <img class="br" src="/assets/br-corner.svg"></img>
 
+        <div style="float:right;">
+          <%if (showEmergency == 'active') { %>
+            <div class="tbl-audit-green">ACTIVE</div>
+          <% } else { %>
+            <div class="tbl-audit-red">INACTIVE</div>
+          <% } %>
+        </div>
+
         <h1>EMERGENCY ALERT</h1>
         <hr class="txt-hr" style="margin:auto;margin-bottom:30px;">
 
         <p class="emergency-desc">Please fill out the necesarry information and activate the emergency alert system.</p>
 
-        <form>
+        <form action="/submitEmergency" method="post">
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">TITLE</p>
                 <input id="email-input" type="text" class="form-control" name="title" value=<%= title %> required>
@@ -154,10 +162,10 @@
               <textarea id="add-trouble-desc" name="description" placeholder="Enter brief description..." required><%= description %></textarea>
             </div>
 
-            <%if (title) { %>
+            <%if (showEmergency == 'active') { %>
               <button type="button" class="submit-btn deactivate-btn" onclick="window.location.href = '/deacAlert'">DEACTIVATE ALERT</button>
             <% } else { %>
-              <button type="button" class="submit-btn" onclick="deacAlert()">ACTIVATE ALERT</button>
+              <button type="submit" class="submit-btn">ACTIVATE ALERT</button>
             <% } %>
 
         </form>

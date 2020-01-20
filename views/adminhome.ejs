@@ -385,12 +385,12 @@
   </div>
   <div class="container-main">
 
+<%if (showEmergency == 'active') { %>
     <div class="card card-main">
       <img class="tr" src="/assets/tr-corner.svg"></img>
       <img class="tl" src="/assets/tl-corner.svg"></img>
       <img class="bl" src="/assets/bl-corner.svg"></img>
       <img class="br" src="/assets/br-corner.svg"></img>
-
       <div class="inner-card">
         <img class="emergency-logo" src="/assets/emergency.svg"></img>
         <div class="emergency-title">
@@ -399,8 +399,8 @@
         </div>
         <div class="view-emergency" onclick="popViewEmerg()">VIEW DETAILS</div>
       </div>
-
     </div>
+<% } %>
 
     <div class="card card-main">
       <img class="tr" src="/assets/tr-corner.svg"></img>
