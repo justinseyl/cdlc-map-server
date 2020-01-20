@@ -2,7 +2,7 @@ $(document).ready(function(){
     var element = $('meta[name="active-menu"]').attr('content');
     $('#' + element).addClass('active');
     $('#' + element + ' .nav-hr').show();
-
+console.log(element);
     var i = $('#' + element + ' img').attr('src');
     var str = i.split('/').pop();
     var x = str.split('-un')[0];

@@ -74,6 +74,7 @@ function popViewEmerg() {
 }
 
 function getEventDetails(id, role) {
+  console.log(role);
   $.get(`/getevent/${id}?role=${role}`, function (data) {
     let results = data[0];
     $("#county").html(results.county);
