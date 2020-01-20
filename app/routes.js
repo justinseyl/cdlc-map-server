@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
 
 		app.get('/', isLoggedIn, function(req, res) {
 				let alertquery = "select description, county, state, created_at from ealerts where status='active'"
-				let query = "select id, state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
+				let query = "select id, state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";
 				db.query(alertquery, (err, ares) => {
 						db.query(query, (err, result) => {
 								if (err) throw err;
