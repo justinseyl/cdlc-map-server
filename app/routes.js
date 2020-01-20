@@ -61,6 +61,7 @@ module.exports = function(app, passport) {
 														time: time,
 														state: ares[0].state.toUpperCase(),
 														county: ares[0].county,
+														showEmergency: ares[0].status
 												})
 										}
 								} else {
@@ -76,6 +77,7 @@ module.exports = function(app, passport) {
 												time: time,
 												state: ares[0].state.toUpperCase(),
 												county: ares[0].county,
+												showEmergency: ares[0].status
 										});
 								}
 						});
@@ -484,7 +486,7 @@ module.exports = function(app, passport) {
 		})
 
 		app.post('/submitEmergency', function(req, res, next){
-			
+
 						let query = "insert into " + "ealerts" + " (id,state,county,description,created_at,status,title) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.body.title + "')";
 						db.query(query, (err, result) => {
 								if (err) throw err;
