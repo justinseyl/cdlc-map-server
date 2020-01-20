@@ -425,9 +425,10 @@ module.exports = function(app, passport) {
 								page:'My Events',
 								menuId:'events',
 								event: result,
-								picker: 'DRIVER',
+								statecode: req.user.state,
+								picker: role.toUpperCase(),
 								menuitem: 'PROFILE',
-								router: 'drivers'
+								router: role.toUpperCase()
 						});
 				});
 		});
