@@ -461,7 +461,7 @@ module.exports = function(app, passport) {
 						'processor': 'processornoti.ejs'
 				}
 
-				let query = "select title, description, Concat(DATEDIFF(Now(),created_at),' Days Ago') as time,case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from ealerts order by created_at desc";
+				let query = "select title, description, Concat(DATEDIFF(Now(),created_at),' Days Ago') as time,Concat('+',DATEDIFF(Now(),created_at)) as mobiletime,case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from ealerts order by created_at desc";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
