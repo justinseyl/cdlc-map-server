@@ -10,7 +10,7 @@ function popAddTrouble(user) {
 
   $("#cover").css('display','block');
   $("#add-trouble-popup").css('display','block');
-  
+
   if (global_state && global_state != '') {
     state = global_state;
   } else {
@@ -27,6 +27,8 @@ String.prototype.capitalize = function() {
 }
 
 function popAddTroubleTbl(st,ct) {
+  console.log(st);
+  console.log(ct);
   $("#cover").css('display','block');
   $("#add-trouble-popup").css('display','block');
 
