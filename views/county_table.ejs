@@ -9,6 +9,36 @@
 
   <% include partials/menu %>
 
+  <div id="click-event" class="popup-panel" style="display:none;">
+      <div class="card-popup">
+          <img class="tr" src="/assets/tr-corner.svg"></im g>
+          <img class="tl" src="/assets/tl-corner.svg"></img>
+          <img class="bl" src="/assets/bl-corner.svg"></img>
+          <img class="br" src="/assets/br-corner.svg"></img>
+
+          <div class="popup-header">DRIVER EVENT</div>
+          <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
+          <hr class="popup-hr">
+          <div class="form-group col-sm-4 driver-event">
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+              <p name="county" id="county"></p>
+          </div>
+          <div class="form-group col-sm-4 driver-event" style="padding-right:20px;">
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DATE</p>
+              <p name="date" id="date"></p>
+          </div>
+          <div class="form-group col-sm-4 driver-event">
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">TIME</p>
+              <p name="time" id="time"></p>
+          </div>
+          <div class="form-group col-sm-12 driver-event">
+              <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
+              <p name="desc" id="desc"></p>
+          </div>
+
+      </div>
+  </div>
+
   <div id="add-trouble-popup" class="popup-panel" style="display:none;">
   	<div class="card-popup">
       <img class="tr" src="/assets/tr-corner.svg"></img>
@@ -149,7 +179,7 @@
                   <% if (formdata[i].isnew) { %>
                     <div class="new"><img src="/assets/new.svg"></img></div>
                   <% } %>
-                  <%= formdata[i].description %>
+                  <a class="alt-link ml-0" onclick="getEventDetails('<%= formdata[i].id %>', 'driver')"><%= formdata[i].description %></a>
                 </td>
                 <td><%= formdata[i].state %> </td>
                 <td><%= formdata[i].county %> </td>

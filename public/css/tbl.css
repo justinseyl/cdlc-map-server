@@ -159,6 +159,20 @@ table tbody td:last-child,table thead tr th:last-child {
   color: #ff6969;
   padding: 2px;
 }
+.driver-event {
+  text-align: center;
+}
+.driver-event p {
+  opacity: 0.8;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e2e5ee;
+}
 .expand {
     height: 1em;
     padding: 2px;

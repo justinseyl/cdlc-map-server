@@ -6,12 +6,10 @@ $(document).ready(function(){
     var i = $('#' + element + ' img').attr('src');
     var str = i.split('/').pop();
     var x = str.split('-un')[0];
-
+    console.log(x);
     var i = $('#' + element + ' img').attr('src','/assets/' + x + '.svg');
-
     var picker = $('meta[name="admin-picker"]').attr('content');
     var menuitem = '';
-    console.log(picker);
 });
 
 $('#admin-select').on('change', function() {
