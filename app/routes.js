@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
 
 		app.get('/', isLoggedIn, function(req, res) {
 				let alertquery = "select description, county, state, created_at from ealerts where status='active'"
-				let query = "select state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
+				let query = "select id, state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
 				db.query(alertquery, (err, ares) => {
 						db.query(query, (err, result) => {
 								if (err) throw err;
@@ -173,7 +173,7 @@ module.exports = function(app, passport) {
 
 		app.get('/adminhome/:role', isLoggedIn, function(req, res) {
 				let alertquery = "select description, county, state, created_at from ealerts where status='active'"
-				let query = "select state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
+				let query = "select id, state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
 
 				db.query(alertquery, (err, ares) => {
 				db.query(query, (err, result) => {
@@ -595,7 +595,7 @@ module.exports = function(app, passport) {
 				}
 				// let table = req.query.table;
 
-				let query = `select manage, state, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid  from ${dbs[role.toLowerCase()]} where id = '${id}'`;
+				let query = `select id, manage, state, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid  from ${dbs[role.toLowerCase()]} where id = '${id}'`;
 
 				db.query(query, (err, result) => {
 						if (err) throw err;
