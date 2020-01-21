@@ -143,8 +143,8 @@ function getEventDetails(id, role) {
     }
 
     if (results.manage == 'pending') {
-      $("#acceptevent").attr("href", `/accept/${id}`);
-      $("#rejectevent").attr("href", `/reject/${id}`);
+      $("#acceptevent").attr("href", `/accept/${id}?role=${role}`);
+      $("#rejectevent").attr("href", `/reject/${id}?role=${role}`);
       $("#pending1").show();
       $("#pending2").show();
       $("#accepted").hide();

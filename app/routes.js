@@ -158,22 +158,42 @@ module.exports = function(app, passport) {
 
 		app.get('/accept/:id', isLoggedIn, function(req, res) {
 				let id = req.params.id;
+				let role = 'driver';
 
-				let query = "update tr_area set manage='accepted' where id='" +id + "'" ;
+				if (req.query.role)
+						role = req.query.role.toLowerCase();
+
+				let dbs = {
+						'driver': 'tr_area',
+						'sales'  : 'tr_area_sales',
+						'processor': 'tr_area_processor'
+				}
+
+				let query = `update ${dbs[role]} set manage='accepted' where id='${id}'` ;
 
 				db.query(query, (err, result) => {
-						res.redirect('/')
+						res.redirect(`/adminhome/${role}`)
 				})
 
 		})
 
 		app.get('/reject/:id', isLoggedIn, function(req, res) {
 				let id = req.params.id;
+				let role = 'driver';
 
-				let query = "update tr_area set manage='denied' where id='" +id + "'" ;
+				if (req.query.role)
+						role = req.query.role.toLowerCase();
+
+				let dbs = {
+						'driver': 'tr_area',
+						'sales'  : 'tr_area_sales',
+						'processor': 'tr_area_processor'
+				}
+
+				let query = `update ${dbs[role]} set manage='denied' where id='${id}'` ;
 
 				db.query(query, (err, result) => {
-						res.redirect('/')
+						res.redirect(`/adminhome/${role}`)
 				})
 
 		})
