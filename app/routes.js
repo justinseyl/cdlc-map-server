@@ -302,7 +302,6 @@ module.exports = function(app, passport) {
 		app.get('/profile', isLoggedIn, function(req, res) {
 
 				let role = 'driver';
-				let setstate = '';
 
 				if (req.user.role) {
 						role = req.user.role
@@ -315,46 +314,15 @@ module.exports = function(app, passport) {
 						'processor': 'processorprofile.ejs'
 				}
 
-				if (role == 'sales') {
-					let q = "select state from users where email = '" + salesid + "'";
-
-					db.query(q, (err, result) => {
-						if (!err) {setstate = result[0].state;}
-						res.render(route_map[role], {
-								user : req.user,
-								page:'My Profile',
-								menuId:'profile',
-								picker: 'DRIVER',
-								menuitem: 'DRIVERS',
-								router: 'drivers',
-								state: setstate
-						});
-					});
-				} else if (role == 'processor') {
-					let q = "select state from users where email = '" + procid + "'";
-
-					db.query(q, (err, result) => {
-						if (!err) {setstate = result[0].state;}
-						res.render(route_map[role], {
-								user : req.user,
-								page:'My Profile',
-								menuId:'profile',
-								picker: 'DRIVER',
-								menuitem: 'DRIVERS',
-								router: 'drivers',
-								state: setstate
-						});
-					});
-				} else {
-					res.render(route_map[role], {
-							user : req.user,
-							page:'My Profile',
-							menuId:'profile',
-							picker: 'DRIVER',
-							menuitem: 'DRIVERS',
-							router: 'drivers'
-					});
-				}
+				res.render(route_map[role], {
+						user : req.user,
+						page:'My Profile',
+						menuId:'profile',
+						picker: 'DRIVER',
+						menuitem: 'DRIVERS',
+						router: 'drivers',
+						state: req.user.state
+				});
 		});
 
 		app.post('/profile', isLoggedIn, function(req, res) {
@@ -363,7 +331,7 @@ module.exports = function(app, passport) {
 				let query1 = "update users set first='" + data.first + "', last='" + data.last + "',email='" + data.email + "', state='" + data.state + "' where email='" + data.email +"'";
 
 				db.query(query1, (err, result) => {
-						res.redirect('/')
+						res.redirect('/profile')
 				})
 
 		});
@@ -533,6 +501,30 @@ module.exports = function(app, passport) {
 						});
 		});
 
+		app.post('/updateEvent', function(req, res, next){
+
+				let role = 'driver';
+
+				if (req.query.db) {
+						role = req.query.db;
+				}
+
+				let dbs = {
+						'driver': 'tr_area',
+						'sales'  : 'tr_area_sales',
+						'processor': 'tr_area_processor'
+				}
+console.log(req.body);
+				let query = "update " + dbs[role] + " set state = '" + req.body.state + "', county = '" + req.body.county + "', description = '" + req.body.description + "' where id = '" + req.body.id + "'";
+
+				db.query(query, (err, result) => {
+						if (err) throw err;
+
+						// res.redirect('/county_table/' + req.body.state + '/' + req.body.county);
+						res.redirect('/events');
+				});
+		});
+
 		app.post('/submitNewTrouble', function(req, res, next){
 
 				let role = 'driver'
@@ -591,7 +583,7 @@ module.exports = function(app, passport) {
 				}
 				// let table = req.query.table;
 
-				let query = `select id, manage, state, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid  from ${dbs[role.toLowerCase()]} where id = '${id}'`;
+				let query = `select id, manage, state, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid, '` + req.user.role + `' as role from ${dbs[role.toLowerCase()]} where id = '${id}'`;
 
 				db.query(query, (err, result) => {
 						if (err) throw err;

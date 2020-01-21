@@ -40,13 +40,24 @@ $("#add-trouble-state-id").on('change', function (e) {
     setCountyPicker(valueSelected);
 });
 
+$("#state").on('change', function (e) {
+    var valueSelected = this.value;
+    setCountyPicker(valueSelected,'','county');
+});
+
 String.prototype.capitalize = function(){
        return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
       };
 
-function setCountyPicker(state,ct) {
-  console.log(ct);
-  $("#add-trouble-county-id").empty();
+function setCountyPicker(state,ct,div) {
+  let set = $("#add-trouble-county-id");
+
+  if (div) {
+    set = $("#" + div);
+  }
+
+  let setid = $(set).attr('id');
+  $(set).empty();
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
@@ -56,18 +67,19 @@ function setCountyPicker(state,ct) {
     var countyname = state_specific[classcode].name;
 
     var html = '<option value="' + countyname + '">' + countyname + '</option>';
-    $("#add-trouble-county-id").append(html);
+    $(set).append(html);
+
   });
 
-  $("#add-trouble-county-id").html($("#add-trouble-county-id option").sort(function (a, b) {
+  $(set).html($("#" + setid + " option").sort(function (a, b) {
     return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
   }));
-console.log(ct.toLowerCase().capitalize());
+
   if (ct) {
-    $("#add-trouble-county-id").val(ct.toLowerCase().capitalize());
+    $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
-    $("#add-trouble-county-id").prepend(initHtml);
+    $(set).prepend(initHtml);
   }
 }
 
@@ -98,14 +110,23 @@ function changelink(type) {
 }
 
 function getEventDetails(id, role) {
-  console.log(role);
   $.get(`/getevent/${id}?role=${role}`, function (data) {
     let results = data[0];
-    $("#county").html(results.county);
-    $("#date").html(results.date);
-    $("#time").html(results.time);
-    $("#desc").html(results.description);
-    $("#upl").html(results.userid);
+
+    setCountyPicker(results.state,results.county,'county');
+
+    if (results.role || results.role == 'null' || results.role == '') {
+      $("#county").val(results.county);
+      $("#desc").val(results.description);
+      $("#state").val(results.state);
+      $("#id").val(results.id);
+    } else {
+      $("#county").html(results.county);
+      $("#date").html(results.date);
+      $("#time").html(results.time);
+      $("#desc").html(results.description);
+      $("#upl").html(results.userid);
+    }
 
     if (results.manage == 'pending') {
       $("#acceptevent").attr("href", `/accept/${id}`);
@@ -181,7 +202,8 @@ $(document).ready(function() {
          $(this).parent().hide();
       }
    },
-   "responsive": true
+   "responsive": true,
+   "ordering": false
   });
 
   if ($(window).width() < 720) {
