@@ -256,6 +256,10 @@ textarea {
   color: #ff6969;
   padding: 2px;
 }
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background: transparent;
+  opacity: 0.4;
+}
 
 @media only screen and (max-width: 768px) {
   .container {

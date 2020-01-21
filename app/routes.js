@@ -6,6 +6,9 @@ const nodemailer    = require('nodemailer');
 const uuidv4 				= require('uuid/v4');
 const bcrypt = require('bcrypt');
 
+const salesid = 'sales@test';
+const procid = 'processor@test';
+
 module.exports = function(app, passport) {
 
 		app.get('/', isLoggedIn, function(req, res) {
@@ -299,6 +302,7 @@ module.exports = function(app, passport) {
 		app.get('/profile', isLoggedIn, function(req, res) {
 
 				let role = 'driver';
+				let setstate = '';
 
 				if (req.user.role) {
 						role = req.user.role
@@ -311,14 +315,46 @@ module.exports = function(app, passport) {
 						'processor': 'processorprofile.ejs'
 				}
 
-				res.render(route_map[role], {
-						user : req.user,
-						page:'My Profile',
-						menuId:'profile',
-						picker: 'DRIVER',
-						menuitem: 'DRIVERS',
-						router: 'drivers'
-				});
+				if (role == 'sales') {
+					let q = "select state from users where email = '" + salesid + "'";
+
+					db.query(q, (err, result) => {
+						if (!err) {setstate = result[0].state;}
+						res.render(route_map[role], {
+								user : req.user,
+								page:'My Profile',
+								menuId:'profile',
+								picker: 'DRIVER',
+								menuitem: 'DRIVERS',
+								router: 'drivers',
+								state: setstate
+						});
+					});
+				} else if (role == 'processor') {
+					let q = "select state from users where email = '" + procid + "'";
+
+					db.query(q, (err, result) => {
+						if (!err) {setstate = result[0].state;}
+						res.render(route_map[role], {
+								user : req.user,
+								page:'My Profile',
+								menuId:'profile',
+								picker: 'DRIVER',
+								menuitem: 'DRIVERS',
+								router: 'drivers',
+								state: setstate
+						});
+					});
+				} else {
+					res.render(route_map[role], {
+							user : req.user,
+							page:'My Profile',
+							menuId:'profile',
+							picker: 'DRIVER',
+							menuitem: 'DRIVERS',
+							router: 'drivers'
+					});
+				}
 		});
 
 		app.post('/profile', isLoggedIn, function(req, res) {
