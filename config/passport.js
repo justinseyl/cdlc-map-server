@@ -67,12 +67,17 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('signupMessage', 'Your passwords do not match.'));
               } else {
                 bcrypt.hash(password, saltRounds, function(err, hash) {
-                  let queryAdd = "insert into users (email,password,updated_at,first,last,state) values ('" + email + "','" + hash + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','" + req.body.first + "','" + req.body.last + "','" + req.body.state + "')";
+                  let queryAdd = "insert into users (email,password,updated_at,first,last,state,status) values ('" + email + "','" + hash + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','" + req.body.first + "','" + req.body.last + "','" + req.body.state + "','active')";
 
                   db.query(queryAdd, (err, result) => {
                     if (err) return done(err);
 
-                    return done(null, result[0]);
+                    let q = "select * from users where email = '" + email + "'";
+                    db.query(q, (err, res) => {
+                      if (err) return done(err);
+                      return done(null, res[0]);
+                    });
+
                   });
                 });
               }
