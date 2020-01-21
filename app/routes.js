@@ -138,10 +138,24 @@ module.exports = function(app, passport) {
 		app.post('/edit/:id', isLoggedIn, function(req, res) {
 				let id = req.params.id;
 				let data = req.body;
-				let query = `update tr_area set county='${data.county}', description='${data.desc}',state='${data.state}' where id='${id}'` ;
+				let role = 'driver';
+				if (req.query.role)
+						role = req.query.role.toLowerCase();
+
+				let dbs = {
+						'driver': 'tr_area',
+						'sales'  : 'tr_area_sales',
+						'processor': 'tr_area_processor'
+				}
+
+				let query = `update ${dbs[role]} set county='${data.county}', description='${data.desc}',state='${data.state}' where id='${id}'` ;
 
 				db.query(query, (err, result) => {
-						res.redirect('/')
+						if (req.user.role != 'admin') {
+								res.redirect('/events');
+						} else {
+								res.redirect('/');
+						}
 				})
 
 		})
@@ -434,26 +448,33 @@ module.exports = function(app, passport) {
 				}
 
 				let query = ''
+				let dquery = ''
 				if (role == 'sales') {
 						query = "select  id, description, saleprice, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+						dquery = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs['driver'] + " where status = 'active' ";
 				} else if (role == 'processor') {
 						query = "select id, attorneyname, fee, address, email, fax, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
+						dquery = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs['driver'] + " where status = 'active' ";
 				} else {
 						query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' and userid = '" + req.user.email + "' order by created_at desc";
 				}
 
 				db.query(query, (err, result) => {
-						if (err) throw err;
+						db.query(dquery, (err, dresults) => {
 
-						res.render(route_map[role], {
-								user : req.user,
-								page:'My Events',
-								menuId:'events',
-								event: result,
-								statecode: req.user.state,
-								picker: role.toUpperCase(),
-								menuitem: 'PROFILE',
-								router: role.toUpperCase()
+								result = result.concat(dresults);
+								if (err) throw err;
+
+								res.render(route_map[role], {
+										user: req.user,
+										page: 'My Events',
+										menuId: 'events',
+										event: result,
+										statecode: req.user.state,
+										picker: role.toUpperCase(),
+										menuitem: 'PROFILE',
+										router: role.toUpperCase()
+								});
 						});
 				});
 		});
@@ -534,7 +555,7 @@ module.exports = function(app, passport) {
 						'sales'  : 'tr_area_sales',
 						'processor': 'tr_area_processor'
 				}
-console.log(req.body);
+
 				let query = "update " + dbs[role] + " set state = '" + req.body.state + "', county = '" + req.body.county + "', description = '" + req.body.description + "' where id = '" + req.body.id + "'";
 
 				db.query(query, (err, result) => {
@@ -593,7 +614,7 @@ console.log(req.body);
 				let role = 'driver';
 
 				if (req.query.role) {
-						role = req.query.role;
+						role = req.query.role.toLowerCase();
 				}
 
 				let dbs = {
@@ -603,7 +624,7 @@ console.log(req.body);
 				}
 				// let table = req.query.table;
 
-				let query = `select id, manage, state, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid, '` + req.user.role + `' as role from ${dbs[role.toLowerCase()]} where id = '${id}'`;
+				let query = `select id, manage, state, description, county, date_format(created_at, '%m/%d/%y') as date, date_format(created_at, '%h:%m') as time, userid, '${req.user.role}' as role from ${dbs[role]} where id = '${id}'`;
 
 				db.query(query, (err, result) => {
 						if (err) throw err;

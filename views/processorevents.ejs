@@ -174,21 +174,39 @@
           <tbody>
             <% for (var i = 0; i < event.length; i++) { %>
               <tr>
-                <td class="expand">
-                  <% if (event[i].isnew) { %>
-                    <div class="new"><img src="/assets/new.svg"></img></div>
-                  <% } %>
-                      <a class="alt-link ml-0" onclick="getEventDetails('<%= event[i].id %>', '<%= picker %>')"><%= event[i].description %></a>
-                </td>
-                  <td>$<%= event[i].fee %> </td>
-                  <td><%= event[i].attorneyname %> </td>
-                  <td><%= event[i].fax %> </td>
-                  <td><%= event[i].email %> </td>
-                  <td><%= event[i].address %> </td>
-                <td><%= event[i].state %> </td>
-                <td><%= event[i].county %> </td>
-                <td><%= event[i].created %> </td>
-                <td><%= event[i].ctime %> </td>
+                  <% if (event[i].fee || event[i].attorneyname) { %>
+                      <td class="expand">
+                          <% if (event[i].isnew) { %>
+                              <div class="new"><img src="/assets/new.svg"></img></div>
+                          <% } %>
+                          <a class="alt-link ml-0" onclick="getEventDetails('<%= event[i].id %>', '<%= picker %>')"><%= event[i].description %></a>
+                      </td>
+                      <td>$<%= event[i].fee %> </td>
+                      <td><%= event[i].attorneyname%> </td>
+                      <td><%= event[i].fax %> </td>
+                      <td><%= event[i].email %> </td>
+                      <td><%= event[i].address %> </td>
+                      <td><%= event[i].state %> </td>
+                      <td><%= event[i].county %> </td>
+                      <td><%= event[i].created %> </td>
+                      <td><%= event[i].ctime %> </td>
+                  <% } else {%>
+                          <td class="expand">
+                              <% if (event[i].isnew) { %>
+                                  <div class="new"><img src="/assets/new.svg"></img></div>
+                              <% } %>
+                              <a class="alt-link ml-0" onclick="getEventDetails('<%= event[i].id %>', 'driver')"><%= event[i].description %></a>
+                          </td>
+                          <td>-- </td>
+                          <td>-- </td>
+                          <td>-- </td>
+                          <td>-- </td>
+                          <td>--</td>
+                          <td><%= event[i].state %> </td>
+                          <td><%= event[i].county %> </td>
+                          <td><%= event[i].created %> </td>
+                          <td><%= event[i].ctime %> </td>
+                      <% } %>
               </tr>
             <% }; %>
           </tbody>
@@ -209,7 +227,7 @@
           <img class="bl" src="/assets/bl-corner.svg"></img>
           <img class="br" src="/assets/br-corner.svg"></img>
 
-          <div class="popup-header"><%= picker%> EVENT</div>
+          <div class="popup-header"><p id="eventname"></p></div>
           <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
           <hr class="popup-hr">
           <div class="form-group">

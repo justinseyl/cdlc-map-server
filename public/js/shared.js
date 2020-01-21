@@ -1,4 +1,5 @@
 var eventid = '';
+var grole = '';
 function verify(id) {
   $("#cover").css('display','block');
   $(id).css('display','block');
@@ -152,8 +153,10 @@ function getEventDetails(id, role) {
     }
 
     eventid = id;
+    grole = role;
 
     $("#cover").css('display','block');
+    $("#eventname").html(`${role.toUpperCase()} EVENT`);
     $("#click-event").css('display', 'block');
   });
 
@@ -168,14 +171,14 @@ function deleteevent() {
 }
 
 function getedit() {
-  $.get("/getevent/" + eventid, function(data) {
+  $.get("/getevent/" + eventid + `?role=${grole}`, function(data) {
     let results = data[0];
 
     $("#county2").val(results.county);
     $("#desc2").val(results.description);
     $("#state2").val(results.state);
 
-    $("#edit").attr("action", `/edit/${eventid}`);
+    $("#edit").attr("action", `/edit/${eventid}?role=${grole}`);
 
     $("#cover").css('display','none');
     $("#click-event").css('display', 'none');
