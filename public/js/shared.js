@@ -120,17 +120,18 @@ function changelink(type) {
   }
 }
 
-function getEventDetails(id, role) {
+function getEventDetails(id, role, mode) {
   $.get(`/getevent/${id}?role=${role}`, function (data) {
     let results = data[0];
 
-    setCountyPicker(results.state,results.county,'county');
+    $("#id").val(results.id);
 
-    if (results.role || results.role == 'null' || results.role == '') {
+    if (mode) {
+      setCountyPicker(results.state,results.county,'county');
+
       $("#county").val(results.county);
       $("#desc").val(results.description);
       $("#state").val(results.state);
-      $("#id").val(results.id);
     } else {
       $("#county").html(results.county);
       $("#date").html(results.date);

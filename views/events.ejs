@@ -229,7 +229,7 @@
               </colgroup>
           <tbody>
             <% for (var i = 0; i < event.length; i++) { %>
-              <tr onclick="getEventDetails('<%= event[i].id %>', 'driver')">
+              <tr onclick="getEventDetails('<%= event[i].id %>', 'driver', 'edit')">
                 <td class="expand">
                   <% if (event[i].isnew) { %>
                     <div class="new"><img src="/assets/new.svg"></img></div>
