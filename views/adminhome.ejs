@@ -7,25 +7,25 @@
 </head>
 <body>
 
-<div id="add-trouble-popup" class="popup-panel" style="display:none;">
-    <div class="card-popup">
-        <img class="tr" src="/assets/tr-corner.svg"></img>
-        <img class="tl" src="/assets/tl-corner.svg"></img>
-        <img class="bl" src="/assets/bl-corner.svg"></img>
-        <img class="br" src="/assets/br-corner.svg"></img>
+<!--<div id="add-trouble-popup" class="popup-panel" style="display:none;">-->
+<!--    <div class="card-popup">-->
+<!--        <img class="tr" src="/assets/tr-corner.svg"></img>-->
+<!--        <img class="tl" src="/assets/tl-corner.svg"></img>-->
+<!--        <img class="bl" src="/assets/bl-corner.svg"></img>-->
+<!--        <img class="br" src="/assets/br-corner.svg"></img>-->
 
-        <div class="popup-header">EVENT TYPE</div>
-        <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
-        <hr class="popup-hr">
-        <p class="popup-desc">Please select which type of event you would like to create</p>
-        <div class="view-emergency" onclick="changetype('sales')"><a onclick="changetype('sales')">SALES</a> </div>
-        <div class="view-emergency" onclick="changetype('driver')"><a onclick="changetype('driver')">DRIVER</a> </div>
-        <div class="view-emergency" onclick="changetype('processor')"><a onclick="changetype('processor')">PROCESSOR</a> </div>
+<!--        <div class="popup-header">EVENT TYPE</div>-->
+<!--        <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">-->
+<!--        <hr class="popup-hr">-->
+<!--        <p class="popup-desc">Please select which type of event you would like to create</p>-->
+<!--        <div class="view-emergency" onclick="changetype('sales')"><a onclick="changetype('sales')">SALES</a> </div>-->
+<!--        <div class="view-emergency" onclick="changetype('driver')"><a onclick="changetype('driver')">DRIVER</a> </div>-->
+<!--        <div class="view-emergency" onclick="changetype('processor')"><a onclick="changetype('processor')">PROCESSOR</a> </div>-->
 
-            <div id="cont" class="cancel-btn"><a id="trouble3" class="alt-link ml-0">CONTINUE</a></div>
-            <div class="cancel-btn" onclick="closepopup()">CANCEL</div>
-    </div>
-</div>
+<!--            <div id="cont" class="cancel-btn"><a id="trouble3" class="alt-link ml-0">CONTINUE</a></div>-->
+<!--            <div class="cancel-btn" onclick="closepopup()">CANCEL</div>-->
+<!--    </div>-->
+<!--</div>-->
 <div id="add-trouble-popup-sales" class="popup-panel" style="display:none;">
     <div class="card-popup">
         <img class="tr" src="/assets/tr-corner.svg"></img>
@@ -411,7 +411,7 @@
         <div class="inner-card-block">
         <div class="map-header">
           <h1>TROUBLE AREA EVENTS</h1>
-          <div class="custom-buttons" onclick="popAddTrouble('<%= statecode %>')">ADD TROUBLE AREA</div>
+          <div class="custom-buttons" onclick="changelink('<%=picker%>')">ADD TROUBLE AREA</div>
         </div>
 
         <div id="map-container">

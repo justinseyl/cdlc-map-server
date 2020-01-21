@@ -102,19 +102,15 @@ function popViewEmerg() {
   $("#view-emergency-popup").css('display','block');
 }
 
-function changetype(type) {
-    $("#trouble3").attr("onClick", `changelink('${type}')`);
-}
-
 function changelink(type) {
 
   $("#cover").css('display','none');
   $("#add-trouble-popup").css('display', 'none');
 
-  if (type == 'sales') {
+  if (type == 'SALES') {
     $("#cover").css('display','block');
     $("#add-trouble-popup-sales").css('display','block');
-  } else if (type == 'driver') {
+  } else if (type == 'DRIVER') {
     $("#cover").css('display','block');
     $("#add-trouble-popup-driver").css('display','block');
   } else {
