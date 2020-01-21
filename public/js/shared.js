@@ -22,6 +22,20 @@ function popAddTrouble(user) {
   setCountyPicker(state);
 }
 
+function popAddTroubleSub(user) {
+  var state = '';
+  var county = '';
+
+  $("#cover").css('display','block');
+  $("#add-trouble-popup").css('display','block');
+
+  state = user;
+
+  $("#add-trouble-state-id").val(state);
+
+  setCountyPicker(state);
+}
+
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
