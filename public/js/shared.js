@@ -187,6 +187,11 @@ function getedit() {
   });
 }
 
+$('#edit').on('click', function() {
+  $("#cover").css('display','none');
+  $("#edit-event").css('display', 'none');
+});
+
 function closepopup() {
   $("#cover").css('display','none');
   $(".popup-panel").css('display','none');

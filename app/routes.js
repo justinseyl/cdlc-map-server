@@ -151,11 +151,7 @@ module.exports = function(app, passport) {
 				let query = `update ${dbs[role]} set county='${data.county}', description='${data.desc}',state='${data.state}' where id='${id}'` ;
 
 				db.query(query, (err, result) => {
-						if (req.user.role != 'admin') {
-								res.redirect('/events');
-						} else {
-								res.redirect('/');
-						}
+						res.redirect('back');
 				})
 
 		})
