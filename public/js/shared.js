@@ -60,6 +60,45 @@ $("#state").on('change', function (e) {
     setCountyPicker(valueSelected,'','county');
 });
 
+$("#stateinput").on('change', function(e) {
+  var valueSelected = this.value;
+  setCountyPicker2(valueSelected,'','county');
+})
+
+function setCountyPicker2(state,ct,div) {
+  let set = $("#countyinput");
+
+  if (div) {
+    set = $("#" + div);
+  }
+
+  let setid = $(set).attr('id');
+  $(set).empty();
+
+  var svg = $("svg[stateLevel='" + state + "'] path");
+
+  $.each(svg, function(index, value) {
+    var classlong = $(value).attr('class');
+    var classcode = classlong.split('_').pop();
+    var countyname = state_specific[classcode].name;
+
+    var html = '<option value="' + countyname + '">' + countyname + '</option>';
+    $(set).append(html);
+
+  });
+
+  $(set).html($("#" + setid + " option").sort(function (a, b) {
+    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+  }));
+
+  if (ct) {
+    $(set).val(ct.toLowerCase().capitalize());
+  } else {
+    var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    $(set).prepend(initHtml);
+  }
+}
+
 String.prototype.capitalize = function(){
        return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
       };
@@ -169,6 +208,72 @@ function deleteevent() {
     $("#cover").css('display','none');
     location.reload();
   })
+}
+
+function searchuser() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("userinput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchstate() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("stateinput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchstate2() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("stateinput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
 }
 
 function getedit() {
