@@ -62,12 +62,11 @@ $("#state").on('change', function (e) {
 
 $("#stateinput").on('change', function(e) {
   var valueSelected = this.value;
-  setCountyPicker2(valueSelected,'','county');
+  setCountyPicker2(valueSelected);
 })
 
 function setCountyPicker2(state,ct,div) {
   let set = $("#countyinput");
-
   if (div) {
     set = $("#" + div);
   }
@@ -105,7 +104,7 @@ String.prototype.capitalize = function(){
 
 function setCountyPicker(state,ct,div) {
   let set = $("#add-trouble-county-id");
-
+  alert('in set county');
   if (div) {
     set = $("#" + div);
   }
@@ -261,10 +260,62 @@ function searchstate2() {
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
-
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchnew() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("new");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      var date2 = new Date();
+      var date1 = new Date(txtValue);
+      var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10);
+
+      if (filter == 'NEW') {
+        if (diffDays <= 1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      } else {
+        tr[i].style.display = "";
+      }
+
+    }
+  }
+}
+
+
+function searchcounty() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("countyinput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
