@@ -126,7 +126,7 @@
       <div class="inner-card-block">
 
         <div class="table-headers">
-          <div class="col-md-7 county-label">
+          <div class="col-md-3 county-label">
             <h1 style="margin-left:8px;">PROCESSOR EVENTS</h1>
             <% var count = 0; %>
             <% for (var i = 0; i < event.length; i++) { %>
@@ -139,12 +139,76 @@
               </h2>
             <% } %>
           </div>
-          <div class="col-md-5">
-            <div id="popTroubleTbl" class="custom-buttons-tbl">ADD TROUBLE AREA</div>
-          </div>
+            <div class="col-md-3">
+                <select id="new" class="dropdown-toggle2" onclick="searchnew()" placeholder="All" name="new" required>
+                    <option value="all">All</option>
+                    <option value="new">New</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="stateinput" class="dropdown-toggle2" onclick="searchstate2()" placeholder="Filter by state" name="state" required>
+                    <option value="AL">Alabama</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="countyinput" class="dropdown-toggle2" onclick="searchcounty()" name="county" required>
+                    <option value="" disabled selected hidden>Filter by County</option>
+                </select>
+            </div>
+            <div class="col-md-14">
+                <div id="popTroubleTbl" class="custom-buttons-tbl">ADD TROUBLE AREA</div>
+            </div>
         </div>
 
-        <table class="table">
+        <table id="myTable" class="table">
           <thead>
             <tr>
               <th>ATTORNEY NOTES</th>
@@ -248,11 +312,11 @@
           </div>
           <div class="form-group col-sm-4 driver-event">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-              <p name="county" id="county"></p>
+              <p name="county" id="county3"></p>
           </div>
           <div class="form-group col-sm-4 driver-event">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-              <p name="state" id="state"></p>
+              <p name="state" id="state3"></p>
           </div>
           <div class="form-group col-sm-4 driver-event">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">PRICE</p>
@@ -260,10 +324,16 @@
           </div>
           <div class="form-group col-sm-12 driver-event">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
-              <p name="desc" id="desc"></p>
+              <p name="desc" id="desc3"></p>
           </div>
-          <div id="pending1" class="cancel-btn" ><a id="acceptevent" class="alt-link ml-0" onclick="closepopup2()">ACCEPT EVENT</a></div>
-          <div id="pending2" class="cancel-btn" ><a id="rejectevent" class="alt-link ml-0" onclick="closepopup2()">REJECT EVENT</a></div>
+          <div class="btn-container-split">
+              <div class="btn-item-split col-6">
+                  <div id="rejectevent" class="edit-btn reject-btn">REJECT EVENT</div>
+              </div>
+              <div class="btn-item-split col-6">
+                  <div id="acceptevent" class="edit-btn">ACCEPT EVENT</div>
+              </div>
+          </div>
           <div id="accepted" class="edit-btn"><a onclick="getedit()">EDIT EVENT</a></div>
           <button type="submit" class="nobox-btn" onclick="delevt('processor')">DELETE EVENT</button>
 
@@ -277,10 +347,10 @@
       <div class="form-group col-sm-12 driver-event">
           <p style="font-size: 14px;color: rgba(255, 255, 255, 0.25);">Please tell us where the event is within the state and a brief description about the issue.</p>
       </div>
-      <form id="edit" method="post">
+      <form id="edit3" method="post">
           <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-              <select id="state2" class="form-control" placeholder="Enter State..." name="state" required>
+              <select id="state5" class="form-control" placeholder="Enter State..." name="state" required>
                   <option value="AL">Alabama</option>
                   <option value="AZ">Arizona</option>
                   <option value="AR">Arkansas</option>
@@ -334,7 +404,7 @@
           </div>
           <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-              <select id="county2" class="form-control" name="county" required>
+              <select id="county5" class="form-control" name="county" required>
                   <option value="" disabled selected hidden>Enter County...</option>
               </select>
           </div>
@@ -369,7 +439,6 @@
           <div class="cancel-btn" onclick="closepopup()">CANCEL</div>
       </form>
   </div>
-
   <div id="are-you-sure" class="popup-panel" style="display:none;">
       <div class="card-popup">
           <img class="tr" src="/assets/tr-corner.svg"></img>

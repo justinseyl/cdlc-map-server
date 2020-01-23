@@ -334,11 +334,11 @@ function getEventDetails(id, role,admin) {
         $(accepted).show();
       }
     } else {
-      $("#accepted").attr("onClick", `getedit('${id}')`);
+      $(accepted).attr("onClick", `getedit('${id}')`);
       $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
-      $("#accept").hide();
-      $("#reject").hide();
-      $("#accepted").show();
+      $(accept).hide();
+      $(reject).hide();
+      $(accepted).show();
     }
 
 

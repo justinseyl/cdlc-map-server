@@ -407,6 +407,27 @@
           <div class="cancel-btn" onclick="closepopup()">CANCEL</div>
       </form>
   </div>
+  <div id="are-you-sure" class="popup-panel" style="display:none;">
+      <div class="card-popup">
+          <img class="tr" src="/assets/tr-corner.svg"></img>
+          <img class="tl" src="/assets/tl-corner.svg"></img>
+          <img class="bl" src="/assets/bl-corner.svg"></img>
+          <img class="br" src="/assets/br-corner.svg"></img>
+
+          <div class="popup-header"></div>
+          <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
+          <hr class="popup-hr">
+          <p class="popup-desc"></p>
+
+          <form id="submit-are-you-sure" method="get">
+              <input type="hidden" id="hiddenId" />
+              <button type="submit" class="submit-btn"></button>
+          </form>
+
+          <div class="cancel-btn" onclick="closepopup()"></div>
+
+      </div>
+  </div>
 
 </body>
 <% include partials/script %>
