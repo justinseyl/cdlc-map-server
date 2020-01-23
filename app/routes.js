@@ -141,14 +141,14 @@ module.exports = function(app, passport) {
 				let role = 'driver';
 				if (req.query.role)
 						role = req.query.role.toLowerCase();
-
+console.log(data);
 				let dbs = {
 						'driver': 'tr_area',
 						'sales'  : 'tr_area_sales',
 						'processor': 'tr_area_processor'
 				}
 
-				let query = `update ${dbs[role]} set county='${data.county}', description='${data.desc}',state='${data.state}' where id='${id}'` ;
+				let query = `update ${dbs[role]} set county='${data.county}', description='${data.description}',state='${data.state}' where id='${id}'` ;
 
 				db.query(query, (err, result) => {
 						res.redirect('back');

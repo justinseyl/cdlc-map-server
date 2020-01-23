@@ -104,7 +104,7 @@ String.prototype.capitalize = function(){
 
 function setCountyPicker(state,ct,div) {
   let set = $("#add-trouble-county-id");
-  alert('in set county');
+
   if (div) {
     set = $("#" + div);
   }
@@ -185,7 +185,8 @@ function getEventDetails(id, role, mode) {
       $("#pending2").show();
       $("#accepted").hide();
     } else {
-      $("#accepted").attr("onClick", `getedit(${id})`);
+      $("#accepted").attr("onClick", `getedit('${id}')`);
+      $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
       $("#pending1").hide();
       $("#pending2").hide();
       $("#accepted").show();
@@ -201,12 +202,17 @@ function getEventDetails(id, role, mode) {
 
 }
 
-function deleteevent() {
-  $.get("/deleteevent/" + eventid, function(rlt) {
-    $(".popup-panel").css('display','none');
-    $("#cover").css('display','none');
-    location.reload();
-  })
+function deleteevent(id,header,desc,confirmtext,canceltext,route) {
+  $(".popup-panel").hide();
+  $("#are-you-sure").show();
+  $("#cover").show();
+
+  $("#are-you-sure").find(".popup-header").html(header);
+  $("#are-you-sure").find(".popup-desc").html(desc);
+  $("#are-you-sure").find(".submit-btn").html(confirmtext);
+  $("#are-you-sure").find(".cancel-btn").html(canceltext);
+  $("#are-you-sure").find("#hiddenId").val(id);
+  $("#are-you-sure").find("#submit-are-you-sure").attr('action',route);
 }
 
 function searchuser() {
@@ -327,9 +333,11 @@ function searchcounty() {
   }
 }
 
-function getedit() {
+function getedit(eventid) {
   $.get("/getevent/" + eventid + `?role=${grole}`, function(data) {
     let results = data[0];
+
+    setCountyPicker(results.state,results.county,'county2');
 
     $("#county2").val(results.county);
     $("#desc2").val(results.description);
@@ -344,10 +352,10 @@ function getedit() {
   });
 }
 
-$('#edit').on('click', function() {
-  $("#cover").css('display','none');
-  $("#edit-event").css('display', 'none');
-});
+// $('#edit').on('click', function() {
+//   $("#cover").css('display','none');
+//   $("#edit-event").css('display', 'none');
+// });
 
 function closepopup() {
   $("#cover").css('display','none');
