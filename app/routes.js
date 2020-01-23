@@ -182,7 +182,7 @@ console.log(data);
 				let query = `update ${dbs[role]} set manage='accepted' where id='${id}'` ;
 
 				db.query(query, (err, result) => {
-						res.redirect(`/adminhome/${role}`)
+						res.redirect(`/edituser/${role}`)
 				})
 
 		})
@@ -203,7 +203,7 @@ console.log(data);
 				let query = `update ${dbs[role]} set manage='denied' where id='${id}'` ;
 
 				db.query(query, (err, result) => {
-						res.redirect(`/adminhome/${role}`)
+						res.redirect(`/edituser/${role}`)
 				})
 
 		})

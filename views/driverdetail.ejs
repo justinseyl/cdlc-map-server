@@ -288,12 +288,12 @@
               </colgroup>
           <tbody>
             <% for (var i = 0; i < event.length; i++) { %>
-              <tr>
+              <tr onclick="getEventDetails('<%= event[i].id %>', '<%= picker %>')">
                 <td class="expand">
                   <% if (event[i].isnew) { %>
                     <div class="new"><img src="/assets/new.svg"></img></div>
                   <% } %>
-                      <a class="alt-link ml-0" onclick="getEventDetails('<%= event[i].id %>', '<%= picker %>')"><%= event[i].description %></a>
+                      <%= event[i].description %>
                 </td>
                 <td><%= event[i].state %> </td>
                 <td><%= event[i].county %> </td>
@@ -319,7 +319,7 @@
 
   <div id="cover" style="display:none;"></div>
 
-<div id="click-event" class="popup-panel" style="display:none;">
+  <div id="click-event" class="popup-panel" style="display:none;">
     <div class="card-popup">
         <img class="tr" src="/assets/tr-corner.svg"></im g>
         <img class="tl" src="/assets/tl-corner.svg"></img>
@@ -329,41 +329,41 @@
         <div class="popup-header">DRIVER EVENT</div>
         <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
         <hr class="popup-hr">
-        <div class="form-group">
+        <div class="form-group col-sm-4 driver-event">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-            <p type="text" name="number" id="number" style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
-                <input type="text" name="county" id="county">
+            <p name="county" id="county"></p>
         </div>
-        <div class="form-group" style="padding-right:20px;">
+        <div class="form-group col-sm-4 driver-event">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DATE</p>
-            <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
-                <input type="text" name="date" id="date">
+            <p name="date" id="date"></p>
         </div>
-        <div class="form-group">
+        <div class="form-group col-sm-4 driver-event">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">TIME</p>
-            <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
-                <input type="text" name="time" id="time">
+            <p name="time" id="time"></p>
         </div>
-        <div class="form-group">
+        <div class="form-group col-sm-12 driver-event">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
-            <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
-                <input type="text" name="desc" id="desc">
+            <p name="desc" id="desc"></p>
         </div>
-        <div class="form-group">
+        <div class="form-group col-sm-12 driver-event">
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">UPLOADED BY</p>
-            <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">
-                <input type="text" name="upl" id="upl">
+            <p name="desc" id="upl"></p>
         </div>
-        <div id="pending1" class="cancel-btn" ><a id="acceptevent" class="alt-link ml-0" onclick="closepopup2()">ACCEPT EVENT</a></div>
-        <div id="pending2" class="cancel-btn" ><a id="rejectevent" class="alt-link ml-0" onclick="closepopup2()">REJECT EVENT</a></div>
-        <div id="accepted" class="cancel-btn"><a class="alt-link ml-0" onclick="getedit()">EDIT EVENT</a></div>
-        <button type="submit" class="submit-btn" onclick="deleteevent()">DELETE EVENT</button>
 
+        <div class="btn-container-split">
+          <div class="btn-item-split col-6">
+            <div id="rejectevent" class="edit-btn reject-btn">REJECT EVENT</div>
+          </div>
+          <div class="btn-item-split col-6">
+            <div id="acceptevent" class="edit-btn">ACCEPT EVENT</a></div>
+          </div>
+        </div>
+        <button type="submit" class="nobox-btn" onclick="deleteevent()">DELETE EVENT</button>
 
     </div>
 </div>
 
-<div id="edit-event" class="popup-panel" style="display:none;">
+  <div id="edit-event" class="popup-panel" style="display:none;">
     <div class="popup-header">DRIVER EVENT</div>
     <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
     <hr class="popup-hr">
@@ -386,7 +386,7 @@
         <button type="submit" class="submit-btn">EDIT</button>
         <div class="cancel-btn" onclick="closepopup()">CANCEL</div>
     </form>
-</div>
+  </div>
 
 </body>
 <% include partials/script %>

@@ -269,16 +269,17 @@ textarea {
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
     border: solid 1px #4ab3ad;
     background-color: rgba(74, 179, 173, 0.1);
-    width: 50%;
+    width: 100%;
     margin-top: 50px;
     font-size: 16px;
     font-weight: 600;
     font-stretch: normal;
     font-style: normal;
-    line-height: normal;
+    line-height: 50px;
     letter-spacing: 0.44px;
     text-align: center;
     color: #ffffff;
+    cursor: pointer;
 }
 .nobox-btn {
   background: transparent;
@@ -374,4 +375,14 @@ textarea {
 .myTable tr.header, .myTable tr:hover {
   /* Add a grey background color to the table header and on hover */
   background-color: #f1f1f1;
+}
+.btn-container-split {
+  display: flex;;
+}
+.reject-btn {
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+  border: solid 1px #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
