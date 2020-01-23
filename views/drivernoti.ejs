@@ -49,12 +49,12 @@
                       </colgroup>
                   <tbody>
                   <% for (var i = 0; i < event.length; i++) { %>
-                      <tr>
+                      <tr onclick="getEventDetails('<%= event[i].id %>', 'driver')">
                         <td class="expand">
                           <% if (event[i].isnew) { %>
                             <div class="new"><img src="/assets/new.svg"></img></div>
                           <% } %>
-                              <a class="alt-link ml-0" onclick="getEventDetails('<%= event[i].id %>', 'driver')"><%= event[i].description %></a>
+                              <%= event[i].description %>
                         </td>
                           <td class="dtime"><%= event[i].time %> </td>
                       </tr>
