@@ -103,6 +103,23 @@ html * {
   letter-spacing: normal;
   color: #ffffff;
 }
+
+.dropdown-toggle2 {
+  width: 150px;
+  height: 30px;
+  border: none;
+  border-radius: 0.5px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0.89;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
 #admin-select option {
   background-color: black;
   color: #ffffff;

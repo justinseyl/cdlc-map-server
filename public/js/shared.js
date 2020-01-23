@@ -57,13 +57,127 @@ $("#add-trouble-state-id").on('change', function (e) {
 
 $("#state").on('change', function (e) {
     var valueSelected = this.value;
-    setCountyPicker(valueSelected,'','county');
+    setCountyPicker(valueSelected);
+});
+
+$("#state2").on('change', function (e) {
+  var valueSelected = this.value;
+  setCountyPickerP(valueSelected);
+});
+
+$("#state5").on('change', function (e) {
+  var valueSelected = this.value;
+  setCountyPickerAP(valueSelected);
+});
+
+$("#state6").on('change', function (e) {
+  var valueSelected = this.value;
+  setCountyPickerAS(valueSelected);
 });
 
 $("#stateinput").on('change', function(e) {
   var valueSelected = this.value;
   setCountyPicker2(valueSelected);
 })
+
+function setCountyPickerP(state,ct,div) {
+  let set = $("#county2");
+  if (div) {
+    set = $("#" + div);
+  }
+
+  let setid = $(set).attr('id');
+  $(set).empty();
+
+  var svg = $("svg[stateLevel='" + state + "'] path");
+
+  $.each(svg, function(index, value) {
+    var classlong = $(value).attr('class');
+    var classcode = classlong.split('_').pop();
+    var countyname = state_specific[classcode].name;
+
+    var html = '<option value="' + countyname + '">' + countyname + '</option>';
+    $(set).append(html);
+
+  });
+
+  $(set).html($("#" + setid + " option").sort(function (a, b) {
+    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+  }));
+
+  if (ct) {
+    $(set).val(ct.toLowerCase().capitalize());
+  } else {
+    var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    $(set).prepend(initHtml);
+  }
+}
+
+function setCountyPickerAP(state,ct,div) {
+  let set = $("#county5");
+  if (div) {
+    set = $("#" + div);
+  }
+
+  let setid = $(set).attr('id');
+  $(set).empty();
+
+  var svg = $("svg[stateLevel='" + state + "'] path");
+
+  $.each(svg, function(index, value) {
+    var classlong = $(value).attr('class');
+    var classcode = classlong.split('_').pop();
+    var countyname = state_specific[classcode].name;
+
+    var html = '<option value="' + countyname + '">' + countyname + '</option>';
+    $(set).append(html);
+
+  });
+
+  $(set).html($("#" + setid + " option").sort(function (a, b) {
+    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+  }));
+
+  if (ct) {
+    $(set).val(ct.toLowerCase().capitalize());
+  } else {
+    var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    $(set).prepend(initHtml);
+  }
+}
+
+function setCountyPickerAS(state,ct,div) {
+  let set = $("#county6");
+  if (div) {
+    set = $("#" + div);
+  }
+
+  let setid = $(set).attr('id');
+  $(set).empty();
+
+  var svg = $("svg[stateLevel='" + state + "'] path");
+
+  $.each(svg, function(index, value) {
+    var classlong = $(value).attr('class');
+    var classcode = classlong.split('_').pop();
+    var countyname = state_specific[classcode].name;
+
+    var html = '<option value="' + countyname + '">' + countyname + '</option>';
+    $(set).append(html);
+
+  });
+
+  $(set).html($("#" + setid + " option").sort(function (a, b) {
+    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+  }));
+
+  if (ct) {
+    $(set).val(ct.toLowerCase().capitalize());
+  } else {
+    var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    $(set).prepend(initHtml);
+  }
+}
 
 function setCountyPicker2(state,ct,div) {
   let set = $("#countyinput");
@@ -158,48 +272,101 @@ function changelink(type) {
   }
 }
 
-function getEventDetails(id, role, mode) {
+function getEventDetails(id, role,admin) {
   $.get(`/getevent/${id}?role=${role}`, function (data) {
     let results = data[0];
 
     $("#id").val(results.id);
+    role = role.toLowerCase();
 
-    if (mode) {
-      setCountyPicker(results.state,results.county,'county');
-
-      $("#county").val(results.county);
-      $("#desc").val(results.description);
-      $("#state").val(results.state);
-    } else {
       $("#county").html(results.county);
       $("#date").html(results.date);
       $("#time").html(results.time);
       $("#desc").html(results.description);
       $("#upl").html(results.userid);
+      $("#state").html(results.state);
+
+    if (role == 'sales') {
+      $("#sales").html(results.saleprice);
+      $("#state4").html(results.state);
+      $("#desc4").html(results.description);
+      $("#county4").html(results.county);
     }
 
-    if (results.manage == 'pending') {
-      $("#acceptevent").attr("onclick", `window.location.href='/accept/${id}?role=${role}'`);
-      $("#rejectevent").attr("onclick", `window.location.href='/reject/${id}?role=${role}'`);
-      $("#pending1").show();
-      $("#pending2").show();
-      $("#accepted").hide();
+    if (role == 'processor') {
+      $("#aname").html(results.attorneyname);
+      $("#address").html(results.address);
+      $("#email").html(results.email);
+      $("#fax").html(results.fax);
+      $("#price").html(results.fee);
+      $("#state3").html(results.state);
+      $("#desc3").html(results.description);
+      $("#county3").html(results.county);
+    }
+
+    var accept = `#acceptevent`;
+    var reject = `#rejectevent`;
+    var accepted = `#accepted`;
+
+    if (admin == 'admin') {
+
+      if (role == 'processor') {
+        accept = `#accepteventp`;
+        reject = `#rejecteventp`;
+        accepted = `#acceptedp`;
+      } else if (role == 'sales') {
+        accept = `#acceptevents`;
+        reject = `#rejectevents`;
+        accepted = `#accepteds`;
+      }
+
+      if (results.manage == 'pending') {
+        $(accept).attr("onClick", `window.location.href='/accept/${id}?role=${role}'`);
+        $(reject).attr("onClick", `window.location.href='/reject/${id}?role=${role}'`);
+        $(accept).show();
+        $(reject).show();
+        $(accepted).hide();
+      } else {
+        $(accepted).attr("onClick", `getedit('${id}')`);
+        $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
+        $(accept).hide();
+        $(reject).hide();
+        $(accepted).show();
+      }
     } else {
       $("#accepted").attr("onClick", `getedit('${id}')`);
       $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
-      $("#pending1").hide();
-      $("#pending2").hide();
+      $("#accept").hide();
+      $("#reject").hide();
       $("#accepted").show();
     }
+
 
     eventid = id;
     grole = role;
 
     $("#cover").css('display','block');
-    $("#eventname").html(`${role.toUpperCase()} EVENT`);
-    $("#click-event").css('display', 'block');
+
+
+    if (admin == 'admin') {
+      if (role == 'driver') {
+        $("#click-event-driver").css('display', 'block');
+      } else if (role == 'sales') {
+        $("#click-event-sales").css('display', 'block');
+      } else {
+        $("#click-event-processor").css('display', 'block');
+      }
+    } else {
+      $("#eventname").html(`${role.toUpperCase()} EVENT`);
+      $("#click-event").css('display', 'block');
+    }
+
   });
 
+}
+
+function delevt(role) {
+  deleteevent('', 'DELETE EVENT', 'Are you sure you want to delete this event?', 'Yes, I\'m sure', 'No, I changed my mind', `/deleteevent/${eventid}/${role}`);
 }
 
 function deleteevent(id,header,desc,confirmtext,canceltext,route) {
@@ -333,29 +500,38 @@ function searchcounty() {
   }
 }
 
-function getedit(eventid) {
-  $.get("/getevent/" + eventid + `?role=${grole}`, function(data) {
+function getedit(eid) {
+  let id = eventid;
+  if (eid) {
+    id = eid;
+  }
+  $.get("/getevent/" + id + `?role=${grole}`, function(data) {
     let results = data[0];
 
-    setCountyPicker(results.state,results.county,'county2');
+    $("#edit1").attr("action", `/edit/${id}?role=${grole}`);
+    $("#edit2").attr("action", `/edit/${id}?role=${grole}`);
+    $("#edit3").attr("action", `/edit/${id}?role=${grole}`);
 
-    $("#county2").val(results.county);
-    $("#desc2").val(results.description);
-    $("#state2").val(results.state);
+    if (grole == 'admin') {
+      let p = grole.toLowerCase();
+      let temp1 = `#click-event-${p}`
+      let temp2 = `#edit-event-${p}`
 
-    $("#edit").attr("action", `/edit/${eventid}?role=${grole}`);
+      $("#cover").css('display','none');
+      $(temp1).css('display', 'none');
+      $("#cover").css('display','block');
+      $(temp2).css('display', 'block');
 
-    $("#cover").css('display','none');
-    $("#click-event").css('display', 'none');
-    $("#cover").css('display','block');
-    $("#edit-event").css('display', 'block');
+    } else {
+      $("#cover").css('display','none');
+      $("#click-event").css('display', 'none');
+      $("#cover").css('display','block');
+      $("#edit-event").css('display', 'block');
+    }
+
   });
 }
 
-// $('#edit').on('click', function() {
-//   $("#cover").css('display','none');
-//   $("#edit-event").css('display', 'none');
-// });
 
 function closepopup() {
   $("#cover").css('display','none');
