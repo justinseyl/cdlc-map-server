@@ -298,6 +298,32 @@ textarea {
   padding: 0px;
   margin-top: 20px;
 }
+#info-box {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  background-color: transparent;
+  border: 2px solid rgba(74, 179, 173, 0.4) !important;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: arial;
+}
+#info-box h1 {
+  opacity: 0.9;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+}
 
 @media only screen and (max-width: 768px) {
   .container {

@@ -6,6 +6,8 @@ const ctablechk = window.location.pathname.split('/')[2];
 const county2 = window.location.pathname.split('/')[4];
 const state2 = window.location.pathname.split('/')[3];
 
+
+
 function verify(id) {
   $("#cover").css('display','block');
   $(id).css('display','block');

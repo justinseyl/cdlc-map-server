@@ -2,14 +2,21 @@ var global_state = '';
 var global_county = '';
 var global_picker = '';
 
-$("path, circle").hover(function(e) {
-  $('#info-box').css('display','block');
-  $('#info-box').html($(this).data('info'));
-});
+$("path").hover(function(e) {
+  var cl = e.target.className.baseVal;
+  var statecode = cl.split('_').pop();
+  let st = state_specific[statecode].name;
 
-$("path, circle").mouseleave(function(e) {
+  $('#info-box').css('display','block');
+  $('#info-box').html('<h1>' + st + '</h1>');
+});
+$("path").mouseleave(function(e) {
   $('#info-box').css('display','none');
 });
+$(document).mousemove(function(e) {
+  $('#info-box').css('top',e.clientY-$('#info-box').height()-300);
+  $('#info-box').css('left',e.clientX-($('#info-box').width())/2);
+}).mouseover();
 
 var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 if(ios) {
