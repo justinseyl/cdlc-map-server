@@ -1,5 +1,7 @@
 var eventid = '';
 var grole = '';
+var extrar = '';
+
 function verify(id) {
   $("#cover").css('display','block');
   $(id).css('display','block');
@@ -272,7 +274,7 @@ function changelink(type) {
   }
 }
 
-function getEventDetails(id, role,admin) {
+function getEventDetails(id, role,admin, extra) {
   $.get(`/getevent/${id}?role=${role}`, function (data) {
     let results = data[0];
 
@@ -344,6 +346,7 @@ function getEventDetails(id, role,admin) {
 
     eventid = id;
     grole = role;
+    extrar = extra;
 
     $("#cover").css('display','block');
 
@@ -359,6 +362,21 @@ function getEventDetails(id, role,admin) {
     } else {
       $("#eventname").html(`${role.toUpperCase()} EVENT`);
       $("#click-event").css('display', 'block');
+
+      if (extra == 'driver') {
+
+        accept = `#accepteventd`;
+        reject = `#rejecteventd`;
+        accepted = `#acceptedd`;
+
+        $(accepted).attr("onClick", `getedit('${id}')`);
+        $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
+        $(accept).hide();
+        $(reject).hide();
+        $(accepted).show();
+        $('#click-event-driver').css('display', 'block');
+        $("#click-event").css('display', 'none');
+      }
     }
 
   });
@@ -523,10 +541,16 @@ function getedit(eid) {
       $(temp2).css('display', 'block');
 
     } else {
-      $("#cover").css('display','none');
-      $("#click-event").css('display', 'none');
-      $("#cover").css('display','block');
-      $("#edit-event").css('display', 'block');
+
+      if (extrar == 'driver') {
+        $("#click-event-driver").css('display', 'none');
+        $("#edit-event-driver").css('display', 'block');
+      } else {
+        $("#cover").css('display','none');
+        $("#click-event").css('display', 'none');
+        $("#cover").css('display','block');
+        $("#edit-event").css('display', 'block');
+      }
     }
 
   });
