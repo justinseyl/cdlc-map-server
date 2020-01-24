@@ -74,7 +74,6 @@ $("svg[stateLevel] path").on('click', function() {
 
 function countyClick(st) {
   global_county = st;
-
   window.location.href = 'county_table/' + global_state + '/' + global_county ;
 }
 

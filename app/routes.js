@@ -12,6 +12,9 @@ const procid = 'processor@test';
 module.exports = function(app, passport) {
 
 		app.get('/', isLoggedIn, function(req, res) {
+				if (req.user.role == 'admin') {
+						res.redirect('/adminhome/driver');
+				}
 				let alertquery = "select title, description, county, state, created_at,status from ealerts order by created_at desc limit 1"
 				let query = "select id, state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";
 				db.query(alertquery, (err, ares) => {
@@ -712,6 +715,63 @@ module.exports = function(app, passport) {
 								picker: pick.toUpperCase(),
 								router: 'drivers',
 								menuitem: 'DRIVERS',
+								state: req.params.state,
+								county: req.params.county
+						});
+				});
+		});
+
+		app.get('/adminhome/county_table/:state/:county', function(req, res) {
+				let role = 'driver';
+				let pick = 'DRIVER';
+
+				if (req.user.role) {
+						role = req.user.role
+				}
+				let dbs = {
+						'driver': 'tr_area',
+						'sales'  : 'tr_area_sales',
+						'processor': 'tr_area_processor',
+						'admin': 'tr_area'
+				}
+
+				let dbchoice = dbs[role];
+				if (req.query.picker) {
+						dbchoice = dbs[req.query.picker]
+						pick = req.query.picker
+				}
+
+
+				let route_map = {
+						'driver': 'county_table.ejs',
+						'sales'  : 'sales_county_table.ejs',
+						'processor': 'processor_county_table.ejs',
+						'admin': 'admin_county_table.ejs'
+				}
+
+				let router = 'drivers';
+				let menuitem = 'DRIVERS';
+
+				if (pick == 'processor') {
+						menuitem = 'PROFILE';
+						router = 'profile/processor';
+				} else if (pick == 'sales') {
+						router = 'profile/sales';
+						menuitem = 'PROFILE';
+				}
+
+				let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and county = '" + req.params.county + "' order by created_at desc";
+				db.query(query, (err, result) => {
+						if (err) throw err;
+
+						res.render(route_map[role], {
+								user : req.user,
+								page:'Home',
+								menuId:'home',
+								formdata: result,
+								picker: pick.toUpperCase(),
+								router: router,
+								menuitem: menuitem,
 								state: req.params.state,
 								county: req.params.county
 						});

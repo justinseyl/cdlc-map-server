@@ -1,6 +1,10 @@
 var eventid = '';
 var grole = '';
 var extrar = '';
+var admin_bool = false;
+const ctablechk = window.location.pathname.split('/')[2];
+const county2 = window.location.pathname.split('/')[4];
+const state2 = window.location.pathname.split('/')[3];
 
 function verify(id) {
   $("#cover").css('display','block');
@@ -52,6 +56,25 @@ function popAddTroubleTbl(st,ct) {
   setCountyPicker(st,ct);
 }
 
+function popTrouble(picker) {
+  if (picker == 'DRIVER') {
+    $("#cover").css('display','block');
+    $("#add-trouble-popup-driver").css('display','block');
+    $("#state6").val(state2);
+    setCountyPicker(state2,county2);
+  } else if (picker == 'SALES') {
+    $("#cover").css('display','block');
+    $("#add-trouble-popup-sales").css('display','block');
+    $("#state2").val(state2);
+    setCountyPicker(state2,county2);
+  } else if (picker == 'PROCESSOR') {
+    $("#cover").css('display','block');
+    $("#add-trouble-popup-processor").css('display','block');
+    $("#state5").val(state2);
+    setCountyPicker(state2,county2);
+  }
+}
+
 $("#add-trouble-state-id").on('change', function (e) {
     var valueSelected = this.value;
     setCountyPicker(valueSelected);
@@ -62,9 +85,27 @@ $("#state").on('change', function (e) {
     setCountyPicker(valueSelected);
 });
 
+$("#admin-select").on('change', function (e) {
+  if (ctablechk == 'county_table') {
+    var val = this.value;
+    if (val == "/adminhome/driver") {
+      location.href = `/adminhome/county_table/${state2}/${county2}?picker=driver`;
+    } else if (val == "/adminhome/processor") {
+      location.href = `/adminhome/county_table/${state2}/${county2}?picker=processor`;
+    } else if (val == "/adminhome/sales" ) {
+      location.href = `/adminhome/county_table/${state2}/${county2}?picker=sales`;
+    }
+  }
+});
+
 $("#state2").on('change', function (e) {
   var valueSelected = this.value;
   setCountyPickerP(valueSelected);
+});
+
+$("#state3").on('change', function (e) {
+  var valueSelected = this.value;
+  setCountyPickerJ(valueSelected);
 });
 
 $("#state5").on('change', function (e) {
@@ -77,10 +118,121 @@ $("#state6").on('change', function (e) {
   setCountyPickerAS(valueSelected);
 });
 
+$("#state7").on('change', function (e) {
+  var valueSelected = this.value;
+  setCountyPickerK(valueSelected);
+});
+
+$("#state8").on('change', function (e) {
+  var valueSelected = this.value;
+  setCountyPickerL(valueSelected);
+});
+
 $("#stateinput").on('change', function(e) {
   var valueSelected = this.value;
   setCountyPicker2(valueSelected);
 })
+
+
+function setCountyPickerJ(state,ct,div) {
+  let set = $("#county3");
+  if (div) {
+    set = $("#" + div);
+  }
+
+  let setid = $(set).attr('id');
+  $(set).empty();
+
+  var svg = $("svg[stateLevel='" + state + "'] path");
+
+  $.each(svg, function(index, value) {
+    var classlong = $(value).attr('class');
+    var classcode = classlong.split('_').pop();
+    var countyname = state_specific[classcode].name;
+
+    var html = '<option value="' + countyname + '">' + countyname + '</option>';
+    $(set).append(html);
+
+  });
+
+  $(set).html($("#" + setid + " option").sort(function (a, b) {
+    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+  }));
+
+  if (ct) {
+    $(set).val(ct.toLowerCase().capitalize());
+  } else {
+    var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    $(set).prepend(initHtml);
+  }
+}
+
+function setCountyPickerL(state,ct,div) {
+  let set = $("#county8");
+  if (div) {
+    set = $("#" + div);
+  }
+
+  let setid = $(set).attr('id');
+  $(set).empty();
+
+  var svg = $("svg[stateLevel='" + state + "'] path");
+
+  $.each(svg, function(index, value) {
+    var classlong = $(value).attr('class');
+    var classcode = classlong.split('_').pop();
+    var countyname = state_specific[classcode].name;
+
+    var html = '<option value="' + countyname + '">' + countyname + '</option>';
+    $(set).append(html);
+
+  });
+
+  $(set).html($("#" + setid + " option").sort(function (a, b) {
+    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+  }));
+
+  if (ct) {
+    $(set).val(ct.toLowerCase().capitalize());
+  } else {
+    var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    $(set).prepend(initHtml);
+  }
+}
+
+function setCountyPickerK(state,ct,div) {
+  let set = $("#county7");
+  if (div) {
+    set = $("#" + div);
+  }
+
+  let setid = $(set).attr('id');
+  $(set).empty();
+
+  var svg = $("svg[stateLevel='" + state + "'] path");
+
+  $.each(svg, function(index, value) {
+    var classlong = $(value).attr('class');
+    var classcode = classlong.split('_').pop();
+    var countyname = state_specific[classcode].name;
+
+    var html = '<option value="' + countyname + '">' + countyname + '</option>';
+    $(set).append(html);
+
+  });
+
+  $(set).html($("#" + setid + " option").sort(function (a, b) {
+    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+  }));
+
+  if (ct) {
+    $(set).val(ct.toLowerCase().capitalize());
+  } else {
+    var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    $(set).prepend(initHtml);
+  }
+}
+
 
 function setCountyPickerP(state,ct,div) {
   let set = $("#county2");
@@ -280,6 +432,9 @@ function getEventDetails(id, role,admin, extra) {
 
     $("#id").val(results.id);
     role = role.toLowerCase();
+    if (admin == 'admin') {
+      admin_bool = true;
+    }
 
       $("#county").html(results.county);
       $("#date").html(results.date);
@@ -358,6 +513,21 @@ function getEventDetails(id, role,admin, extra) {
         $("#click-event-sales").css('display', 'block');
       } else {
         $("#click-event-processor").css('display', 'block');
+      }
+
+      if (extra == 'driver') {
+
+        accept = `#accepteventd`;
+        reject = `#rejecteventd`;
+        accepted = `#acceptedd`;
+
+        $(accepted).attr("onClick", `getedit('${id}')`);
+        $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
+        $(accept).hide();
+        $(reject).hide();
+        $(accepted).show();
+        $('#click-event-driver').css('display', 'block');
+        $("#click-event").css('display', 'none');
       }
     } else {
       $("#eventname").html(`${role.toUpperCase()} EVENT`);
@@ -530,7 +700,8 @@ function getedit(eid) {
     $("#edit2").attr("action", `/edit/${id}?role=${grole}`);
     $("#edit3").attr("action", `/edit/${id}?role=${grole}`);
 
-    if (grole == 'admin') {
+
+    if (grole == 'admin' || admin_bool == true) {
       let p = grole.toLowerCase();
       let temp1 = `#click-event-${p}`
       let temp2 = `#edit-event-${p}`
