@@ -3,19 +3,25 @@ var global_county = '';
 var global_picker = '';
 
 $("path").hover(function(e) {
-  var cl = e.target.className.baseVal;
-  var statecode = cl.split('_').pop();
-  let st = state_specific[statecode].name;
+  if ($("#map-states:visible").length <= 0) {
+    var cl = e.target.className.baseVal;
+    var statecode = cl.split('_').pop();
+    let st = state_specific[statecode].name;
 
-  $('#info-box').css('display','block');
-  $('#info-box').html('<h1>' + st + '</h1>');
+    $('#info-box').css('display','block');
+    $('#info-box').html('<h1>' + st + '</h1>');
+  }
 });
 $("path").mouseleave(function(e) {
-  $('#info-box').css('display','none');
+  if ($("#map-states:visible").length <= 0) {
+    $('#info-box').css('display','none');
+  }
 });
 $(document).mousemove(function(e) {
-  $('#info-box').css('top',e.clientY-$('#info-box').height()-300);
-  $('#info-box').css('left',e.clientX-($('#info-box').width())/2);
+  if ($("#map-states:visible").length <= 0) {
+    $('#info-box').css('top',e.clientY-$('#info-box').height()-300);
+    $('#info-box').css('left',e.clientX-($('#info-box').width())/2);
+  }
 }).mouseover();
 
 var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
