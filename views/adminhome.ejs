@@ -42,7 +42,7 @@
         <form action="/submitNewTrouble?db=sales" method="post">
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                <select id="add-trouble-state-id" class="form-control" placeholder="Enter State..." name="state" required>
+                <select id="state9" class="form-control" placeholder="Enter State..." name="state" required>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
                     <option value="AR">Arkansas</option>
@@ -96,7 +96,7 @@
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                <select id="add-trouble-county-id" class="form-control" name="county" required>
+                <select id="county9" class="form-control" name="county" required>
                     <option value="" disabled selected hidden>Enter County...</option>
                 </select>
             </div>
@@ -129,7 +129,7 @@
       <form action="/submitNewTrouble?db=driver" method="post">
           <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-              <select id="add-trouble-state-id" class="form-control" placeholder="Enter State..." name="state" required>
+              <select id="state7" class="form-control" placeholder="Enter State..." name="state" required>
               	<option value="AL">Alabama</option>
               	<option value="AZ">Arizona</option>
               	<option value="AR">Arkansas</option>
@@ -183,7 +183,7 @@
           </div>
           <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-              <select id="add-trouble-county-id" class="form-control" name="county" required>
+              <select id="county7" class="form-control" name="county" required>
                 <option value="" disabled selected hidden>Enter County...</option>
               </select>
           </div>
@@ -212,7 +212,7 @@
         <form action="/submitNewTrouble?db=processor" method="post">
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                <select id="add-trouble-state-id" class="form-control" placeholder="Enter State..." name="state" required>
+                <select id="state8" class="form-control" placeholder="Enter State..." name="state" required>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
                     <option value="AR">Arkansas</option>
@@ -266,7 +266,7 @@
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                <select id="add-trouble-county-id" class="form-control" name="county" required>
+                <select id="county8" class="form-control" name="county" required>
                     <option value="" disabled selected hidden>Enter County...</option>
                 </select>
             </div>
@@ -419,7 +419,7 @@
         <div id="map-container">
           <div id="back-to-home" style="display:none;">
             <img src="/assets/icon-close-white.svg"></img>
-            <h1>BACK TO COUNTRY VIEW</h1>
+             <h1 onclick="backcountry()">BACK TO COUNTRY VIEW</h1>
           </div>
               <svg id="map-states" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMinYMin meet" inkscape:version="0.91 r13725" x="0px" y="0px" width="959px" height="593px" viewBox="174 100 959 593" enable-background="new 174 100 959 593" xml:space="preserve">
                 <sodipodi:namedview bordercolor="#666666" objecttolerance="10" pagecolor="#ffffff" borderopacity="1" gridtolerance="10" guidetolerance="10" inkscape:cx="509.19152" inkscape:cy="282.2353" inkscape:zoom="1.2137643" showgrid="false" id="namedview71" inkscape:current-layer="g5" inkscape:window-maximized="1" inkscape:window-y="-8" inkscape:window-x="-8" inkscape:pageopacity="0" inkscape:window-height="1017" inkscape:window-width="1920" inkscape:pageshadow="2">
@@ -765,9 +765,14 @@
             <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">UPLOADED BY</p>
             <p name="userid" id="upl"></p>
         </div>
-        <div id="acceptevent" class="cancel-btn" ><a id="acceptevent" class="alt-link ml-0" onclick="closepopup2()">ACCEPT EVENT</a></div>
-        <div id="rejectevent" class="cancel-btn" ><a id="rejectevent" class="alt-link ml-0" onclick="closepopup2()">REJECT EVENT</a></div>
-        <div id="accepted" class="edit-btn"><a onclick="getedit()">EDIT EVENT</a></div>
+        <div class="btn-container-split">
+            <div class="btn-item-split col-6">
+                <div id="rejectevent" class="edit-btn reject-btn">REJECT EVENT</div>
+            </div>
+            <div class="btn-item-split col-6">
+                <div id="acceptevent" class="edit-btn">ACCEPT EVENT</div>
+            </div>
+        </div>
         <button type="submit" class="nobox-btn" onclick="delevt('driver')">DELETE EVENT</button>
 
     </div>

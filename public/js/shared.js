@@ -128,10 +128,48 @@ $("#state8").on('change', function (e) {
   setCountyPickerL(valueSelected);
 });
 
+$("#state9").on('change', function (e) {
+  var valueSelected = this.value;
+  setCountyPickerM(valueSelected);
+});
+
 $("#stateinput").on('change', function(e) {
   var valueSelected = this.value;
   setCountyPicker2(valueSelected);
 })
+
+function setCountyPickerM(state,ct,div) {
+  let set = $("#county9");
+  if (div) {
+    set = $("#" + div);
+  }
+
+  let setid = $(set).attr('id');
+  $(set).empty();
+
+  var svg = $("svg[stateLevel='" + state + "'] path");
+
+  $.each(svg, function(index, value) {
+    var classlong = $(value).attr('class');
+    var classcode = classlong.split('_').pop();
+    var countyname = state_specific[classcode].name;
+
+    var html = '<option value="' + countyname + '">' + countyname + '</option>';
+    $(set).append(html);
+
+  });
+
+  $(set).html($("#" + setid + " option").sort(function (a, b) {
+    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+  }));
+
+  if (ct) {
+    $(set).val(ct.toLowerCase().capitalize());
+  } else {
+    var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    $(set).prepend(initHtml);
+  }
+}
 
 
 function setCountyPickerJ(state,ct,div) {
@@ -592,6 +630,28 @@ function searchuser() {
   }
 }
 
+$('path').on("click", function() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  filter = this.id;
+
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+});
+
 function searchstate() {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
@@ -633,6 +693,10 @@ function searchstate2() {
       }
     }
   }
+}
+
+function backcountry() {
+  location.href = '/';
 }
 
 function searchnew() {

@@ -257,38 +257,41 @@ module.exports = function(app, passport) {
 
 						if (req.user.role) {
 								if (req.user.role == 'admin') {
-										let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
-										db.query(query, (err, result2) => {
-												if (err) throw err;
+										let query3 = "select id, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
+										let query4 = `select id, state, count(*) as num from ${dbs[role]} where status = 'active' and manage = 'accepted'`;
+										db.query(query3, (err, result2) => {
+												db.query(query4, (err, result3) => {
+														if (err) throw err;
 
-												let mitem = 'DRIVERS'
-												let route = 'drivers'
+														let mitem = 'DRIVERS'
+														let route = 'drivers'
 
-												if (role != 'driver')
-														mitem = 'PROFILE'
+														if (role != 'driver')
+																mitem = 'PROFILE'
 
-												if (role == 'sales')
-														route = 'profile/sales'
-												if (role == 'processor')
-														route = 'profile/processor'
+														if (role == 'sales')
+																route = 'profile/sales'
+														if (role == 'processor')
+																route = 'profile/processor'
 
-												res.render(route_map[req.user.role], {
-														user: req.user,
-														page: 'Home',
-														menuId: 'home',
-														event: result2,
-														statecode: req.user.state,
-														groupstate: result,
-														picker: role.toUpperCase(),
-														menuitem: mitem,
-														router: route,
-														alert: ares[0].description,
-														date: date,
-														time: time,
-														county: ares[0].county,
-														state: ares[0].state.toUpperCase(),
-														county: ares[0].county,
-														showEmergency: ares[0].status
+														res.render(route_map[req.user.role], {
+																user: req.user,
+																page: 'Home',
+																menuId: 'home',
+																event: result2,
+																statecode: req.user.state,
+																groupstate: result3,
+																picker: role.toUpperCase(),
+																menuitem: mitem,
+																router: route,
+																alert: ares[0].description,
+																date: date,
+																time: time,
+																county: ares[0].county,
+																state: ares[0].state.toUpperCase(),
+																county: ares[0].county,
+																showEmergency: ares[0].status
+														});
 												});
 										});
 								} else {
@@ -365,15 +368,19 @@ module.exports = function(app, passport) {
 						'processor': 'processorprofile.ejs'
 				}
 
-				res.render(route_map[role], {
-						user : req.user,
-						page:'My Profile',
-						menuId:'profile',
-						picker: 'DRIVER',
-						menuitem: 'DRIVERS',
-						router: 'drivers',
-						state: req.user.state
-				});
+				// let query = `select resetPasswordToken from users where userid='${req.user.userid}'`;
+				// db.query(query, (err, result) => {
+				// 		let token = result[0].resetPasswordToken;
+						res.render(route_map[role], {
+								user: req.user,
+								page: 'My Profile',
+								menuId: 'profile',
+								picker: 'DRIVER',
+								menuitem: 'DRIVERS',
+								router: 'drivers',
+								state: req.user.state
+						});
+				// });
 		});
 
 		app.post('/profile', isLoggedIn, function(req, res) {
@@ -628,7 +635,7 @@ module.exports = function(app, passport) {
 						if (err) throw err;
 
 						// res.redirect('/county_table/' + req.body.state + '/' + req.body.county);
-						res.redirect('/events');
+						res.redirect('back');
 				});
 		});
 
@@ -802,6 +809,70 @@ module.exports = function(app, passport) {
 						function(done) {
 
 								let checkToken = "select * from users where resetPasswordToken = '" + req.params.token + "' and resetPasswordExpires >= Now()";
+
+								db.query(checkToken, (err, result) => {
+										if (err) return done(err);
+
+										if (result.length <= 0) {
+												req.flash('error', 'Password reset token is invalid or has expired.');
+												return res.redirect('back');
+										} else {
+												if (req.body.password != req.body.confirmPassword) {
+														return done(null, false, req.flash('error', 'Your passwords do not match.'));
+												} else {
+														var user = result[0].email;
+
+														bcrypt.hash(req.body.password, 10, function(err, hash) {
+																let queryAdd = "update users set password = '" + hash + "',resetPasswordToken = null, resetPasswordExpires = null where email = '" + user + "'";
+
+																db.query(queryAdd, (err, result) => {
+																		if (err) return done(err);
+
+																		return done(null, user);
+																});
+														});
+												}
+										}
+								});
+						},
+						function(user, done) {
+								var smtpTransport = nodemailer.createTransport({
+										host: 'a2plcpnl0602.prod.iad2.secureserver.net',
+										port: 465,
+										secure: true,
+										auth: {
+												user: 'automated@cdlchappiness.com',
+												pass: '38{jr7E{4NJ{'
+										}
+								});
+								var mailOptions = {
+										to: user,
+										from: 'passwordreset@demo.com',
+										subject: 'Your password has been changed',
+										text: 'Hello,\n\n' +
+											'This is a confirmation that the password for your account ' + user + ' has just been changed.\n'
+								};
+								smtpTransport.sendMail(mailOptions, function(err) {
+										req.flash('success', 'Success! Your password has been changed.');
+										done(err);
+								});
+						}
+				], function(err) {
+						res.redirect('/');
+				});
+		});
+
+		app.get('/reset', function(req, res) {
+				res.render('manualreset', {
+						user: req.user.email
+				});
+		})
+
+		app.post('/manualreset/:userid', function(req, res) {
+				async.waterfall([
+						function(done) {
+
+								let checkToken = `select * from users where email='${req.params.userid}'` ;
 
 								db.query(checkToken, (err, result) => {
 										if (err) return done(err);
