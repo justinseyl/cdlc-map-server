@@ -105,6 +105,8 @@ html * {
 }
 
 .dropdown-toggle2 {
+  float: right;
+  color: white !important;
   width: 150px;
   height: 30px;
   border: none;
@@ -118,6 +120,9 @@ html * {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
+}
+.dropdown-toggle2 option {
+  background-color: #000 !important;
 }
 
 #admin-select option {

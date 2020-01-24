@@ -143,7 +143,6 @@
 
       </div>
   </div>
-
   <div id="add-trouble-popup" class="popup-panel" style="display:none;">
   	<div class="card-popup">
       <img class="tr" src="/assets/tr-corner.svg"></img>
@@ -254,13 +253,13 @@
               </h2>
             <% } %>
           </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <select id="new" class="dropdown-toggle2" onclick="searchnew()" placeholder="All" name="new" required>
                     <option value="all">All</option>
                     <option value="new">New</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <select id="stateinput" class="dropdown-toggle2" onclick="searchstate2()" placeholder="Filter by state" name="state" required>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
@@ -313,12 +312,12 @@
                     <option value="WY">Wyoming</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <select id="countyinput" class="dropdown-toggle2" onclick="searchcounty()" name="county" required>
                     <option value="" disabled selected hidden>Filter by County</option>
                 </select>
             </div>
-          <div class="col-md-14">
+          <div class="col-md-3">
             <div id="custom-buttons" class="custom-buttons-tbl" onclick="popAddTroubleSub('<%= statecode%>')">ADD TROUBLE AREA</div>
           </div>
         </div>
