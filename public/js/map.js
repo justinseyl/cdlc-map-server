@@ -57,24 +57,43 @@ function clickstate(st) {
   });
 }
 
-$('#back-to-home').on('click', function() {
-  $("#map-states").show();
-  $("#back-to-home").hide();
-  $("svg[stateLevel]").hide();
-  $("#county-tbl").hide();
-  $("#state-tbl").show();
+$('#back-to-home').on('click', function(e) {
+  if (e.target.nodeName != 'INPUT') {
+    $("#map-states").show();
+    $("#back-to-home").hide();
+    $("svg[stateLevel]").hide();
+    $("#county-tbl").hide();
+    $("#state-tbl").show();
 
-  global_state = '';
-  global_county = '';
+    global_state = '';
+    global_county = '';
+  }
 });
 
-$('#back-to-home-mobile').on('click', function() {
-  $("#back-to-home-mobile").hide();
-  $("#county-tbl").hide();
-  $("#state-tbl").show();
+$('#back-to-home-mobile').on('click', function(e) {
+  if (e.target.nodeName != 'INPUT') {
+    $("#back-to-home-mobile").hide();
+    $("#county-tbl").hide();
+    $("#state-tbl").show();
 
-  global_state = '';
-  global_county = '';
+    global_state = '';
+    global_county = '';
+  }
+});
+
+$( "#map-search" ).keyup(function() {
+  let text = $(this).val().toLowerCase();
+  $( "svg[statelevel=" + global_state + "]" ).children('path').each(function () {
+    var cl = this.className.baseVal;
+    var statecode = cl.split('_').pop();
+    let st = state_specific[statecode].name.toLowerCase();
+
+    if (!st.includes(text)) {
+      $("." + cl).hide();
+    } else {
+      $("." + cl).show();
+    }
+});
 });
 
 $("svg[stateLevel] path").on('click', function() {
