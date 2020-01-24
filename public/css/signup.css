@@ -407,4 +407,14 @@ input::placeholder {
   .form-group {
     padding: 0px !important;
   }
+  .logo-container img {
+    margin-right: 20px;
+    height: 29px;
+    max-width: 83px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+  .forgot-pass a {
+    font-size: 12px;
+  }
 }

@@ -218,6 +218,13 @@ html * {
   #profile {
     margin-right: 15px;
   }
+  .dropdown-toggle2 {
+    width: 100%;
+    margin-top: 25px;
+  }
+  #myTable {
+    padding-top: 25px !important;
+  }
 }
 
 @media only screen and (max-width: 350px) {
