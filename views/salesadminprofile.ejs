@@ -8,7 +8,7 @@
 
 <nav class="nav-custom">
 	<div class="nav-custom-header col-sm-3">
-		<a href="/" class="click-header">
+		<a href="/adminhome/<%=picker%>" class="click-header">
 			<img class="nav-custom-logo" src="/assets/icon.svg"></img>
 			<h1>ADMIN</h1>
 		</a>
@@ -17,17 +17,17 @@
 		<ul class="nav-custom-ul">
 			<li id="home">
 				<img class="nav-custom-icon-main" src="/assets/icon-home-un.svg"></img>
-				<a href="/">HOME</a>
+				<a href="/adminhome/<%=picker%>">HOME</a>
 				<div class="nav-hr" style="display:none;"></div>
 			</li>
 			<li id="events">
 				<img class="nav-custom-icon-main" src="/assets/icon-my-profile-un.svg"></img>
-				<a href="/<%=menuitem%>"><%=menuitem%></a>
+				<a href="/<%=router%>?picker=<%=picker%>"><%=menuitem%></a>
 				<div class="nav-hr" style="display:none;"></div>
 			</li>
 			<li id="alerts">
 				<img class="nav-custom-icon-main" src="/assets/emergencyalerts.svg"></img>
-				<a href="/alerts">EMERGENCY ALERTS</a>
+				<a href="/alerts?picker=<%=picker%>">EMERGENCY ALERTS</a>
 				<div class="nav-hr" style="display:none;"></div>
 			</li>
 		</ul>
@@ -42,8 +42,8 @@
 			</select>
 		</div>
 		<div class="col-6">
-			<img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img>
-			<a href="/profile"><img class="nav-custom-icon" style="margin-right:25px;" src="/assets/icon-my-profile-un.svg"></img></a>
+			<a href="/notifications?picker=<%=picker%>"><img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img></a>
+			<a href="/profile?picker=<%=picker%>"><img class="nav-custom-icon" style="margin-right:25px;" src="/assets/icon-my-profile-un.svg"></img></a>
 		</div>
 	</div>
 </nav>

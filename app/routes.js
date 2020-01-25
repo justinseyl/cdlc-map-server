@@ -16,7 +16,24 @@ module.exports = function(app, passport) {
 						res.redirect('/adminhome/driver');
 				}
 				let alertquery = "select title, description, county, state, created_at,status from ealerts order by created_at desc limit 1"
-				let query = "select id, state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";
+
+				let role = 'driver';
+
+				if (req.user.role == 'processor') {
+						role = 'processor';
+				}
+
+				if (req.user.role == 'sales') {
+						role = 'sales';
+				}
+
+				let dbs = {
+						'driver': 'tr_area',
+						'sales': 'tr_area_sales',
+						'processor': 'tr_area_processor'
+				}
+
+				let query = "select id, state,count(*) as num from " + dbs[role] + " where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";
 				db.query(alertquery, (err, ares) => {
 						db.query(query, (err, result) => {
 								if (err) throw err;
@@ -235,12 +252,13 @@ module.exports = function(app, passport) {
 
 				db.query(alertquery, (err, ares) => {
 				db.query(query, (err, result) => {
-						if (err) throw err;
+						if (err)
+								throw err;
 
 						let date = moment(ares[0].created_at).format('MM/DD/YYYY');
 						let time = moment(ares[0].created_at).format('HH:MM A');
 
-						let role = req.params.role;
+						let role = req.params.role.toLowerCase();;
 
 						let route_map = {
 								'admin': 'adminhome.ejs',
@@ -258,7 +276,7 @@ module.exports = function(app, passport) {
 						if (req.user.role) {
 								if (req.user.role == 'admin') {
 										let query3 = "select id, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
-										let query4 = `select id, state, count(*) as num from ${dbs[role]} where status = 'active' and manage = 'accepted'`;
+										let query4 = "select id, state,count(*) as num from " + dbs[role] + " where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";;
 										db.query(query3, (err, result2) => {
 												db.query(query4, (err, result3) => {
 														if (err) throw err;
@@ -368,6 +386,23 @@ module.exports = function(app, passport) {
 						'processor': 'processorprofile.ejs'
 				}
 
+				let picker = 'DRIVER';
+				if (req.query.picker) {
+						picker = req.query.picker.toUpperCase();
+				}
+
+				let mitem = 'DRIVERS';
+				let r = 'drivers';
+
+				if (picker == 'SALES' || picker == 'PROCESSOR') {
+						mitem = 'PROFILE';
+				}
+
+				if (picker == 'SALES')
+						r = 'profile/sales'
+				if (picker == 'PROCESSOR')
+						r = 'profile/processor'
+
 				// let query = `select resetPasswordToken from users where userid='${req.user.userid}'`;
 				// db.query(query, (err, result) => {
 				// 		let token = result[0].resetPasswordToken;
@@ -375,9 +410,9 @@ module.exports = function(app, passport) {
 								user: req.user,
 								page: 'My Profile',
 								menuId: 'profile',
-								picker: 'DRIVER',
-								menuitem: 'DRIVERS',
-								router: 'drivers',
+								picker: picker,
+								menuitem: mitem,
+								router: r,
 								state: req.user.state
 						});
 				// });
@@ -400,14 +435,30 @@ module.exports = function(app, passport) {
 				db.query(query, (err, result) => {
 
 						let rtn = result[0];
+						let picker = 'DRIVER';
+						if (req.query.picker) {
+								picker = req.query.picker.toUpperCase();
+						}
+
+						let mitem = 'DRIVERS';
+						let r = 'drivers';
+
+						if (picker == 'SALES' || picker == 'PROCESSOR') {
+								mitem = 'PROFILE';
+						}
+
+						if (picker == 'SALES')
+								r = 'profile/sales'
+						if (picker == 'PROCESSOR')
+								r = 'profile/processor'
 
 						res.render('emergency.ejs', {
 								user: req.user,
 								page: 'Emergency Alerts',
 								menuId: 'emergency',
-								picker: 'DRIVER',
-								menuitem: 'DRIVERS',
-								router: 'drivers',
+								picker: picker,
+								menuitem: mitem,
+								router: r,
 								title: rtn.title,
 								state: rtn.state,
 								county: rtn.county,
@@ -521,7 +572,7 @@ module.exports = function(app, passport) {
 		});
 
 		app.get('/drivers', isLoggedIn, function(req, res) {
-				let query = "select concat(u.first,' ',u.last) as name, u.email as email, u.state as state,(select count(*) from tr_area t where t.status = 'active' and t.userid = u.email and t.manage='accepted') as accept,(select count(*) from tr_area t where t.status = 'active' and t.userid = u.email and t.manage='pending') as pending,(select count(*) from tr_area t where t.status = 'active' and t.userid = u.email and t.manage='denied') as denied from users u where u.role IS NULL and u.status = 'active'";
+				let query = "select concat(u.first,' ',u.last) as name, u.email as email, u.state as state,(select count(*) from tr_area t where t.status = 'active' and t.userid = u.email and t.manage='accepted') as accept,(select count(*) from tr_area t where t.status = 'active' and t.userid = u.email and t.manage='pending') as pending,(select count(*) from tr_area t where t.status = 'active' and t.userid = u.email and t.manage='denied') as denied from users u where u.role IS NULL and u.status = 'active' or u.role='admin'";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
@@ -549,6 +600,19 @@ module.exports = function(app, passport) {
 						'processor': 'processornoti.ejs'
 				}
 
+				let picker = 'DRIVER';
+				if (req.query.picker) {
+						picker = req.query.picker.toUpperCase();
+				}
+
+				let mitem = 'DRIVERS';
+				let r = 'drivers';
+
+				if (picker == 'SALES' || picker == 'PROCESSOR') {
+						mitem = 'PROFILE';
+						r = 'profile';
+				}
+
 				let query = "select title, description, Concat(DATEDIFF(Now(),created_at),' Days Ago') as time,Concat('+',DATEDIFF(Now(),created_at)) as mobiletime,case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from ealerts order by created_at desc";
 				db.query(query, (err, result) => {
 						if (err) throw err;
@@ -558,9 +622,9 @@ module.exports = function(app, passport) {
 								page:'drivers',
 								menuId:'drivers',
 								event: result,
-								picker: 'DRIVER',
-								menuitem: 'DRIVERS',
-								router: 'drivers'
+								picker: picker,
+								menuitem: mitem,
+								router: r
 						});
 				});
 		});
@@ -641,7 +705,23 @@ module.exports = function(app, passport) {
 
 		app.get('/getCountyByState', function(req, res, next){
 				let state = req.query.state;
-				let query = "select Upper(county) as county,count(*) as num from tr_area where status = 'active' and manage = 'accepted' and state = '" + state + "' group by 1 order by 1";
+
+				let role = 'driver';
+				if (req.user.role && req.user.role != 'admin') {
+						role = req.user.role.toLowerCase();
+				}
+
+				if (req.query.picker && req.query.picker != 'undefined') {
+						role = req.query.picker.toLowerCase();
+				}
+
+				let dbs = {
+						'driver': 'tr_area',
+						'sales'  : 'tr_area_sales',
+						'processor': 'tr_area_processor'
+				}
+
+				let query = "select Upper(county) as county,count(*) as num from " + dbs[role] + " where status = 'active' and manage = 'accepted' and state = '" + state + "' group by 1 order by 1";
 
 				db.query(query, (err, rescty) => {
 						if (err) throw err;
@@ -686,7 +766,7 @@ module.exports = function(app, passport) {
 				let role = 'driver';
 				let pick = 'DRIVER';
 
-				if (req.query.picker)
+				if (req.query.picker && req.query.picker != 'undefined')
 						pick = req.query.picker;
 
 				if (req.user.role) {
@@ -701,7 +781,7 @@ module.exports = function(app, passport) {
 
 				let dbchoice = dbs[role];
 				if (req.query.picker)
-						dbchoice = dbs[req.query.picker]
+						dbchoice = dbs[req.query.picker.toLowerCase()]
 
 				let route_map = {
 						'driver': 'county_table.ejs',
@@ -710,7 +790,7 @@ module.exports = function(app, passport) {
 						'admin': 'admin_county_table.ejs'
 				}
 
-				let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and county = '" + req.params.county + "' order by created_at desc";
+				let query = "select id, userid, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and county = '" + req.params.county + "' order by created_at desc";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
@@ -744,7 +824,7 @@ module.exports = function(app, passport) {
 
 				let dbchoice = dbs[role];
 				if (req.query.picker) {
-						dbchoice = dbs[req.query.picker]
+						dbchoice = dbs[req.query.picker.toLowerCase()]
 						pick = req.query.picker
 				}
 

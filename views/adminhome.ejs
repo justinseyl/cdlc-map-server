@@ -272,27 +272,27 @@
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FEE</p>
-                <textarea id="add-trouble-desc" name="fee" placeholder="Enter fee..." required></textarea>
+                <textarea id="add-trouble-fee" name="fee" placeholder="Enter fee..." required></textarea>
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY NAME</p>
-                <textarea id="add-trouble-desc" name="attorneyname" placeholder="Enter name..." required></textarea>
+                <textarea id="add-trouble-n" name="attorneyname" placeholder="Enter name..." required></textarea>
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY ADDRESS</p>
-                <textarea id="add-trouble-desc" name="address" placeholder="Enter address..." required></textarea>
+                <textarea id="add-trouble-add" name="address" placeholder="Enter address..." required></textarea>
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FAX</p>
-                <textarea id="add-trouble-desc" name="fax" placeholder="Enter fax..." required></textarea>
+                <textarea id="add-trouble-fax" name="fax" placeholder="Enter fax..." required></textarea>
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY EMAIL</p>
-                <textarea id="add-trouble-desc" name="email" placeholder="Enter email..." required></textarea>
+                <textarea id="add-trouble-e" name="email" placeholder="Enter email..." required></textarea>
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY NOTES</p>
-                <textarea id="add-trouble-desc" name="description" placeholder="Enter notes..." required></textarea>
+                <textarea id="add-trouble-nn" name="description" placeholder="Enter notes..." required></textarea>
             </div>
 
             <button type="submit" class="submit-btn" onclick="submitNewTrouble()">SUBMIT</button>
@@ -335,7 +335,7 @@
   <div class="iefix">
       <nav class="nav-custom">
           <div class="nav-custom-header col-xs-1 col-sm-3">
-              <a href="/" class="click-header">
+              <a href="/adminhome/<%=picker%>" class="click-header">
                   <img class="nav-custom-logo" src="/assets/icon.svg"></img>
                   <h1>ADMIN</h1>
               </a>
@@ -344,24 +344,24 @@
               <ul class="nav-custom-ul col-xs-6 col-md-12 mx-auto">
                   <li id="home">
                       <img class="nav-custom-icon-main" src="/assets/icon-home-un.svg"></img>
-                      <a href="/">HOME</a>
+                      <a href="/adminhome/<%=picker%>">HOME</a>
                       <div class="nav-hr" style="display:none;"></div>
                   </li>
                   <li id="events">
                       <img class="nav-custom-icon-main" src="/assets/icon-my-profile-un.svg"></img>
-                      <a href="/<%=router%>"><%=menuitem%></a>
+                      <a href="/<%=router%>?picker=<%=picker%>"><%=menuitem%></a>
                       <div class="nav-hr" style="display:none;"></div>
                   </li>
                   <li id="alerts">
                       <img class="nav-custom-icon-main" src="/assets/emergencyalerts.svg"></img>
-                      <a href="/alerts">EMERGENCY ALERTS</a>
+                      <a href="/alerts?picker=<%=picker%>">EMERGENCY ALERTS</a>
                       <div class="nav-hr" style="display:none;"></div>
                   </li>
               </ul>
               <ul class="nav-custom-ul nav-add-icons-mobile show-mobile">
                 <li id="profile">
                   <img class="nav-custom-icon-main" src="/assets/icon-my-profile-un.svg"></img>
-                  <a href="/profile"></a>
+                  <a href="/profile?picker=<%=picker%>"></a>
                 </li>
                 <li>
                   <img class="nav-custom-icon-main" src="/assets/icon-my-notifications.svg"></img>
@@ -378,8 +378,8 @@
                   </select>
               </div>
               <div class="col-6">
-                  <a href="/notifications"><img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img></a>
-                  <a href="/profile"><img class="nav-custom-icon" style="margin-right:25px;" src="/assets/icon-my-profile-un.svg"></img></a>
+                  <a href="/notifications?picker=<%=picker%>"><img class="nav-custom-icon" src="/assets/icon-my-notifications.svg"></img></a>
+                  <a href="/profile?picker=<%=picker%>"><img class="nav-custom-icon" style="margin-right:25px;" src="/assets/icon-my-profile-un.svg"></img></a>
               </div>
           </div>
       </nav>
@@ -550,6 +550,7 @@
                   </div>
                   <div class="col-md-2">
                       <select id="stateinput" class="dropdown-toggle2" onclick="searchstate2()" placeholder="Filter by state" name="state" required>
+                          <option value="ALL">All States</option>
                           <option value="AL">Alabama</option>
                           <option value="AZ">Arizona</option>
                           <option value="AR">Arkansas</option>

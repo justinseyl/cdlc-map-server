@@ -1,6 +1,7 @@
 var global_state = '';
 var global_county = '';
 var global_picker = '';
+const picker = window.location.pathname.split('/')[2];
 
 $("path").hover(function(e) {
   if ($("#map-states:visible").length <= 0) {
@@ -52,7 +53,7 @@ function clickstate(st) {
   $("svg[stateLevel=" + st + "]").show();
   $("#state-tbl").hide();
 
-  $.get("/getCountyByState?state=" + st, function (data) {
+  $.get("/getCountyByState?state=" + st + "&picker=" + picker, function (data) {
     buildTable(data);
   });
 }
@@ -106,7 +107,11 @@ $("svg[stateLevel] path").on('click', function() {
 
 function countyClick(st) {
   global_county = st;
-  window.location.href = 'county_table/' + global_state + '/' + global_county ;
+  if (picker == undefined) {
+    window.location.href = 'county_table/' + global_state + '/' + global_county
+  } else {
+    window.location.href = 'county_table/' + global_state + '/' + global_county + '?picker=' + picker ;
+  }
 }
 
 function buildTable(data) {

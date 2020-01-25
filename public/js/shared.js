@@ -5,6 +5,9 @@ var admin_bool = false;
 const ctablechk = window.location.pathname.split('/')[2];
 const county2 = window.location.pathname.split('/')[4];
 const state2 = window.location.pathname.split('/')[3];
+var gtable = '';
+
+var currenteuid = '';
 
 
 
@@ -466,7 +469,7 @@ function changelink(type) {
   }
 }
 
-function getEventDetails(id, role,admin, extra) {
+function getEventDetails(id, role,admin, extra, userid) {
   $.get(`/getevent/${id}?role=${role}`, function (data) {
     let results = data[0];
 
@@ -531,11 +534,22 @@ function getEventDetails(id, role,admin, extra) {
         $(accepted).show();
       }
     } else {
-      $(accepted).attr("onClick", `getedit('${id}')`);
-      $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
-      $(accept).hide();
-      $(reject).hide();
-      $(accepted).show();
+      if (userid == results.userid) {
+        $(accepted).attr("onClick", `getedit('${id}')`);
+        $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
+        $(accept).hide();
+        $(reject).hide();
+        $(accepted).show();
+        if (role == 'sales' || role == 'processor') {
+          $("#delbut").hide();
+        }
+      } else {
+        $("#delbut").hide();
+        $(accept).hide();
+        $(reject).hide();
+        $(accepted).hide();
+
+      }
     }
 
 
@@ -665,16 +679,11 @@ function searchstate() {
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
+  if (filter != 'ALL') {
+    gtable.column(1).search(filter).draw();
+  } else {
+// Invalidate all rows and redraw
+    gtable.search( '' ).columns().search( '' ).draw();
   }
 }
 
@@ -686,16 +695,11 @@ function searchstate2() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
+  if (filter != 'ALL') {
+        gtable.column(1).search(filter).draw();
+  } else {
+// Invalidate all rows and redraw
+    gtable.search( '' ).columns().search( '' ).draw();
   }
 }
 
@@ -810,9 +814,9 @@ function closepopup2() {
 }
 
 $(document).ready(function() {
-  $('table').DataTable({
+  gtable = $('table').DataTable({
     "ordering": true,
-    "searching": false,
+    "searching": true,
     "pagingType": "full_numbers",
     "dom": '<bottam>p',
     "drawCallback": function(settings) {
