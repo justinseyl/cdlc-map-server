@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="382d3daa-4656-4d40-9205-bb73e2af2e7a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/shared.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/shared.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin_county_table.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin_county_table.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/adminhome.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminhome.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/adminnoti.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminnoti.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/adminprofile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminprofile.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/county_table.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/county_table.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/driverdetail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/driverdetail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/drivers.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/drivers.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/emergency.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/emergency.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/events.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/events.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/processor_county_table.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/processor_county_table.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/processoradminprofile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/processoradminprofile.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/processorevents.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/processorevents.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/processorhome.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/processorhome.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/sales_county_table.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/sales_county_table.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/salesadminprofile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/salesadminprofile.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/salesevents.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/salesevents.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saleshome.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/saleshome.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,10 +18,26 @@
       <split-first>
         <leaf>
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/views/adminhome.ejs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="252">
+                  <caret line="774" column="36" selection-start-line="774" selection-start-column="36" selection-end-line="774" selection-end-column="36" />
+                  <folding>
+                    <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+                    <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+                    <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
+                    <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
+                    <element signature="n#div#7;n#body#0;n#html#0;n#!!top" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/salesevents.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="609">
-                  <caret line="241" column="37" selection-start-line="241" selection-start-column="37" selection-end-line="241" selection-end-column="37" />
+                <state relative-caret-position="336">
+                  <caret line="228" column="25" selection-start-line="228" selection-start-column="25" selection-end-line="228" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -173,7 +169,6 @@
         <option value="$PROJECT_DIR$/views/county_table.ejs" />
         <option value="$PROJECT_DIR$/views/sales_county_table.ejs" />
         <option value="$PROJECT_DIR$/views/driverdetail.ejs" />
-        <option value="$PROJECT_DIR$/views/adminhome.ejs" />
         <option value="$PROJECT_DIR$/views/admin_county_table.ejs" />
         <option value="$PROJECT_DIR$/app/routes.js" />
         <option value="$PROJECT_DIR$/public/js/map.js" />
@@ -181,6 +176,7 @@
         <option value="$PROJECT_DIR$/views/processor_county_table.ejs" />
         <option value="$PROJECT_DIR$/public/js/shared.js" />
         <option value="$PROJECT_DIR$/views/salesevents.ejs" />
+        <option value="$PROJECT_DIR$/views/adminhome.ejs" />
       </list>
     </option>
   </component>
@@ -333,18 +329,18 @@
       <workItem from="1579747069293" duration="23322000" />
       <workItem from="1579815437805" duration="2222000" />
       <workItem from="1579827704319" duration="6757000" />
-      <workItem from="1579914234597" duration="20859000" />
+      <workItem from="1579914234597" duration="21047000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183989000" />
+    <option name="totallyTimeSpent" value="184177000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="2" width="2364" height="1405" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532524" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2532524" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -353,14 +349,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3224" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3224" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3608" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3296" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3296" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -772,18 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/adminhome.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-186">
-          <caret line="532" column="67" lean-forward="true" selection-start-line="532" selection-start-column="67" selection-end-line="532" selection-end-column="67" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#li#2;n#ul#0;n#div#1;n#nav#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#select#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#6;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#8;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
@@ -845,8 +829,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/salesevents.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="241" column="37" selection-start-line="241" selection-start-column="37" selection-end-line="241" selection-end-column="37" />
+        <state relative-caret-position="336">
+          <caret line="228" column="25" selection-start-line="228" selection-start-column="25" selection-end-line="228" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/adminhome.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="774" column="36" selection-start-line="774" selection-start-column="36" selection-end-line="774" selection-end-column="36" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#7;n#body#0;n#html#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
