@@ -651,7 +651,6 @@ $('path').on("click", function() {
   var input, filter, table, tr, td, i, txtValue;
   filter = this.id;
 
-  if (table) {
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
 
@@ -667,7 +666,6 @@ $('path').on("click", function() {
         }
       }
     }
-  }
 });
 
 function searchstate() {
