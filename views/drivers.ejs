@@ -149,8 +149,8 @@
           <thead>
             <tr>
               <th>NAME</th>
+                <th>STATE</th>
               <th>EMAIL ADDRESS</th>
-              <th>STATE</th>
               <th>ACCEPTED EVENTS</th>
               <th>PENDING EVENTS</th>
               <th>DENIED EVENTS</th>
@@ -158,7 +158,7 @@
           </thead>
           <colgroup>
                   <col class="col-md-4">
-                  <col class="col-md-4">
+                  <col class="col-md-1">
                   <col class="col-md-1">
                   <col class="col-md-1">
                   <col class="col-md-1">
@@ -168,8 +168,8 @@
             <% for (var i = 0; i < event.length; i++) { %>
               <tr onclick='window.location.href="/edituser/<%=event[i].email%>"'>
                 <td><%= event[i].name %> </td>
+                  <td><%= event[i].state %> </td>
                 <td><%= event[i].email %> </td>
-                <td><%= event[i].state %> </td>
                 <td><%= event[i].accept %> </td>
                 <td><%= event[i].pending %> </td>
                 <td><%= event[i].denied %> </td>

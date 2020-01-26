@@ -812,23 +812,28 @@ function closepopup2() {
 }
 
 $(document).ready(function() {
-  gtable = $('table').DataTable({
-    "ordering": true,
-    "searching": true,
-    "pagingType": "full_numbers",
-    "dom": '<bottam>p',
-    "drawCallback": function(settings) {
-      var pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate');
-      pagination.toggle(this.api().page.info().pages > 1);
-    },
-    "fnInitComplete" : function() {
-      if ($(this).find('.dataTables_empty').length==1) {
-         $(this).parent().hide();
-      }
-   },
-   "responsive": true,
-   "ordering": false
-  });
+  try {
+    gtable = $('#myTable').DataTable({
+      "ordering": true,
+      "searching": true,
+      "pagingType": "full_numbers",
+      "dom": '<bottam>p',
+      "drawCallback": function (settings) {
+        var pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate');
+        pagination.toggle(this.api().page.info().pages > 1);
+      },
+      "fnInitComplete": function () {
+        if ($(this).find('.dataTables_empty').length == 1) {
+          $(this).parent().hide();
+        }
+      },
+      "responsive": true,
+      "ordering": false
+    });
+  } catch(e) {
+    alert(e);
+  }
+
 
   if ($(window).width() < 720) {
      $("#DataTables_Table_0 tr td:last-child").show();
