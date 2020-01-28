@@ -86,18 +86,18 @@ function popTrouble(picker) {
   if (picker == 'DRIVER') {
     $("#cover").css('display','block');
     $("#add-trouble-popup-driver").css('display','block');
-    $("#state6").val(state2);
-    setCountyPicker(state2,county2);
+    $("#state_driver").val(state2);
+    setCountyPicker(state2,county2,'county_driver');
   } else if (picker == 'SALES') {
     $("#cover").css('display','block');
     $("#add-trouble-popup-sales").css('display','block');
-    $("#state2").val(state2);
-    setCountyPicker(state2,county2);
+    $("#state_sales").val(state2);
+    setCountyPicker(state2,county2,'county_sales');
   } else if (picker == 'PROCESSOR') {
     $("#cover").css('display','block');
     $("#add-trouble-popup-processor").css('display','block');
-    $("#state5").val(state2);
-    setCountyPicker(state2,county2);
+    $("#state_proc").val(state2);
+    setCountyPicker(state2,county2,'county_proc');
   }
 }
 
