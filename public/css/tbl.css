@@ -248,6 +248,42 @@ table tbody td:last-child,table thead tr th:last-child {
 .make-admin p:last-child {
   margin-right: 50px;
 }
+.admin-adv-options {
+  float: right;
+  cursor: pointer;
+}
+.inner-span-p {
+  color: #4ab3ad;
+}
+.adv-label {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  opacity: 0.4;
+  margin-left: 15px;
+}
+.select-one {
+  margin: 0px;
+  margin-bottom: 50px;
+  opacity: 0.8;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+#alink {
+  margin-top: 25px;
+}
+input[type="radio"]:checked+label {
+  opacity: 1;
+}
 
 @media only screen and (max-width: 768px) {
 

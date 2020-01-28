@@ -333,7 +333,7 @@
     </nav>
 
 </div>
-  <div id="add-trouble-popup" class="popup-panel" style="display:none;">
+<div id="add-trouble-popup" class="popup-panel" style="display:none;">
   	<div class="card-popup">
       <img class="tr" src="/assets/tr-corner.svg"></img>
       <img class="tl" src="/assets/tl-corner.svg"></img>
@@ -416,32 +416,40 @@
   	</div>
   </div>
 <div id="advanced" class="popup-panel" style="display:none;">
+  <div class="card-popup">
+    <img class="tr" src="/assets/tr-corner.svg"></img>
+    <img class="tl" src="/assets/tl-corner.svg"></img>
+    <img class="bl" src="/assets/bl-corner.svg"></img>
+    <img class="br" src="/assets/br-corner.svg"></img>
+    <div class="popup-header">ADVANCED OPTIONS</div>
+    <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
+    <hr class="popup-hr">
+    <p id="adv_label" class="popup-desc"></p>
     <form id="alink" action=''  method="post">
-    <h1>ADVANCED OPTIONS</h1>
-    <p id="adv_label"></p>
+        <div class="form-group" style="display:inline-flex;">
+          <input type="radio" id="contactChoice1" name="contact" value="court">
+          <label for="contactChoice1" class="adv-label">COURT APPEARANCE REQUIRED</label>
+        </div>
+        <div class="form-group" style="display:inline-flex;">
+          <input type="radio" id="contactChoice2" name="contact" value="unable">
+          <label for="contactChoice2" class="adv-label">NOT ABLE TO HELP IN THIS AREA</label>
+        </div>
+        <div class="form-group" style="display:inline-flex;">
+          <input type="radio" id="contactChoice3" name="contact" value="attorneys">
+          <label for="contactChoice3" class="adv-label">NO ATTORNEYS IN THIS AREA</label>
+        </div>
+        <div class="form-group" style="display:inline-flex;">
+          <input type="radio" id="contactChoice4" name="contact" value="cases">
+          <label for="contactChoice4" class="adv-label">CAN'T HANDLE CASES IN THIS AREA</label>
+        </div>
 
-            <input type="radio" id="contactChoice1"
-                   name="contact" value="court">
-            <label for="contactChoice1">COURT APPEARANCE REQUIRED</label>
+        <p class="select-one">Can only select one</p>
 
-            <input type="radio" id="contactChoice2"
-                   name="contact" value="unable">
-            <label for="contactChoice2">NOT ABLE TO HELP IN THIS AREA</label>
+        <button type="submit" class="submit-btn">SAVE</button>
 
-            <input type="radio" id="contactChoice3"
-                   name="contact" value="attorneys">
-            <label for="contactChoice3">NO ATTORNEYS IN THIS AREA</label>
-
-        <input type="radio" id="contactChoice4"
-               name="contact" value="cases">
-        <label for="contactChoice3">CAN'T HANDLE CASES IN THIS AREA</label>
-
-    <button type="submit" class="submit-btn">SUBMIT</button>
-
-    <div class="cancel-btn" onclick="closepopup()">CANCEL</div>
-
-    <p>Can only select one</p>
+        <div class="cancel-btn" onclick="closepopup()">CANCEL</div>
     </form>
+  </div>
 
 </div>
 
@@ -537,10 +545,8 @@
                 </select>
             </div>
             <div class="col-md-3">
-            <div id="admintrouble" onclick="popTrouble('<%=picker%>')" class="custom-buttons-tbl">ADD TROUBLE AREA</div>
-          </div>
-            <div class="col-6">
-                <a onClick="advancedoptions()">ADVANCED OPTIONS</img></a>
+              <a class="admin-adv-options" onClick="advancedoptions()"><img src="/assets/icon-adv-edit.svg"></img></a>
+              <div id="admintrouble" onclick="popTrouble('<%=picker%>')" class="custom-buttons-tbl">ADD TROUBLE AREA</div>
             </div>
         </div>
 

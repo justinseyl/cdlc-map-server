@@ -10,7 +10,7 @@ var gtable = '';
 var currenteuid = '';
 
 function advancedoptions() {
-  var msg = `Please uncheck or uncheck some advanced options for the state ${state2}, County ${county2}.`
+  var msg = `Please uncheck or uncheck some advanced options for the state <span class="inner-span-p">${state2}</span>, County <span class="inner-span-p">${county2}</span>.`
   $.get(`/advancedoptions/${state2}/${county2}`, function (data) {
 
       let map = {
