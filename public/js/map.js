@@ -20,8 +20,8 @@ $("path").mouseleave(function(e) {
 });
 $(document).mousemove(function(e) {
   if ($("#map-states:visible").length <= 0) {
-    $('#info-box').css('top',e.clientY-$('#info-box').height()-300);
-    $('#info-box').css('left',e.clientX-($('#info-box').width())/2);
+    $('#info-box').css('top',e.clientY);
+    $('#info-box').css('left',e.clientX);
   }
 }).mouseover();
 
