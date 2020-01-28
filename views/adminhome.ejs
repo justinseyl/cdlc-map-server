@@ -285,6 +285,7 @@
               </div>
           </div>
 
+          <% if (picker == 'DRIVER') { %>
           <table id="myTable" class="table">
               <thead>
               <tr>
@@ -329,6 +330,138 @@
               <% }; %>
               </tbody>
           </table>
+          <% } else if (picker == 'PROCESSOR') {%>
+          <table id="myTable" class="table">
+              <thead>
+              <tr>
+                  <th>STATE</th>
+                  <th>COUNTY</th>
+                  <th>ATTORNEY NOTES</th>
+                  <th>ATTORNEY FEE</th>
+                  <th>ATTORNEY NAME</th>
+                  <th>ATTORNEY FAX</th>
+                  <th>ATTORNEY EMAIL</th>
+                  <th>ATTORNEY ADDRESS</th>
+                  <th>DATE</th>
+                  <th>TIME</th>
+              </tr>
+              </thead>
+              <colgroup>
+                  <col class="col-md-5">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+              </colgroup>
+              <tbody>
+              <% for (var i = 0; i < event.length; i++) { %>
+
+
+                  <% if (event[i].fee || event[i].attorneyname) { %>
+                      <tr onclick="getEventDetails('<%= event[i].id %>', 'processor')">
+                          <td class="expand">
+                              <% if (event[i].isnew) { %>
+                                  <div class="new"><img src="/assets/new.svg"></img></div>
+                              <% } %>
+                              <a class="alt-link ml-0"><%= event[i].description %></a>
+                          </td>
+                          <td><%= event[i].state %> </td>
+                          <td><%= event[i].county %> </td>
+                          <td>$<%= event[i].fee %> </td>
+                          <td><%= event[i].attorneyname%> </td>
+                          <td><%= event[i].fax %> </td>
+                          <td><%= event[i].email %> </td>
+                          <td><%= event[i].address %> </td>
+
+                          <td><%= event[i].created %> </td>
+                          <td><%= event[i].ctime %> </td>
+                      </tr>
+                  <% } else {%>
+                      <tr onclick="getEventDetails('<%= event[i].id %>', 'driver', 'no', 'driver')">
+                          <td class="expand">
+                              <% if (event[i].isnew) { %>
+                                  <div class="new"><img src="/assets/new.svg"></img></div>
+                              <% } %>
+                              <a class="alt-link ml-0"><%= event[i].description %></a>
+                          </td>
+                          <td><%= event[i].state %> </td>
+                          <td><%= event[i].county %> </td>
+                          <td>-- </td>
+                          <td>-- </td>
+                          <td>-- </td>
+                          <td>-- </td>
+                          <td>--</td>
+
+                          <td><%= event[i].created %> </td>
+                          <td><%= event[i].ctime %> </td>
+                      </tr>
+                  <% } %>
+
+              <% }; %>
+              </tbody>
+          </table>
+          <% } else if (picker == 'SALES') {%>
+          <table id="myTable" class="table">
+              <thead>
+              <tr>
+                  <th>DESCRIPTION</th>
+                  <th>STATE</th>
+                  <th>COUNTY</th>
+                  <th>SALES PRICE</th>
+                  <th>DATE</th>
+                  <th>TIME</th>
+              </tr>
+              </thead>
+              <colgroup>
+                  <col class="col-md-7">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+                  <col class="col-md-1">
+              </colgroup>
+              <tbody>
+              <% for (var i = 0; i < event.length; i++) { %>
+
+                  <% if (event[i].saleprice) { %>
+                      <tr onclick="getEventDetails('<%= event[i].id %>', 'sales')">
+                          <td class="expand">
+                              <% if (event[i].isnew) { %>
+                                  <div class="new"><img src="/assets/new.svg"></img></div>
+                              <% } %>
+                              <%= event[i].description %>
+                          </td>
+                          <td><%= event[i].state %> </td>
+                          <td><%= event[i].county %> </td>
+                          <td>$<%= event[i].saleprice %> </td>
+                          <td><%= event[i].created %> </td>
+                          <td><%= event[i].ctime %> </td>
+                      </tr>
+                  <% } else { %>
+                      <tr onclick="getEventDetails('<%= event[i].id %>', 'driver', 'no', 'driver')">
+                          <td class="expand">
+                              <% if (event[i].isnew) { %>
+                                  <div class="new"><img src="/assets/new.svg"></img></div>
+                              <% } %>
+                              <%= event[i].description %>
+                          </td>
+                          <td><%= event[i].state %> </td>
+                          <td><%= event[i].county %> </td>
+                          <td>--</td>
+                          <td><%= event[i].created %> </td>
+                          <td><%= event[i].ctime %> </td>
+                      </tr>
+                  <% } %>
+
+              <% }; %>
+              </tbody>
+          </table>
+          <% } %>
           <% if (event.length <= 0) { %>
               <div class="no-data">We are sorry, we are not able to help in this area.</div>
           <% }; %>

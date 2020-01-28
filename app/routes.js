@@ -273,9 +273,18 @@ module.exports = function(app, passport) {
 								'processor': 'tr_area_processor'
 						}
 
+						let query3 = "";
+
+						if (role == 'driver') {
+								query3 = "select id, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
+						} else if (role == 'processor') {
+								query3 = `select id, attorneyname, address, fax, email, fee, manage, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from ${dbs[role]} where status = 'active' order by created_at desc`
+						} else {
+								query3 = `select id, saleprice, manage, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from  ${dbs[role]} where status = 'active' order by created_at desc`
+						}
+
 						if (req.user.role) {
 								if (req.user.role == 'admin') {
-										let query3 = "select id, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
 										let query4 = "select id, state,count(*) as num from " + dbs[role] + " where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";;
 										db.query(query3, (err, result2) => {
 												db.query(query4, (err, result3) => {
@@ -761,6 +770,49 @@ module.exports = function(app, passport) {
 						res.send(result);
 				});
 		});
+
+		app.post('/advancedoptions', function(req, res) {
+				let choice = req.body.contact;
+
+				let map = {
+						'court': 'COURT APPEARANCE REQUIRED',
+						'unable': 'NOT ABLE TO HELP IN THIS AREA',
+						'attorneys': 'NO ATTORNEYS IN THIS AREA',
+						'cases': 'CAN\'T HANDLE CASES IN THIS AREA'
+				}
+
+				let fetch = `select * from counties where (state='${req.query.s}' AND county='${req.query.c}')`
+				db.query(fetch, (err, result) => {
+						if (err) throw err;
+
+						if (result.length > 0) {
+								let id = result[0].id;
+								let update = `update counties set message='${choice}' where id='${id}'`
+
+								db.query(update, (err, result) => {
+										res.redirect('back');
+								})
+						} else {
+								let insert = `insert into counties (id, state, county, message, status, created_at) values ('${uuidv4()}', '${req.query.s}', '${req.query.c}', '${choice}','active', '${moment().format("YYYY-MM-DD HH:mm:ss") }')`
+								db.query(insert, (err, result) => {
+										res.redirect('back');
+								})
+						}
+				})
+		})
+
+		app.get('/advancedoptions/:state/:county', function(req, res) {
+				let state = req.params.state;
+				let county = req.params.county;
+				let query = `select * from counties where (state='${state}' and county='${county}')`
+
+				db.query(query, (err, result) => {
+						if (err) throw err;
+
+						res.send(result);
+				})
+
+		})
 
 		app.get('/county_table/:state/:county', function(req, res) {
 				let role = 'driver';

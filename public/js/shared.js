@@ -9,7 +9,28 @@ var gtable = '';
 
 var currenteuid = '';
 
+function advancedoptions() {
+  var msg = `Please uncheck or uncheck some advanced options for the state ${state2}, County ${county2}.`
+  $.get(`/advancedoptions/${state2}/${county2}`, function (data) {
 
+      let map = {
+        'court': 'contactChoice1',
+        'unable': 'contactChoice2',
+        'attorneys': 'contactChoice3',
+        'cases': 'contactChoice4'
+      }
+
+      if (data.length > 0) {
+          $(`#${map[data[0].message]}`).attr('checked', true);
+      }
+
+      $("#adv_label").html(msg);
+      $("#alink").attr('action', `/advancedoptions?s=${state2}&&c=${county2}`);
+      $("#cover").css('display', 'block');
+      $("#advanced").css('display', 'block');
+  });
+
+}
 
 function verify(id) {
   $("#cover").css('display','block');
