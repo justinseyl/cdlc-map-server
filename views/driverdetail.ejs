@@ -97,10 +97,12 @@
             <img src="/assets/icon-close-copy.svg" onclick="window.location.href = '/drivers'"></img>
             <h1><%= name.toUpperCase() %></h1>
 
+            <% if(email.toUpperCase() != 'JUSTIN@CDLCONSULTANTS.COM') { %>
             <div class="make-admin">
               <p class="lnk-inline"><a class="alt-link ml-0" href="/makeadmin/<%=email%>">MAKE ADMIN</a></p>
               <p class="lnk-inline" style="text-align:right;"><a class="alt-link ml-0" onclick="verify('#logout-verify-popup')">DELETE USER</a></p>
             </div>
+            <% } %>
           </div>
 
           <form method="post" style="display:inline-flex;">

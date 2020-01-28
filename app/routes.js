@@ -6,8 +6,8 @@ const nodemailer    = require('nodemailer');
 const uuidv4 				= require('uuid/v4');
 const bcrypt = require('bcrypt');
 
-const salesid = 'sales@test';
-const procid = 'processor@test';
+const salesid = 'sales@cdlconsultants.com';
+const procid = 'processing@cdlconsultants.com';
 
 module.exports = function(app, passport) {
 
@@ -36,6 +36,7 @@ module.exports = function(app, passport) {
 				let query = "select id, state,count(*) as num from " + dbs[role] + " where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";
 				db.query(alertquery, (err, ares) => {
 						db.query(query, (err, result) => {
+							if (result.length > 0) {
 								if (err) throw err;
 
 								let date = moment(ares[0].created_at).format('MM/DD/YYYY');
@@ -104,6 +105,7 @@ module.exports = function(app, passport) {
 												showEmergency: ares[0].status
 										});
 								}
+							}
 						});
 				});
 		});
@@ -252,8 +254,7 @@ module.exports = function(app, passport) {
 
 				db.query(alertquery, (err, ares) => {
 				db.query(query, (err, result) => {
-						if (err)
-								throw err;
+						if (err) throw err;
 
 						let date = moment(ares[0].created_at).format('MM/DD/YYYY');
 						let time = moment(ares[0].created_at).format('HH:MM A');
@@ -480,7 +481,7 @@ module.exports = function(app, passport) {
 
 		app.get('/profile/sales', isLoggedIn, function(req, res) {
 
-				let query = "select * from users where email='sales@test' ";
+				let query = "select * from users where email='" + salesid + "' ";
 				db.query(query, (err, result) => {
 
 						res.render('salesadminprofile.ejs', {
@@ -496,7 +497,7 @@ module.exports = function(app, passport) {
 
 		app.get('/profile/processor', isLoggedIn, function(req, res) {
 
-				let query = "select * from users where email = 'processor@test'";
+				let query = "select * from users where email = '" + procid + "'";
 				db.query(query, (err, result) => {
 
 						res.render('processoradminprofile.ejs', {
