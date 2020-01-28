@@ -193,7 +193,9 @@ function setCountyPickerM(state,ct,div) {
     $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    var initHtml2 = '<option value="STATEWIDE">Statewide - No Specific County</option>';
     $(set).prepend(initHtml);
+    $(set).prepend(initHtml2);
   }
 }
 
@@ -227,7 +229,9 @@ function setCountyPickerJ(state,ct,div) {
     $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    var initHtml2 = '<option value="STATEWIDE">Statewide - No Specific County</option>';
     $(set).prepend(initHtml);
+    $(set).prepend(initHtml2);
   }
 }
 
@@ -260,7 +264,9 @@ function setCountyPickerL(state,ct,div) {
     $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    var initHtml2 = '<option value="STATEWIDE">Statewide - No Specific County</option>';
     $(set).prepend(initHtml);
+    $(set).prepend(initHtml2);
   }
 }
 
@@ -293,7 +299,9 @@ function setCountyPickerK(state,ct,div) {
     $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    var initHtml2 = '<option value="STATEWIDE">Statewide - No Specific County</option>';
     $(set).prepend(initHtml);
+    $(set).prepend(initHtml2);
   }
 }
 
@@ -327,7 +335,9 @@ function setCountyPickerP(state,ct,div) {
     $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    var initHtml2 = '<option value="STATEWIDE">Statewide - No Specific County</option>';
     $(set).prepend(initHtml);
+    $(set).prepend(initHtml2);
   }
 }
 
@@ -360,7 +370,9 @@ function setCountyPickerAP(state,ct,div) {
     $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    var initHtml2 = '<option value="STATEWIDE">Statewide - No Specific County</option>';
     $(set).prepend(initHtml);
+    $(set).prepend(initHtml2);
   }
 }
 
@@ -393,7 +405,9 @@ function setCountyPickerAS(state,ct,div) {
     $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    var initHtml2 = '<option value="STATEWIDE">Statewide - No Specific County</option>';
     $(set).prepend(initHtml);
+    $(set).prepend(initHtml2);
   }
 }
 
@@ -426,7 +440,9 @@ function setCountyPicker2(state,ct,div) {
     $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    var initHtml2 = '<option value="STATEWIDE">Statewide - No Specific County</option>';
     $(set).prepend(initHtml);
+    $(set).prepend(initHtml2);
   }
 }
 
@@ -464,7 +480,9 @@ function setCountyPicker(state,ct,div) {
     $(set).val(ct.toLowerCase().capitalize());
   } else {
     var initHtml = '<option value="" disabled selected hidden>Enter County...</option>';
+    var initHtml2 = '<option value="STATEWIDE">Statewide - No Specific County</option>';
     $(set).prepend(initHtml);
+    $(set).prepend(initHtml2);
   }
 }
 
@@ -473,20 +491,34 @@ function popViewEmerg() {
   $("#view-emergency-popup").css('display','block');
 }
 
-function changelink(type) {
+function changelink(type,user) {
+  var state = '';
+  var county = '';
+
+  if (global_state && global_state != '') {
+    state = global_state;
+  } else {
+    state = user;
+  }
 
   $("#cover").css('display','none');
   $("#add-trouble-popup").css('display', 'none');
 
-  if (type == 'SALES') {
-    $("#cover").css('display','block');
-    $("#add-trouble-popup-sales").css('display','block');
-  } else if (type == 'DRIVER') {
+  if (type == 'DRIVER') {
     $("#cover").css('display','block');
     $("#add-trouble-popup-driver").css('display','block');
-  } else {
+    $("#state_driver").val(state);
+    setCountyPicker(state,county,'county_driver');
+  } else if (type == 'SALES') {
+    $("#cover").css('display','block');
+    $("#add-trouble-popup-sales").css('display','block');
+    $("#state_sales").val(state);
+    setCountyPicker(state,county,'county_sales');
+  } else if (type == 'PROCESSOR') {
     $("#cover").css('display','block');
     $("#add-trouble-popup-processor").css('display','block');
+    $("#state_proc").val(state);
+    setCountyPicker(state,county,'county_proc');
   }
 }
 

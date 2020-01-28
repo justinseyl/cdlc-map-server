@@ -683,9 +683,16 @@ module.exports = function(app, passport) {
 
 		app.post('/submitNewTrouble', function(req, res, next){
 
-				let role = 'driver'
-				if (req.user.role)
+				let role = 'driver';
+				let makestatus = 'pending';
+
+				if (req.user.role) {
 						role = req.user.role;
+
+						if (req.user.role == 'admin') {
+							makestatus = 'accepted';
+						}
+				}
 
 				if (req.query.db) {
 						role = req.query.db;
@@ -698,11 +705,11 @@ module.exports = function(app, passport) {
 				}
 				let query = '';
 				if (role == 'sales') {
-						query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage, saleprice) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','pending','" + req.body.salesprice + "')";
+						query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage, saleprice) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','" + makestatus + "','" + req.body.salesprice + "')";
 				} else if (role == 'processor') {
-						query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage, attorneyname, fee, fax, address, email) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','pending','" + req.body.attorneyname + "','" + req.body.fee + "','" + req.body.fax + "','" + req.body.address + "','" + req.body.email +  "')";
+						query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage, attorneyname, fee, fax, address, email) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','" + makestatus + "','" + req.body.attorneyname + "','" + req.body.fee + "','" + req.body.fax + "','" + req.body.address + "','" + req.body.email +  "')";
 				} else {
-						query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','pending')";
+						query = "insert into " + dbs[role] + " (id,state,county,description,created_at,status,userid,manage) values ('" + uuidv4() + "','" + req.body.state + "','" + req.body.county + "','" + req.body.description + "','" + moment().format("YYYY-MM-DD HH:mm:ss") + "','active','" + req.user.email + "','" + makestatus + "')";
 				}
 
 				db.query(query, (err, result) => {
@@ -782,7 +789,7 @@ module.exports = function(app, passport) {
 						'cases': 'CAN\'T HANDLE CASES IN THIS AREA'
 				}
 
-				let fetch = `select * from counties where (state='${req.query.s}' AND county='${req.query.c}')`
+				let fetch = `select * from counties where (state='${req.query.s}' AND (county='${req.query.c}' or county = 'STATEWIDE'))`
 				db.query(fetch, (err, result) => {
 						if (err) throw err;
 
@@ -805,7 +812,7 @@ module.exports = function(app, passport) {
 		app.get('/advancedoptions/:state/:county', function(req, res) {
 				let state = req.params.state;
 				let county = req.params.county;
-				let query = `select * from counties where (state='${state}' and county='${county}')`
+				let query = `select * from counties where (state='${state}' and (county='${county}' or county = 'STATEWIDE'))`
 
 				db.query(query, (err, result) => {
 						if (err) throw err;
@@ -843,7 +850,7 @@ module.exports = function(app, passport) {
 						'admin': 'admin_county_table.ejs'
 				}
 
-				let query = "select id, userid, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and county = '" + req.params.county + "' order by created_at desc";
+				let query = "select id, userid, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and (county = '" + req.params.county + "' or county = 'STATEWIDE') order by created_at desc";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
@@ -900,7 +907,7 @@ module.exports = function(app, passport) {
 						menuitem = 'PROFILE';
 				}
 
-				let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and county = '" + req.params.county + "' order by created_at desc";
+				let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew from " + dbchoice + " where status = 'active' and manage = 'accepted' and state = '" + req.params.state + "' and (county = '" + req.params.county + "' or county = 'STATEWIDE') order by created_at desc";
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
