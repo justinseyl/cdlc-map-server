@@ -36,7 +36,6 @@ module.exports = function(app, passport) {
 				let query = "select id, state,count(*) as num from " + dbs[role] + " where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";
 				db.query(alertquery, (err, ares) => {
 						db.query(query, (err, result) => {
-							if (result.length > 0) {
 								if (err) throw err;
 
 								let date = moment(ares[0].created_at).format('MM/DD/YYYY');
@@ -105,7 +104,6 @@ module.exports = function(app, passport) {
 												showEmergency: ares[0].status
 										});
 								}
-							}
 						});
 				});
 		});
@@ -825,6 +823,8 @@ module.exports = function(app, passport) {
 		app.get('/county_table/:state/:county', function(req, res) {
 				let role = 'driver';
 				let pick = 'DRIVER';
+				let state = req.params.state;
+				let county = req.params.county;
 
 				if (req.query.picker && req.query.picker != 'undefined')
 						pick = req.query.picker;
@@ -854,17 +854,63 @@ module.exports = function(app, passport) {
 				db.query(query, (err, result) => {
 						if (err) throw err;
 
-						res.render(route_map[role], {
-								user : req.user,
-								page:'Home',
-								menuId:'home',
-								formdata: result,
-								picker: pick.toUpperCase(),
-								router: 'drivers',
-								menuitem: 'DRIVERS',
-								state: req.params.state,
-								county: req.params.county
-						});
+						/*
+						Check for advanced options.
+						 */
+						let aquery = `select * from counties where state='${state}' and (county='${county}' or county='STATEWIDE')`;
+						db.query(aquery, (err, result2) =>  {
+
+								if (result2 && result2.length > 0 && ( role == 'processor' || role == 'sales' )) {
+										let msg = '';
+
+										result2.map(function(r) {
+												if (r.county == county && r.message != 'none') {
+														msg = r.message;
+														result = [];
+												}
+										})
+
+										result2.map(function(r) {
+												if (r.county == 'STATEWIDE' && r.message != 'none') {
+														msg = r.message;
+														result = [];
+												}
+										})
+
+										let map = {
+												'court': 'court appearance is required.',
+												'unable': 'we are not able to help in this area.',
+												'attorneys': 'we have no attorneys in this area.',
+												'cases': 'we can\'t handle cases here.'
+										}
+
+										res.render(route_map[role], {
+												user : req.user,
+												page:'Home',
+												menuId:'home',
+												formdata: result,
+												picker: pick.toUpperCase(),
+												router: 'drivers',
+												menuitem: 'DRIVERS',
+												state: req.params.state,
+												county: req.params.county,
+												msg: map[msg],
+										});
+								} else {
+										res.render(route_map[role], {
+												user : req.user,
+												page:'Home',
+												menuId:'home',
+												formdata: result,
+												picker: pick.toUpperCase(),
+												router: 'drivers',
+												menuitem: 'DRIVERS',
+												state: req.params.state,
+												county: req.params.county,
+												msg: 'we are not able to help in this area.'
+										});
+								}
+						})
 				});
 		});
 

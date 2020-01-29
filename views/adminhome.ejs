@@ -363,7 +363,7 @@
 
 
                   <% if (event[i].fee || event[i].attorneyname) { %>
-                      <tr onclick="getEventDetails('<%= event[i].id %>', 'processor')">
+                      <tr onclick="getEventDetails('<%= event[i].id %>', 'processor', 'admin')">
                           <td class="expand">
                               <% if (event[i].isnew) { %>
                                   <div class="new"><img src="/assets/new.svg"></img></div>
@@ -429,7 +429,7 @@
               <% for (var i = 0; i < event.length; i++) { %>
 
                   <% if (event[i].saleprice) { %>
-                      <tr onclick="getEventDetails('<%= event[i].id %>', 'sales')">
+                      <tr onclick="getEventDetails('<%= event[i].id %>', 'sales', 'admin')">
                           <td class="expand">
                               <% if (event[i].isnew) { %>
                                   <div class="new"><img src="/assets/new.svg"></img></div>

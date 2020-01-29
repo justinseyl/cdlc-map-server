@@ -17,7 +17,8 @@ function advancedoptions() {
         'court': 'contactChoice1',
         'unable': 'contactChoice2',
         'attorneys': 'contactChoice3',
-        'cases': 'contactChoice4'
+        'cases': 'contactChoice4',
+        'none': 'contactChoice5'
       }
 
       if (data.length > 0) {
