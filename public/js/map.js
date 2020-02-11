@@ -91,8 +91,14 @@ $( "#map-search" ).keyup(function() {
 
     if (!st.includes(text)) {
       $("." + cl).hide();
+      $("." + cl).css({ fill: 'transparent' });
     } else {
       $("." + cl).show();
+      $("." + cl).css({ fill: 'rgba(74, 179, 173, 0.4)' });
+    }
+
+    if (text == '' || !text) {
+      $("." + cl).css({ fill: 'transparent' });
     }
 });
 });
