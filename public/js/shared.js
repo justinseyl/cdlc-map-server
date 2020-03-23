@@ -13,37 +13,37 @@ function advancedoptions() {
   var msg = `Please uncheck or uncheck some advanced options for the state <span class="inner-span-p">${state2}</span>, County <span class="inner-span-p">${county2}</span>.`
   $.get(`/advancedoptions/${state2}/${county2}`, function (data) {
 
-      let map = {
-        'court': 'contactChoice1',
-        'unable': 'contactChoice2',
-        'attorneys': 'contactChoice3',
-        'cases': 'contactChoice4',
-        'none': 'contactChoice5'
-      }
+    let map = {
+      'court': 'contactChoice1',
+      'unable': 'contactChoice2',
+      'attorneys': 'contactChoice3',
+      'cases': 'contactChoice4',
+      'none': 'contactChoice5'
+    }
 
-      if (data.length > 0) {
-          $(`#${map[data[0].message]}`).attr('checked', true);
-      }
+    if (data.length > 0) {
+      $(`#${map[data[0].message]}`).attr('checked', true);
+    }
 
-      $("#adv_label").html(msg);
-      $("#alink").attr('action', `/advancedoptions?s=${state2}&&c=${county2}`);
-      $("#cover").css('display', 'block');
-      $("#advanced").css('display', 'block');
+    $("#adv_label").html(msg);
+    $("#alink").attr('action', `/advancedoptions?s=${state2}&&c=${county2}`);
+    $("#cover").css('display', 'block');
+    $("#advanced").css('display', 'block');
   });
 
 }
 
 function verify(id) {
-  $("#cover").css('display','block');
-  $(id).css('display','block');
+  $("#cover").css('display', 'block');
+  $(id).css('display', 'block');
 }
 
 function popAddTrouble(user) {
   var state = '';
   var county = '';
 
-  $("#cover").css('display','block');
-  $("#add-trouble-popup").css('display','block');
+  $("#cover").css('display', 'block');
+  $("#add-trouble-popup").css('display', 'block');
 
   if (global_state && global_state != '') {
     state = global_state;
@@ -52,7 +52,6 @@ function popAddTrouble(user) {
   }
 
   $("#add-trouble-state-id").val(state);
-
   setCountyPicker(state);
 }
 
@@ -60,8 +59,8 @@ function popAddTroubleSub(user) {
   var state = '';
   var county = '';
 
-  $("#cover").css('display','block');
-  $("#add-trouble-popup").css('display','block');
+  $("#cover").css('display', 'block');
+  $("#add-trouble-popup").css('display', 'block');
 
   state = user;
 
@@ -70,46 +69,45 @@ function popAddTroubleSub(user) {
   setCountyPicker(state);
 }
 
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+String.prototype.capitalize = function () {
+  return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-function popAddTroubleTbl(st,ct) {
-  $("#cover").css('display','block');
-  $("#add-trouble-popup").css('display','block');
+function popAddTroubleTbl(st, ct) {
+  $("#cover").css('display', 'block');
+  $("#add-trouble-popup").css('display', 'block');
 
   $("#add-trouble-state-id").val(st);
-
-  setCountyPicker(st,ct);
+  setCountyPicker(st, ct);
 }
 
 function popTrouble(picker) {
   if (picker == 'DRIVER') {
-    $("#cover").css('display','block');
-    $("#add-trouble-popup-driver").css('display','block');
+    $("#cover").css('display', 'block');
+    $("#add-trouble-popup-driver").css('display', 'block');
     $("#state_driver").val(state2);
-    setCountyPicker(state2,county2,'county_driver');
+    setCountyPicker(state2, county2, 'county_driver');
   } else if (picker == 'SALES') {
-    $("#cover").css('display','block');
-    $("#add-trouble-popup-sales").css('display','block');
+    $("#cover").css('display', 'block');
+    $("#add-trouble-popup-sales").css('display', 'block');
     $("#state_sales").val(state2);
-    setCountyPicker(state2,county2,'county_sales');
+    setCountyPicker(state2, county2, 'county_sales');
   } else if (picker == 'PROCESSOR') {
-    $("#cover").css('display','block');
-    $("#add-trouble-popup-processor").css('display','block');
+    $("#cover").css('display', 'block');
+    $("#add-trouble-popup-processor").css('display', 'block');
     $("#state_proc").val(state2);
-    setCountyPicker(state2,county2,'county_proc');
+    setCountyPicker(state2, county2, 'county_proc');
   }
 }
 
 $("#add-trouble-state-id").on('change', function (e) {
-    var valueSelected = this.value;
-    setCountyPicker(valueSelected);
+  var valueSelected = this.value;
+  setCountyPicker(valueSelected);
 });
 
 $("#state").on('change', function (e) {
-    var valueSelected = this.value;
-    setCountyPicker(valueSelected);
+  var valueSelected = this.value;
+  setCountyPicker(valueSelected);
 });
 
 $("#admin-select").on('change', function (e) {
@@ -119,7 +117,7 @@ $("#admin-select").on('change', function (e) {
       location.href = `/adminhome/county_table/${state2}/${county2}?picker=driver`;
     } else if (val == "/adminhome/processor") {
       location.href = `/adminhome/county_table/${state2}/${county2}?picker=processor`;
-    } else if (val == "/adminhome/sales" ) {
+    } else if (val == "/adminhome/sales") {
       location.href = `/adminhome/county_table/${state2}/${county2}?picker=sales`;
     }
   }
@@ -160,12 +158,12 @@ $("#state9").on('change', function (e) {
   setCountyPickerM(valueSelected);
 });
 
-$("#stateinput").on('change', function(e) {
+$("#stateinput").on('change', function (e) {
   var valueSelected = this.value;
   setCountyPicker2(valueSelected);
 })
 
-function setCountyPickerM(state,ct,div) {
+function setCountyPickerM(state, ct, div) {
   let set = $("#county9");
   if (div) {
     set = $("#" + div);
@@ -176,7 +174,7 @@ function setCountyPickerM(state,ct,div) {
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
-  $.each(svg, function(index, value) {
+  $.each(svg, function (index, value) {
     var classlong = $(value).attr('class');
     var classcode = classlong.split('_').pop();
     var countyname = state_specific[classcode].name;
@@ -201,7 +199,7 @@ function setCountyPickerM(state,ct,div) {
 }
 
 
-function setCountyPickerJ(state,ct,div) {
+function setCountyPickerJ(state, ct, div) {
   let set = $("#county3");
   if (div) {
     set = $("#" + div);
@@ -212,7 +210,7 @@ function setCountyPickerJ(state,ct,div) {
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
-  $.each(svg, function(index, value) {
+  $.each(svg, function (index, value) {
     var classlong = $(value).attr('class');
     var classcode = classlong.split('_').pop();
     var countyname = state_specific[classcode].name;
@@ -236,7 +234,7 @@ function setCountyPickerJ(state,ct,div) {
   }
 }
 
-function setCountyPickerL(state,ct,div) {
+function setCountyPickerL(state, ct, div) {
   let set = $("#county8");
   if (div) {
     set = $("#" + div);
@@ -247,7 +245,7 @@ function setCountyPickerL(state,ct,div) {
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
-  $.each(svg, function(index, value) {
+  $.each(svg, function (index, value) {
     var classlong = $(value).attr('class');
     var classcode = classlong.split('_').pop();
     var countyname = state_specific[classcode].name;
@@ -271,7 +269,7 @@ function setCountyPickerL(state,ct,div) {
   }
 }
 
-function setCountyPickerK(state,ct,div) {
+function setCountyPickerK(state, ct, div) {
   let set = $("#county7");
   if (div) {
     set = $("#" + div);
@@ -282,7 +280,7 @@ function setCountyPickerK(state,ct,div) {
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
-  $.each(svg, function(index, value) {
+  $.each(svg, function (index, value) {
     var classlong = $(value).attr('class');
     var classcode = classlong.split('_').pop();
     var countyname = state_specific[classcode].name;
@@ -307,7 +305,7 @@ function setCountyPickerK(state,ct,div) {
 }
 
 
-function setCountyPickerP(state,ct,div) {
+function setCountyPickerP(state, ct, div) {
   let set = $("#county2");
   if (div) {
     set = $("#" + div);
@@ -318,7 +316,7 @@ function setCountyPickerP(state,ct,div) {
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
-  $.each(svg, function(index, value) {
+  $.each(svg, function (index, value) {
     var classlong = $(value).attr('class');
     var classcode = classlong.split('_').pop();
     var countyname = state_specific[classcode].name;
@@ -342,7 +340,7 @@ function setCountyPickerP(state,ct,div) {
   }
 }
 
-function setCountyPickerAP(state,ct,div) {
+function setCountyPickerAP(state, ct, div) {
   let set = $("#county5");
   if (div) {
     set = $("#" + div);
@@ -353,7 +351,7 @@ function setCountyPickerAP(state,ct,div) {
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
-  $.each(svg, function(index, value) {
+  $.each(svg, function (index, value) {
     var classlong = $(value).attr('class');
     var classcode = classlong.split('_').pop();
     var countyname = state_specific[classcode].name;
@@ -377,7 +375,7 @@ function setCountyPickerAP(state,ct,div) {
   }
 }
 
-function setCountyPickerAS(state,ct,div) {
+function setCountyPickerAS(state, ct, div) {
   let set = $("#county6");
   if (div) {
     set = $("#" + div);
@@ -388,7 +386,7 @@ function setCountyPickerAS(state,ct,div) {
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
-  $.each(svg, function(index, value) {
+  $.each(svg, function (index, value) {
     var classlong = $(value).attr('class');
     var classcode = classlong.split('_').pop();
     var countyname = state_specific[classcode].name;
@@ -412,7 +410,7 @@ function setCountyPickerAS(state,ct,div) {
   }
 }
 
-function setCountyPicker2(state,ct,div) {
+function setCountyPicker2(state, ct, div) {
   let set = $("#countyinput");
   if (div) {
     set = $("#" + div);
@@ -423,7 +421,7 @@ function setCountyPicker2(state,ct,div) {
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
-  $.each(svg, function(index, value) {
+  $.each(svg, function (index, value) {
     var classlong = $(value).attr('class');
     var classcode = classlong.split('_').pop();
     var countyname = state_specific[classcode].name;
@@ -447,11 +445,11 @@ function setCountyPicker2(state,ct,div) {
   }
 }
 
-String.prototype.capitalize = function(){
-       return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
-      };
+String.prototype.capitalize = function () {
+  return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
+};
 
-function setCountyPicker(state,ct,div) {
+function setCountyPicker(state, ct, div) {
   let set = $("#add-trouble-county-id");
 
   if (div) {
@@ -463,7 +461,7 @@ function setCountyPicker(state,ct,div) {
 
   var svg = $("svg[stateLevel='" + state + "'] path");
 
-  $.each(svg, function(index, value) {
+  $.each(svg, function (index, value) {
     var classlong = $(value).attr('class');
     var classcode = classlong.split('_').pop();
     var countyname = state_specific[classcode].name;
@@ -488,11 +486,11 @@ function setCountyPicker(state,ct,div) {
 }
 
 function popViewEmerg() {
-  $("#cover").css('display','block');
-  $("#view-emergency-popup").css('display','block');
+  $("#cover").css('display', 'block');
+  $("#view-emergency-popup").css('display', 'block');
 }
 
-function changelink(type,user) {
+function changelink(type, user) {
   var state = '';
   var county = '';
 
@@ -502,28 +500,28 @@ function changelink(type,user) {
     state = user;
   }
 
-  $("#cover").css('display','none');
+  $("#cover").css('display', 'none');
   $("#add-trouble-popup").css('display', 'none');
 
   if (type == 'DRIVER') {
-    $("#cover").css('display','block');
-    $("#add-trouble-popup-driver").css('display','block');
+    $("#cover").css('display', 'block');
+    $("#add-trouble-popup-driver").css('display', 'block');
     $("#state_driver").val(state);
-    setCountyPicker(state,county,'county_driver');
+    setCountyPicker(state, county, 'county_driver');
   } else if (type == 'SALES') {
-    $("#cover").css('display','block');
-    $("#add-trouble-popup-sales").css('display','block');
+    $("#cover").css('display', 'block');
+    $("#add-trouble-popup-sales").css('display', 'block');
     $("#state_sales").val(state);
-    setCountyPicker(state,county,'county_sales');
+    setCountyPicker(state, county, 'county_sales');
   } else if (type == 'PROCESSOR') {
-    $("#cover").css('display','block');
-    $("#add-trouble-popup-processor").css('display','block');
+    $("#cover").css('display', 'block');
+    $("#add-trouble-popup-processor").css('display', 'block');
     $("#state_proc").val(state);
-    setCountyPicker(state,county,'county_proc');
+    setCountyPicker(state, county, 'county_proc');
   }
 }
 
-function getEventDetails(id, role,admin, extra, userid) {
+function getEventDetails(id, role, admin, extra, userid) {
   $.get(`/getevent/${id}?role=${role}`, function (data) {
     let results = data[0];
 
@@ -533,12 +531,12 @@ function getEventDetails(id, role,admin, extra, userid) {
       admin_bool = true;
     }
 
-      $("#county").html(results.county);
-      $("#date").html(results.date);
-      $("#time").html(results.time);
-      $("#desc").html(results.description);
-      $("#upl").html(results.userid);
-      $("#state").html(results.state);
+    $("#county").html(results.county);
+    $("#date").html(results.date);
+    $("#time").html(results.time);
+    $("#desc").html(results.description);
+    $("#upl").html(results.userid);
+    $("#state").html(results.state);
 
     if (role == 'sales') {
       $("#sales").html(results.saleprice);
@@ -552,6 +550,7 @@ function getEventDetails(id, role,admin, extra, userid) {
       $("#address").html(results.address);
       $("#email").html(results.email);
       $("#fax").html(results.fax);
+      $("#phone").html(results.phone);
       $("#price").html(results.fee);
       $("#state3").html(results.state);
       $("#desc3").html(results.description);
@@ -582,7 +581,7 @@ function getEventDetails(id, role,admin, extra, userid) {
         $(accepted).hide();
       } else {
         $(accepted).attr("onClick", `getedit('${id}')`);
-        $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
+        $("#deleted").attr("onClick", `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
         $(accept).hide();
         $(reject).hide();
         $(accepted).show();
@@ -590,7 +589,7 @@ function getEventDetails(id, role,admin, extra, userid) {
     } else {
       if (userid == results.userid) {
         $(accepted).attr("onClick", `getedit('${id}')`);
-        $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
+        $("#deleted").attr("onClick", `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
         $(accept).hide();
         $(reject).hide();
         $(accepted).show();
@@ -611,7 +610,7 @@ function getEventDetails(id, role,admin, extra, userid) {
     grole = role;
     extrar = extra;
 
-    $("#cover").css('display','block');
+    $("#cover").css('display', 'block');
 
 
     if (admin == 'admin') {
@@ -630,7 +629,7 @@ function getEventDetails(id, role,admin, extra, userid) {
         accepted = `#acceptedd`;
 
         $(accepted).attr("onClick", `getedit('${id}')`);
-        $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
+        $("#deleted").attr("onClick", `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
         $(accept).hide();
         $(reject).hide();
         $(accepted).show();
@@ -648,7 +647,7 @@ function getEventDetails(id, role,admin, extra, userid) {
         accepted = `#acceptedd`;
 
         $(accepted).attr("onClick", `getedit('${id}')`);
-        $("#deleted").attr("onClick",   `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
+        $("#deleted").attr("onClick", `deleteevent('${id}','DELETE EVENT','Are you sure you wish to delete this event?  This action can\’t be undone.','YES IM SURE','NO I CHANGED MY MIND','/deleteevent/${id}')`);
         $(accept).hide();
         $(reject).hide();
         $(accepted).show();
@@ -665,7 +664,7 @@ function delevt(role) {
   deleteevent('', 'DELETE EVENT', 'Are you sure you want to delete this event?', 'Yes, I\'m sure', 'No, I changed my mind', `/deleteevent/${eventid}/${role}`);
 }
 
-function deleteevent(id,header,desc,confirmtext,canceltext,route) {
+function deleteevent(id, header, desc, confirmtext, canceltext, route) {
   $(".popup-panel").hide();
   $("#are-you-sure").show();
   $("#cover").show();
@@ -675,7 +674,7 @@ function deleteevent(id,header,desc,confirmtext,canceltext,route) {
   $("#are-you-sure").find(".submit-btn").html(confirmtext);
   $("#are-you-sure").find(".cancel-btn").html(canceltext);
   $("#are-you-sure").find("#hiddenId").val(id);
-  $("#are-you-sure").find("#submit-are-you-sure").attr('action',route);
+  $("#are-you-sure").find("#submit-are-you-sure").attr('action', route);
 }
 
 function searchuser() {
@@ -700,26 +699,26 @@ function searchuser() {
   }
 }
 
-$('path').on("click", function() {
+$('path').on("click", function () {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
   filter = this.id;
 
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
 
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
       }
     }
+  }
 });
 
 function searchstate() {
@@ -734,8 +733,8 @@ function searchstate() {
   if (filter != 'ALL') {
     gtable.column(1).search(filter).draw();
   } else {
-// Invalidate all rows and redraw
-    gtable.search( '' ).columns().search( '' ).draw();
+    // Invalidate all rows and redraw
+    gtable.search('').columns().search('').draw();
   }
 }
 
@@ -748,10 +747,10 @@ function searchstate2() {
   tr = table.getElementsByTagName("tr");
   // Loop through all table rows, and hide those who don't match the search query
   if (filter != 'ALL') {
-        gtable.column(1).search(filter).draw();
+    gtable.column(1).search(filter).draw();
   } else {
-// Invalidate all rows and redraw
-    gtable.search( '' ).columns().search( '' ).draw();
+    // Invalidate all rows and redraw
+    gtable.search('').columns().search('').draw();
   }
 }
 
@@ -817,9 +816,8 @@ function getedit(eid) {
   if (eid) {
     id = eid;
   }
-  $.get("/getevent/" + id + `?role=${grole}`, function(data) {
+  $.get("/getevent/" + id + `?role=${grole}`, function (data) {
     let results = data[0];
-
     $("#edit1").attr("action", `/edit/${id}?role=${grole}`);
     $("#edit2").attr("action", `/edit/${id}?role=${grole}`);
     $("#edit3").attr("action", `/edit/${id}?role=${grole}`);
@@ -830,9 +828,30 @@ function getedit(eid) {
       let temp1 = `#click-event-${p}`
       let temp2 = `#edit-event-${p}`
 
-      $("#cover").css('display','none');
+      if (p == 'driver') {
+        $("#state2").val(results.state);
+        setCountyPicker(results.state, results.county.toUpperCase(), "county2");
+        $("#desc2").val(results.description);
+      } else if (p == 'sales') {
+        $("#state6").val(results.state);
+        setCountyPicker(results.state, results.county.toUpperCase(), "county6");
+        $("#sales2").val(results.saleprice);
+        $("#desc1").val(results.description);
+      } else if (p == 'processor') {
+        $("#state5").val(results.state);
+        setCountyPicker(results.state, results.county.toUpperCase(), "county5");
+        $("#fee2").val(results.fee);
+        $("#aname2").val(results.attorneyname);
+        $("#address2").val(results.address);
+        $("#fax2").val(results.fax);
+        $("#phone2").val(results.phone);
+        $("#email2").val(results.email);
+        $("#notes").val(results.description);
+      }
+
+      $("#cover").css('display', 'none');
       $(temp1).css('display', 'none');
-      $("#cover").css('display','block');
+      $("#cover").css('display', 'block');
       $(temp2).css('display', 'block');
 
     } else {
@@ -841,9 +860,9 @@ function getedit(eid) {
         $("#click-event-driver").css('display', 'none');
         $("#edit-event-driver").css('display', 'block');
       } else {
-        $("#cover").css('display','none');
+        $("#cover").css('display', 'none');
         $("#click-event").css('display', 'none');
-        $("#cover").css('display','block');
+        $("#cover").css('display', 'block');
         $("#edit-event").css('display', 'block');
       }
     }
@@ -853,19 +872,19 @@ function getedit(eid) {
 
 
 function closepopup() {
-  $("#cover").css('display','none');
-  $(".popup-panel").css('display','none');
+  $("#cover").css('display', 'none');
+  $(".popup-panel").css('display', 'none');
 
   location.reload();
 }
 
 function closepopup2() {
-  $("#cover").css('display','none');
-  $(".popup-panel").css('display','none');
+  $("#cover").css('display', 'none');
+  $(".popup-panel").css('display', 'none');
 
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   try {
     gtable = $('#myTable').DataTable({
       "ordering": true,
@@ -884,13 +903,13 @@ $(document).ready(function() {
       "responsive": true,
       "ordering": false
     });
-  } catch(e) {
+  } catch (e) {
     alert(e);
   }
 
 
   if ($(window).width() < 720) {
-     $("#DataTables_Table_0 tr td:last-child").show();
-     $("#DataTables_Table_0 tr td:last-child div").html('');
+    $("#DataTables_Table_0 tr td:last-child").show();
+    $("#DataTables_Table_0 tr td:last-child div").html('');
   }
 });

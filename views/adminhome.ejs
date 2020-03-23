@@ -451,6 +451,7 @@
                             <th>ATTORNEY FEE</th>
                             <th>ATTORNEY NAME</th>
                             <th>ATTORNEY FAX</th>
+                            <th>ATTORNEY PHONE</th>
                             <th>ATTORNEY EMAIL</th>
                             <th>ATTORNEY ADDRESS</th>
                             <th>DATE</th>
@@ -486,6 +487,7 @@
                             <td>$<%= event[i].fee %> </td>
                             <td><%= event[i].attorneyname%> </td>
                             <td><%= event[i].fax %> </td>
+                            <td><%= event[i].phone %> </td>
                             <td><%= event[i].email %> </td>
                             <td><%= event[i].address %> </td>
 
@@ -853,6 +855,10 @@
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">FAX</p>
                 <p name="fax" id="fax"></p>
             </div>
+            <div class="form-group col-sm-12 driver-event">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">PHONE</p>
+                <p name="phone" id="phone"></p>
+            </div>
             <div class="form-group col-sm-4 driver-event">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
                 <p name="county" id="county3"></p>
@@ -968,6 +974,10 @@
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FAX</p>
                 <textarea id="fax2" name="fax" placeholder="Enter fax..." required></textarea>
+            </div>
+            <div class="form-group">
+                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY PHONE</p>
+                <textarea id="phone2" name="phone" placeholder="Enter phone..." required></textarea>
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY EMAIL</p>
@@ -1267,6 +1277,10 @@
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FAX</p>
                     <textarea id="add-trouble-fax" name="fax" placeholder="Enter fax..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY PHONE</p>
+                    <textarea id="add-trouble-fax" name="phone" placeholder="Enter phone number..." required></textarea>
                 </div>
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY EMAIL</p>
