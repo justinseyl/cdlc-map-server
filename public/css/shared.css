@@ -224,7 +224,7 @@ textarea {
   text-align: center;
   color: #4ab3ad;
   padding: 2px;
-  float: right;
+  float: left;
 }
 .tbl-audit-yellow {
   width: 75px;
@@ -239,10 +239,10 @@ textarea {
   text-align: center;
   color: #fedf66;
   padding: 2px;
-  float: right;
+  float: left;
 }
 .tbl-audit-red {
-  float: right;
+  float: left;
   width: 75px;
   height: 17px;
   background-color: rgba(255, 105, 105, 0.2);

@@ -445,9 +445,9 @@
                 <table id="myTable" class="table">
                     <thead>
                         <tr>
+                            <th>ATTORNEY NOTES</th>
                             <th>STATE</th>
                             <th>COUNTY</th>
-                            <th>ATTORNEY NOTES</th>
                             <th>ATTORNEY FEE</th>
                             <th>ATTORNEY NAME</th>
                             <th>ATTORNEY FAX</th>
@@ -459,7 +459,8 @@
                         </tr>
                     </thead>
                     <colgroup>
-                        <col class="col-md-5">
+                        <col class="col-md-2">
+                        <col class="col-md-1">
                         <col class="col-md-1">
                         <col class="col-md-1">
                         <col class="col-md-1">
@@ -480,7 +481,11 @@
                                 <% if (event[i].isnew) { %>
                                 <div class="new"><img src="/assets/new.svg"></img></div>
                                 <% } %>
-                                <a class="alt-link ml-0"><%= event[i].description %></a>
+                                <% if (event[i].description) { %>
+                                    <a class="alt-link ml-0"><%= event[i].description %></a>
+                                <% } else {%>
+                                    <a class="alt-link ml-0">No description</a>
+                                <% } %>
                             </td>
                             <td><%= event[i].state %> </td>
                             <td><%= event[i].county %> </td>

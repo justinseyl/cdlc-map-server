@@ -118,8 +118,8 @@ html * {
     cursor: pointer;
 }
 table tbody td:last-child,table thead tr th:last-child {
-  text-align: right;
-  float: right;
+  /*text-align: right;*/
+  /*float: right;*/
 }
 .tbl-audit-green {
   width: 75px;

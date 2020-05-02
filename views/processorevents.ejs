@@ -217,9 +217,9 @@
                 <table id="myTable" class="table">
                     <thead>
                         <tr>
+                            <th>ATTORNEY NOTES</th>
                             <th>STATE</th>
                             <th>COUNTY</th>
-                            <th>ATTORNEY NOTES</th>
                             <th>ATTORNEY FEE</th>
                             <th>ATTORNEY NAME</th>
                             <th>ATTORNEY FAX</th>
@@ -231,7 +231,7 @@
                         </tr>
                     </thead>
                     <colgroup>
-                        <col class="col-md-5">
+                        <col class="col-md-2">
                         <col class="col-md-1">
                         <col class="col-md-1">
                         <col class="col-md-1">
@@ -251,15 +251,20 @@
                         <tr onclick="getEventDetails('<%= event[i].id %>', 'processor')">
                             <td class="expand">
                                 <% if (event[i].isnew) { %>
-                                <div class="new"><img src="/assets/new.svg"></img></div>
+                                    <div class="new"><img src="/assets/new.svg"></img></div>
                                 <% } %>
-                                <a class="alt-link ml-0"><%= event[i].description %></a>
+                                <% if (event[i].description) { %>
+                                    <a class="alt-link ml-0"><%= event[i].description %></a>
+                                <% } else {%>
+                                    <a class="alt-link ml-0">No description</a>
+                                <% } %>
                             </td>
                             <td><%= event[i].state %> </td>
                             <td><%= event[i].county %> </td>
                             <td>$<%= event[i].fee %> </td>
                             <td><%= event[i].attorneyname%> </td>
                             <td><%= event[i].fax %> </td>
+                            <td><%= event[i].phone %> </td>
                             <td><%= event[i].email %> </td>
                             <td><%= event[i].address %> </td>
 
@@ -280,6 +285,7 @@
                             <td>-- </td>
                             <td>-- </td>
                             <td>-- </td>
+                            <td>--</td>
                             <td>--</td>
 
                             <td><%= event[i].created %> </td>

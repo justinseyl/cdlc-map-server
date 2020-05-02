@@ -11,10 +11,7 @@ const procid = 'processing@cdlconsultants.com';
 
 module.exports = function (app, passport) {
 
-	app.get('/', isLoggedIn, function (req, res) {
-		if (req.user.role == 'admin') {
-			res.redirect('/adminhome/driver');
-		}
+	app.get('/', isLoggedIn, isAdmin, async function (req, res) {
 		let alertquery = "select title, description, county, state, created_at,status from ealerts order by created_at desc limit 1"
 
 		let role = 'driver';
@@ -34,113 +31,131 @@ module.exports = function (app, passport) {
 		}
 
 		let query = "select id, state,count(*) as num from " + dbs[role] + " where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";
-		db.query(alertquery, (err, ares) => {
-			db.query(query, (err, result) => {
-				if (err) throw err;
 
-				let date = moment(ares[0].created_at).format('MM/DD/YYYY');
-				let time = moment(ares[0].created_at).format('HH:MM A');
-
-				let route_map = {
-					'admin': 'adminhome.ejs',
-					'driver': 'driverhome.ejs',
-					'sales': 'saleshome.ejs',
-					'processor': 'processorhome.ejs'
-				}
-
-				if (req.user.role) {
-					if (req.user.role == 'admin') {
-						let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + "tr_area" + " where status = 'active' order by created_at desc";
-						db.query(query, (err, result2) => {
-							if (err) throw err;
-
-							res.render(route_map[req.user.role], {
-								user: req.user,
-								page: 'Home',
-								menuId: 'home',
-								event: result2,
-								statecode: req.user.state,
-								groupstate: result,
-								picker: 'DRIVER',
-								menuitem: 'DRIVERS',
-								router: 'drivers',
-								alert: ares[0].description,
-								date: date,
-								time: time,
-								state: ares[0].state.toUpperCase(),
-								county: ares[0].county,
-								showEmergency: ares[0].status
-							});
-						});
-					} else {
-						res.render(route_map[req.user.role], {
-							user: req.user,
-							page: 'Home',
-							menuId: 'home',
-							statecode: req.user.state,
-							groupstate: result,
-							picker: 'DRIVER',
-							alert: ares[0].description,
-							date: date,
-							time: time,
-							state: ares[0].state.toUpperCase(),
-							county: ares[0].county,
-							showEmergency: ares[0].status
-						})
-					}
-				} else {
-					res.render('home.ejs', {
-						user: req.user,
-						page: 'Home',
-						menuId: 'home',
-						statecode: req.user.state,
-						groupstate: result,
-						picker: 'DRIVER',
-						alert: ares[0].description,
-						date: date,
-						time: time,
-						state: ares[0].state.toUpperCase(),
-						county: ares[0].county,
-						showEmergency: ares[0].status
-					});
-				}
+		let ares = await new Promise((resolve, reject) => {
+			db.query(alertquery, (err, result) => {
+				resolve(result);
 			});
-		});
+		})
+
+		let result = await new Promise((resolve, reject) => {
+			db.query(query, (err, result) => {
+				resolve(result);
+			});
+		})
+
+		let date = moment(ares[0].created_at).format('MM/DD/YYYY');
+		let time = moment(ares[0].created_at).format('HH:MM A');
+
+		let route_map = {
+			'admin': 'adminhome.ejs',
+			'driver': 'driverhome.ejs',
+			'sales': 'saleshome.ejs',
+			'processor': 'processorhome.ejs'
+		}
+
+		if (req.user.role) {
+			if (req.user.role == 'admin') {
+
+				let query = "select id, description, state, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + "tr_area" + " where status = 'active' order by created_at desc";
+				let result2 = await new Promise((resolve, reject) => {
+					db.query(query, (err, result) => {
+						resolve(result);
+					});
+				})
+
+				res.render(route_map[req.user.role], {
+					user: req.user,
+					page: 'Home',
+					menuId: 'home',
+					event: result2,
+					statecode: req.user.state,
+					groupstate: result,
+					picker: 'DRIVER',
+					menuitem: 'DRIVERS',
+					router: 'drivers',
+					alert: ares[0].description,
+					date: date,
+					time: time,
+					state: ares[0].state.toUpperCase(),
+					county: ares[0].county,
+					showEmergency: ares[0].status
+				});
+
+			} else {
+				res.render(route_map[req.user.role], {
+					user: req.user,
+					page: 'Home',
+					menuId: 'home',
+					statecode: req.user.state,
+					groupstate: result,
+					picker: 'DRIVER',
+					alert: ares[0].description,
+					date: date,
+					time: time,
+					state: ares[0].state.toUpperCase(),
+					county: ares[0].county,
+					showEmergency: ares[0].status
+				})
+			}
+		} else {
+			res.render('home.ejs', {
+				user: req.user,
+				page: 'Home',
+				menuId: 'home',
+				statecode: req.user.state,
+				groupstate: result,
+				picker: 'DRIVER',
+				alert: ares[0].description,
+				date: date,
+				time: time,
+				state: ares[0].state.toUpperCase(),
+				county: ares[0].county,
+				showEmergency: ares[0].status
+			});
+		}
 	});
 
-	app.get('/edituser/:email', isLoggedIn, function (req, res) {
+	app.get('/edituser/:email', isLoggedIn, async function (req, res) {
 		let email = req.params.email;
 
 		let query = "select first, last, state, email from users where email='" + email + "'";
 
-		db.query(query, (err, result) => {
-
-			let userinfo = result[0];
-			let firstname = userinfo.first;
-			let lastname = userinfo.last;
-			let state = userinfo.state;
-			let email = userinfo.email;
-			let name = firstname + " " + lastname;
-
-			let eventquery = "select id, state, county, description, date_format(created_at, '%m/%d/%y') as created,date_format(created_at, '%h:%i %p') as ctime, manage from tr_area where userid='" + email + "'";
-
-			db.query(eventquery, (err, events) => {
-				res.render('driverdetail.ejs', {
-					user: req.user,
-					page: 'Driver Detail',
-					menuId: 'detail',
-					event: events,
-					picker: 'DRIVER',
-					menuitem: 'DRIVERS',
-					router: 'drivers',
-					firstname: firstname,
-					lastname: lastname,
-					state: state,
-					email: email,
-					name: name
-				});
-			})
+		let result = await new Promise((resolve, reject) => {
+			db.query(query, (err, result) => {
+				resolve(result);
+			});
 		})
+
+		let userinfo = result[0];
+		let firstname = userinfo.first;
+		let lastname = userinfo.last;
+		let state = userinfo.state;
+		email = userinfo.email;
+		let name = firstname + " " + lastname;
+
+		let eventquery = "select id, state, county, description, date_format(created_at, '%m/%d/%y') as created,date_format(created_at, '%h:%i %p') as ctime, manage from tr_area where userid='" + email + "'";
+
+		let events = await new Promise((resolve, reject) => {
+			db.query(eventquery, (err, result) => {
+				resolve(result);
+			});
+		})
+
+		res.render('driverdetail.ejs', {
+			user: req.user,
+			page: 'Driver Detail',
+			menuId: 'detail',
+			event: events,
+			picker: 'DRIVER',
+			menuitem: 'DRIVERS',
+			router: 'drivers',
+			firstname: firstname,
+			lastname: lastname,
+			state: state,
+			email: email,
+			name: name
+		});
 
 	})
 
@@ -246,114 +261,129 @@ module.exports = function (app, passport) {
 
 	})
 
-	app.get('/adminhome/:role', isLoggedIn, function (req, res) {
+	app.get('/adminhome/:role', isLoggedIn, async function (req, res) {
 		let alertquery = "select title, description, county, state, created_at,status from ealerts order by created_at desc limit 1"
 		let query = "select id, state,count(*) as num from tr_area where status = 'active' and manage = 'accepted' group by 1 order by case when state = '" + req.user.state + "' then 0 else state end";
 
-		db.query(alertquery, (err, ares) => {
-			db.query(query, (err, result) => {
-				if (err) throw err;
-
-				let date = moment(ares[0].created_at).format('MM/DD/YYYY');
-				let time = moment(ares[0].created_at).format('HH:MM A');
-
-				let role = req.params.role.toLowerCase();;
-
-				let route_map = {
-					'admin': 'adminhome.ejs',
-					'driver': 'driverhome.ejs',
-					'sales': 'saleshome.ejs',
-					'processor': 'processorhome.ejs'
-				}
-
-				let dbs = {
-					'driver': 'tr_area',
-					'sales': 'tr_area_sales',
-					'processor': 'tr_area_processor'
-				}
-
-				let query3 = "";
-
-				if (role == 'driver') {
-					query3 = "select id, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
-				} else if (role == 'processor') {
-					query3 = `select id, attorneyname, address, fax, phone, email, fee, manage, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from ${dbs[role]} where status = 'active' order by created_at desc`
-				} else {
-					query3 = `select id, saleprice, manage, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from  ${dbs[role]} where status = 'active' order by created_at desc`
-				}
-
-				if (req.user.role) {
-					if (req.user.role == 'admin') {
-						let query4 = "select id, state,count(*) as num from " + dbs[role] + " where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";;
-						db.query(query3, (err, result2) => {
-							db.query(query4, (err, result3) => {
-								if (err) throw err;
-
-								let mitem = 'DRIVERS'
-								let route = 'drivers'
-
-								if (role != 'driver')
-									mitem = 'PROFILE'
-
-								if (role == 'sales')
-									route = 'profile/sales'
-								if (role == 'processor')
-									route = 'profile/processor'
-
-								res.render(route_map[req.user.role], {
-									user: req.user,
-									page: 'Home',
-									menuId: 'home',
-									event: result2,
-									statecode: req.user.state,
-									groupstate: result3,
-									picker: role.toUpperCase(),
-									menuitem: mitem,
-									router: route,
-									alert: ares[0].description,
-									date: date,
-									time: time,
-									county: ares[0].county,
-									state: ares[0].state.toUpperCase(),
-									county: ares[0].county,
-									showEmergency: ares[0].status
-								});
-							});
-						});
-					} else {
-						res.render(route_map[req.user.role], {
-							user: req.user,
-							page: 'Home',
-							menuId: 'home',
-							statecode: req.user.state,
-							groupstate: result,
-							picker: 'driver',
-							alert: ares[0].description,
-							date: date,
-							time: time,
-							state: ares[0].state.toUpperCase(),
-							county: ares[0].county,
-							showEmergency: ares[0].status
-						})
-					}
-				} else {
-					res.render('home.ejs', {
-						user: req.user,
-						page: 'Home',
-						menuId: 'home',
-						statecode: req.user.state,
-						groupstate: result,
-						picker: 'driver',
-						alert: ares[0].description,
-						date: date,
-						time: time,
-						state: ares[0].state.toUpperCase(),
-						county: ares[0].county,
-						showEmergency: ares[0].status
-					});
-				}
+		let ares = await new Promise((resolve, reject) => {
+			db.query(alertquery, (err, result) => {
+				resolve(result);
 			});
-		});
+		})
+
+		let result = await new Promise((resolve, reject) => {
+			db.query(query, (err, result) => {
+				resolve(result);
+			});
+		})
+
+		let date = moment(ares[0].created_at).format('MM/DD/YYYY');
+		let time = moment(ares[0].created_at).format('HH:MM A');
+
+		let role = req.params.role.toLowerCase();;
+
+		let route_map = {
+			'admin': 'adminhome.ejs',
+			'driver': 'driverhome.ejs',
+			'sales': 'saleshome.ejs',
+			'processor': 'processorhome.ejs'
+		}
+
+		let dbs = {
+			'driver': 'tr_area',
+			'sales': 'tr_area_sales',
+			'processor': 'tr_area_processor'
+		}
+
+		let query3 = "";
+
+		if (role == 'driver') {
+			query3 = "select id, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from " + dbs[role] + " where status = 'active' order by created_at desc";
+		} else if (role == 'processor') {
+			query3 = `select id, attorneyname, address, fax, phone, email, fee, manage, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from ${dbs[role]} where status = 'active' order by created_at desc`
+		} else {
+			query3 = `select id, saleprice, manage, state, description, county, date_format(created_at, '%m/%d/%y') as created, date_format(created_at, '%h:%i %p') as ctime, case when created_at >= date_sub(Now(), interval 1 day) then 'new' end as isnew, Upper(manage) as manage from  ${dbs[role]} where status = 'active' order by created_at desc`
+		}
+
+		if (req.user.role) {
+			if (req.user.role == 'admin') {
+
+				let query4 = "select id, state,count(*) as num from " + dbs[role] + " where status = 'active' and manage = 'accepted' group by 2 order by case when state = '" + req.user.state + "' then 0 else state end";;
+
+				let result2 = await new Promise((resolve, reject) => {
+					db.query(query3, (err, result) => {
+						resolve(result);
+					});
+				})
+
+				let result3 = await new Promise((resolve, reject) => {
+					db.query(query4, (err, result) => {
+						resolve(result);
+					});
+				})
+
+
+				let mitem = 'DRIVERS'
+				let route = 'drivers'
+
+				if (role != 'driver')
+					mitem = 'PROFILE'
+
+				if (role == 'sales')
+					route = 'profile/sales'
+				if (role == 'processor')
+					route = 'profile/processor'
+
+				res.render(route_map[req.user.role], {
+					user: req.user,
+					page: 'Home',
+					menuId: 'home',
+					event: result2,
+					statecode: req.user.state,
+					groupstate: result3,
+					picker: role.toUpperCase(),
+					menuitem: mitem,
+					router: route,
+					alert: ares[0].description,
+					date: date,
+					time: time,
+					county: ares[0].county,
+					state: ares[0].state.toUpperCase(),
+					county: ares[0].county,
+					showEmergency: ares[0].status
+				});
+			} else {
+				res.render(route_map[req.user.role], {
+					user: req.user,
+					page: 'Home',
+					menuId: 'home',
+					statecode: req.user.state,
+					groupstate: result,
+					picker: 'driver',
+					alert: ares[0].description,
+					date: date,
+					time: time,
+					state: ares[0].state.toUpperCase(),
+					county: ares[0].county,
+					showEmergency: ares[0].status
+				})
+			}
+		} else {
+			res.render('home.ejs', {
+				user: req.user,
+				page: 'Home',
+				menuId: 'home',
+				statecode: req.user.state,
+				groupstate: result,
+				picker: 'driver',
+				alert: ares[0].description,
+				date: date,
+				time: time,
+				state: ares[0].state.toUpperCase(),
+				county: ares[0].county,
+				showEmergency: ares[0].status
+			});
+		}
 	})
 
 	app.get('/login', function (req, res) {
@@ -509,7 +539,7 @@ module.exports = function (app, passport) {
 		});
 	});
 
-	app.get('/events', isLoggedIn, function (req, res) {
+	app.get('/events', isLoggedIn, async function (req, res) {
 
 		let role = 'driver';
 
@@ -543,23 +573,29 @@ module.exports = function (app, passport) {
 		}
 
 		if (role != 'driver') {
-			db.query(query, (err, result) => {
-				db.query(dquery, (err, dresults) => {
-
-					result = result.concat(dresults);
-					if (err) throw err;
-
-					res.render(route_map[role], {
-						user: req.user,
-						page: 'My Events',
-						menuId: 'events',
-						event: result,
-						statecode: req.user.state,
-						picker: role.toUpperCase(),
-						menuitem: 'PROFILE',
-						router: role.toUpperCase()
-					});
+			let result = await new Promise((resolve, reject) => {
+				db.query(query, (err, result) => {
+					resolve(result);
 				});
+			})
+
+			let dresults = await new Promise((resolve, reject) => {
+				db.query(dquery, (err, result) => {
+					resolve(result);
+				});
+			})
+
+			result = result.concat(dresults);
+
+			res.render(route_map[role], {
+				user: req.user,
+				page: 'My Events',
+				menuId: 'events',
+				event: result,
+				statecode: req.user.state,
+				picker: role.toUpperCase(),
+				menuitem: 'PROFILE',
+				router: role.toUpperCase()
 			});
 		} else {
 			db.query(query, (err, result) => {
@@ -1216,4 +1252,12 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	res.redirect('/login');
+}
+
+function isAdmin(req, res, next) {
+	if (req.user.role === 'admin') {
+		res.redirect('/adminhome/driver');
+	} else {
+		return next();
+	}
 }
