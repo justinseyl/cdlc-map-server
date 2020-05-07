@@ -5,7 +5,9 @@ const county = window.location.pathname.split('/')[3];
 const state = window.location.pathname.split('/')[2];
 
 if (state && county) {
-  $("#county-label-id").html(state + ' - ' + county.toUpperCase());
+    let c = county.replace('%',' ');
+    c = c.replace(/\d/g, '');
+    $("#county-label-id").html(state + ' - ' + c.toUpperCase());
 }
 
 $('#popTroubleTbl').on('click', function() {
