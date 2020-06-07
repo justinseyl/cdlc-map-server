@@ -13,9 +13,9 @@
             <path stroke="#FFF" stroke-width="1.2" d="M.552 47.29a49.261 49.261 0 1 1 98.404 4.77" opacity=".86"/>
             <circle cx="49.857" cy="49.793" r="44.337" stroke="#FFF" stroke-width=".5" opacity=".28" transform="rotate(-89.427 49.857 49.793)"/>
             <path stroke="#FFF" stroke-width="1.2" d="M34.837 91.443A44.335 44.335 0 1 1 64.67 7.946" opacity=".94"/>
-            <path stroke="#4AB3AD" stroke-width="6" d="M75.286 85.936a44.296 44.296 0 0 1-21.537 7.911" opacity=".566"/>
+            <path stroke="#204590" stroke-width="6" d="M75.286 85.936a44.296 44.296 0 0 1-21.537 7.911" opacity=".566"/>
             <path stroke="#FFF" stroke-width="1.2" d="M11.778 60.227A39.409 39.409 0 1 1 87.73 39.163"/>
-            <path stroke="#419A95" stroke-width="3" d="M11.778 39.163c5.817-20.974 27.535-33.26 48.508-27.444" opacity=".82"/>
+            <path stroke="#204590" stroke-width="3" d="M11.778 39.163c5.817-20.974 27.535-33.26 48.508-27.444" opacity=".82"/>
             <circle cx="49.759" cy="49.695" r="34.483" stroke="#FFF" stroke-width=".5" opacity=".69" transform="rotate(-89.39 49.759 49.695)"/>
             <path stroke="#FFF" stroke-width="1.2" d="M52.256 15.3C71.2 16.745 85.404 33.24 84.026 52.186c-1.379 18.947-17.823 33.21-36.775 31.898" opacity=".45"/>
         </g>
@@ -23,6 +23,6 @@
         <path d="M27 27h48v48H27z"/>
         <path d="M27 27h48v48H27z"/>
         <path d="M27 27h48v48H27z"/>
-        <path fill="#4AB3AD" d="M51.104 27L27 51l24 24 24-24-23.896-24zm2.607 13.529l-.726 14.949h-3.761l-.76-14.95h5.247zM53 61.026h-4v-4.035h4v4.035z"/>
+        <path fill="#204590" d="M51.104 27L27 51l24 24 24-24-23.896-24zm2.607 13.529l-.726 14.949h-3.761l-.76-14.95h5.247zM53 61.026h-4v-4.035h4v4.035z"/>
     </g>
 </svg>

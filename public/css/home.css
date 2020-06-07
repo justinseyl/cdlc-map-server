@@ -7,7 +7,7 @@ html * {
 ::-webkit-scrollbar-button       {}
 ::-webkit-scrollbar-track        {}
 ::-webkit-scrollbar-track-piece  {}
-::-webkit-scrollbar-thumb        {background-color: #4ab3ad;width: 3px;}
+::-webkit-scrollbar-thumb        {background-color: #204590;width: 3px;}
 .container-main {
   margin: 20px 40px;
 }
@@ -61,7 +61,7 @@ html * {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-  border: solid 1px #4ab3ad;
+  border: solid 1px #204590;
   background-color: rgba(74, 179, 173, 0.1);
   font-size: 16px;
   font-weight: 600;
@@ -107,7 +107,7 @@ html * {
   font-style: normal;
   line-height: normal;
   text-align: center;
-  color: #4ab3ad;
+  color: #204590;
   padding: 15px;
   cursor: pointer;
 }
@@ -258,7 +258,7 @@ svg[stateLevel] {
 }
 .topnav input {
   background: transparent;
-  border: solid 1px #4ab3ad;
+  border: solid 1px #204590;
   color: #fff !important;
   padding-left: 5px;
   border-radius: 3px;
@@ -315,7 +315,7 @@ table tbody td:last-child {
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-    border: solid 1px #4ab3ad;
+    border: solid 1px #204590;
     background-color: rgba(74, 179, 173, 0.1);
     padding: 7px;
   }
