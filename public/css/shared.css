@@ -84,7 +84,7 @@ html {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e2e5ee;
+  color: #000000;
 }
 .popup-hr {
   width: 30px;
@@ -109,7 +109,7 @@ textarea {
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: rgba(255, 255, 255);
+    color: #000000;
     padding: 12px;
 }
 .submit-btn {
@@ -164,7 +164,7 @@ textarea {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #e2e5ee;
+  color: #000000;
 }
 .popup-desc-emerg-col {
   opacity: 0.8;
@@ -176,7 +176,7 @@ textarea {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #e2e5ee;
+  color: #000000;
 }
 .county-label h2 {
   opacity: 0.9;
@@ -203,7 +203,7 @@ textarea {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e2e5ee;
+  color: #000000;
   margin-bottom: 30px;
 }
 .deactivate-btn {
@@ -306,7 +306,7 @@ textarea {
   z-index: 1;
   background-color: transparent;
   border: 2px solid rgba(74, 179, 173, 0.4) !important;
-  color: white;
+  color: #000000;
   border-radius: 5px;
   padding: 5px;
   font-family: arial;
@@ -368,7 +368,7 @@ textarea {
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #e2e5ee;
+    color: #000000;
   }
   .submit-btn {
     height: 40px;
@@ -382,14 +382,14 @@ textarea {
   width: 100%; /* Full-width */
   font-size: 16px; /* Increase font-size */
   padding: 12px 20px 12px 40px; /* Add some padding */
-  border: 1px solid #ddd; /* Add a grey border */
+  border: 1px solid #000000; /* Add a grey border */
   margin-bottom: 12px; /* Add some space below the input */
 }
 
 .myTable {
   border-collapse: collapse; /* Collapse borders */
   width: 100%; /* Full-width */
-  border: 1px solid #ddd; /* Add a grey border */
+  border: 1px solid #000000; /* Add a grey border */
   font-size: 18px; /* Increase font-size */
 }
 
@@ -400,12 +400,12 @@ textarea {
 
 .myTable tr {
   /* Add a bottom border to all table rows */
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #000000;
 }
 
 .myTable tr.header, .myTable tr:hover {
   /* Add a grey background color to the table header and on hover */
-  background-color: #f1f1f1;
+  background-color: #000000;
 }
 .btn-container-split {
   display: flex;;

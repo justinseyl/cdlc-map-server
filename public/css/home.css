@@ -42,7 +42,7 @@ html * {
   font-style: normal;
   line-height: 1.31;
   letter-spacing: normal;
-  color: #ffffff;
+  color: #000000;
 }
 .emergency-title p {
   margin: 0px;
@@ -54,7 +54,7 @@ html * {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #e2e5ee;
+  color: #000000;
 }
 .view-emergency {
   height: 50px;
@@ -69,7 +69,7 @@ html * {
   font-style: normal;
   line-height: normal;
   text-align: center;
-  color: #fff;
+  color: #000000;
   padding: 15px;
   margin: auto;
   margin-right: 0px;
@@ -92,7 +92,7 @@ html * {
   font-stretch: normal;
   font-style: normal;
   letter-spacing: normal;
-  color: #ffffff;
+  color: #000000;
 }
 .custom-buttons {
   display: inline-flex;
@@ -100,14 +100,14 @@ html * {
   float: right;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
-  background-color: rgba(239, 242, 255, 0.05);
+  background-color: rgba(49, 96, 165, 0.082);
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   text-align: center;
-  color: #204590;
+  color: #000000;
   padding: 15px;
   cursor: pointer;
 }
@@ -152,7 +152,7 @@ path:hover, circle:hover {
   height: 608px;
   overflow-y: scroll;
   direction: rtl;
-  border-left: 1px solid rgba(239, 242, 255, 0.05);
+  border-left: 1px solid rgba(49, 96, 165, 0.082);
 }
 .state-tbl {
   width: 100%;
@@ -165,7 +165,7 @@ path:hover, circle:hover {
   font-style: normal;
   line-height: normal;
   letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(0, 0, 0, 0.315);
 }
 .state-tbl th:last-child,
 .state-tbl td:last-child {
@@ -190,9 +190,9 @@ path:hover, circle:hover {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #ffffff;
+  color: #000000;
   cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(49, 96, 165, 0.082);
 }
 .records-bubble {
   background-color: rgba(74, 179, 173, 0.1);
@@ -227,7 +227,7 @@ svg[stateLevel] {
   font-style: normal;
   line-height: 24px;
   letter-spacing: normal;
-  color: #ffffff;
+  color: #000000;
 }
 #back-to-home-mobile {
   margin-top: 20px;
@@ -250,7 +250,7 @@ svg[stateLevel] {
   font-style: normal;
   line-height: 24px;
   letter-spacing: normal;
-  color: #ffffff;
+  color: #000000;
   margin-left: 10px;
 }
 .topnav {
@@ -259,12 +259,12 @@ svg[stateLevel] {
 .topnav input {
   background: transparent;
   border: solid 1px #204590;
-  color: #fff !important;
+  color: #000000 !important;
   padding-left: 5px;
   border-radius: 3px;
 }
 .topnav input::placeholder {
-  color: #fff !important;
+  color: #000000 !important;
   padding-left: 5px;
 }
 table tbody td:last-child {
@@ -315,8 +315,8 @@ table tbody td:last-child {
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-    border: solid 1px #204590;
-    background-color: rgba(74, 179, 173, 0.1);
+    border: solid 1px #000000;
+    background-color: rgba(49, 96, 165, 0.082);
     padding: 7px;
   }
   .custom-buttons img {

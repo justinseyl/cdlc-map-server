@@ -93,7 +93,7 @@ html * {
   border: none;
   border-radius: 0.5px;
   background-color: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(49, 96, 165, 0.082);
   opacity: 0.89;
   font-size: 13px;
   font-weight: 500;
@@ -101,18 +101,42 @@ html * {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #ffffff;
+  color: #000000;
 }
 
-.dropdown-toggle2 {
-  float: right;
-  color: white !important;
+.searchbar {
   width: 150px;
   height: 30px;
   border: none;
   border-radius: 0.5px;
   background-color: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(49, 96, 165, 0.082);
+  opacity: 0.89;
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000000;
+}
+
+.searchbar::placeholder-shown {
+  font-size: 13px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+}
+
+.dropdown-toggle2 {
+  float: right;
+  color: black !important;
+  width: 150px;
+  height: 30px;
+  border: none;
+  border-radius: 0.5px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(49, 96, 165, 0.082);
   opacity: 0.89;
   font-size: 13px;
   font-weight: 500;

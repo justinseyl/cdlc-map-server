@@ -13,7 +13,8 @@ html * {
   font-style: normal;
   line-height: normal;
   letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.25);
+  /* color: rgba(255, 255, 255, 0.25); */
+  color: #000000;
   border: none;
   cursor: pointer;
 }
@@ -33,7 +34,7 @@ html * {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #204590;
+  color: #000000;
 }
 .table-notifications {
   overflow: hidden;
@@ -46,7 +47,8 @@ html * {
   background-color: transparent;
 }
 .table>tbody>tr:nth-child(odd),.table-notifications>tbody>tr:nth-child(odd) {
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgba(49, 96, 165, 0.082);
+  /* background-color: #000000; */
 }
 .new {
   width: 37px;
@@ -78,7 +80,7 @@ html * {
     font-stretch: normal;
     font-style: normal;
     letter-spacing: normal;
-    color: #204590;
+    color: #000000;
     margin: 0;
     text-align: left;
     margin-left: 15px;
@@ -97,7 +99,7 @@ html * {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #204590;
+  color: #000000;
 }
 .custom-buttons-tbl {
   display: inline-flex;
@@ -106,14 +108,15 @@ html * {
     float: right;
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
-    background-color: rgba(239, 242, 255, 0.05);
+    background-color: rgba(0, 0, 0, 0.05);
+    /* background-color: #000000; */
     font-size: 16px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     text-align: center;
-    color: #204590;
+    color: #000000;
     padding: 12px;
     cursor: pointer;
 }
@@ -132,7 +135,7 @@ table tbody td:last-child,table thead tr th:last-child {
   line-height: normal;
   letter-spacing: 1px;
   text-align: center;
-  color: #204590;
+  color: #4ab3ad;
   padding: 2px;
 }
 .tbl-audit-yellow {
@@ -190,27 +193,27 @@ table tbody td:last-child,table thead tr th:last-child {
 }
 .pagination>li>a, .pagination>li>span {
   background-color: rgba(239, 242, 255, 0.05);
-    color: #204590;
+    color: #000000;
     border: rgba(239, 242, 255, 0.05);
 }
 .page-item.active .page-link,.pagination>.active>a:focus {
     z-index: 1;
-    color: #fff;
-    background-color: #204590;
-    border-color: #204590;
+    color: #000000;
+    background-color: #000000;
+    border-color: #000000;
 }
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
-  color: #fff;
-  background-color: #204590;
-  border-color: #204590;
+  color: #000000;
+  background-color: #000000;
+  border-color: #000000;
 }
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
-  color: #fff;
-  background-color: #204590;
-  border-color: #204590;
+  color: #000000;
+  background-color: #000000;
+  border-color: #000000;
 }
 .dataTables_info {
-  color: #204590;
+  color: #000000;
   opacity: 0.9;
   font-size: 16px;
   font-weight: 500;
@@ -233,7 +236,7 @@ table tbody td:last-child,table thead tr th:last-child {
   font-stretch: normal;
   font-style: normal;
   letter-spacing: normal;
-  color: #204590;
+  color: #000000;
   margin: 0px;
   margin-left: 15px;
 }
@@ -253,7 +256,7 @@ table tbody td:last-child,table thead tr th:last-child {
   cursor: pointer;
 }
 .inner-span-p {
-  color: #204590;
+  color: #000000;
 }
 .adv-label {
   cursor: pointer;
@@ -262,7 +265,7 @@ table tbody td:last-child,table thead tr th:last-child {
   font-stretch: normal;
   font-style: normal;
   letter-spacing: normal;
-  color: #204590;
+  color: #000000;
   opacity: 0.4;
   margin-left: 15px;
 }
@@ -276,7 +279,7 @@ table tbody td:last-child,table thead tr th:last-child {
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #204590;
+  color: #000000;
 }
 #alink {
   margin-top: 25px;
@@ -296,7 +299,7 @@ input[type="radio"]:checked+label {
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-    border: solid 1px #204590;
+    border: solid 1px #000000;
     background-color: rgba(74, 179, 173, 0.1);
     padding: 7px;
   }
@@ -311,7 +314,7 @@ input[type="radio"]:checked+label {
   .county-label h1 {
     font-size: 16px;
     font-weight: 500;
-    color: #204590;
+    color: #000000;
     line-height: 24px;
   }
   .tbl-audit-yellow {
@@ -325,7 +328,7 @@ input[type="radio"]:checked+label {
     width: 12px;
     height: 12px;
     border-radius: 7px;
-    background-color: #204590;
+    background-color: #000000;
     margin-top: 2px;
   }
   .tbl-audit-red {

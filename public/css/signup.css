@@ -69,11 +69,11 @@ html, body {
   font-style: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #204590;
+  color: #000000;
 }
 
 .txt-hr {
-  height: 3px;	margin-top: 0px; width: 30px;	background-color: #204590; border: none;}
+  height: 3px;	margin-top: 0px; width: 30px;	background-color: #000000; border: none;}
 }
 
 .split-top {
@@ -133,17 +133,17 @@ input.form-control:hover,input.form-control:active,input.form-control:focus,
 select.form-control:hover,select.form-control:active,select.form-control:focus {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border: solid 1px #204590;
+  border: solid 1px #000000;
   background-color: rgba(255, 255, 255, 0.05);
-  caret-color: #204590;
+  caret-color: #000000;
 }
 
 input#email-input.form-control:hover,input#email-input.form-control:active,input#email-input.form-control:focus {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border: solid 1px #204590;
+  border: solid 1px #000000;
   background-color: rgba(255, 255, 255, 0.05);
-  caret-color: #204590;
+  caret-color: #000000;
 }
 
 .form-control:active,.form-control:focus {
@@ -164,7 +164,7 @@ input::placeholder {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-  border: solid 1px #204590;
+  border: solid 1px #000000;
   background-color: rgba(74, 179, 173, 0.1);
   font-size: 16px;
   font-weight: 600;
@@ -173,7 +173,7 @@ input::placeholder {
   line-height: normal;
   letter-spacing: 0.44px;
   text-align: center;
-  color: #204590;
+  color: #000000;
 }
 
 .signup-button-frg {
@@ -184,7 +184,7 @@ input::placeholder {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-  border: solid 1px #204590;
+  border: solid 1px #000000;
   background-color: rgba(74, 179, 173, 0.1);
   font-size: 16px;
   font-weight: 600;
@@ -193,7 +193,7 @@ input::placeholder {
   line-height: normal;
   letter-spacing: 0.44px;
   text-align: center;
-  color: #204590;
+  color: #000000;
 }
 
 .bottom-hr {
@@ -214,7 +214,7 @@ input::placeholder {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #204590;
+  color: #000000;
   margin-bottom: 0px;
 }
 
@@ -228,7 +228,7 @@ input::placeholder {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #204590 !important;
+  color: #000000 !important;
   margin-left: 10px;
   cursor: pointer;
 }
@@ -247,7 +247,7 @@ input::placeholder {
   font-style: normal;
   line-height: normal;
   letter-spacing: 0.89px;
-  color: #204590;
+  color: #000000;
 }
 
 .logo-container img {
@@ -280,7 +280,7 @@ input::placeholder {
   line-height: 1.71;
   letter-spacing: normal;
   text-align: right;
-  color: #204590;
+  color: #000000;
 }
 
 .checkbox input[type="checkbox"] {
@@ -303,15 +303,15 @@ input::placeholder {
     height: 16px;
     transition: transform 0.28s ease;
     border-radius: 2px;
-    background-color: #204590;
+    background-color: #000000;
 }
 .checkbox label:after {
   content: '';
     display: block;
     width: 10px;
     height: 5px;
-    border-bottom: 2px solid #204590;
-    border-left: 2px solid #204590;
+    border-bottom: 2px solid #000000;
+    border-left: 2px solid #000000;
     -webkit-transform: rotate(-45deg) scale(0);
     -moz-transform: rotate(-45deg) scale(0);
     -ms-transform: rotate(-45deg) scale(0);
@@ -321,7 +321,7 @@ input::placeholder {
     left: 7.5px;
 }
 .checkbox input[type="checkbox"]:checked ~ label::before {
-    color: #204590;
+    color: #000000;
 }
 
 .checkbox input[type="checkbox"]:checked ~ label::after {
