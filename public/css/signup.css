@@ -165,9 +165,9 @@ input::placeholder {
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
   border: solid 1px #000000;
-  background-color: rgba(59, 101, 165, 0.507);
+  background-color: #E8EDF9;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 600;#E8EDF9
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
@@ -185,7 +185,7 @@ input::placeholder {
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
   border: solid 1px #000000;
-  background-color: rgba(59, 101, 165, 0.507);
+  background-color: #E8EDF9;
   font-size: 16px;
   font-weight: 600;
   font-stretch: normal;
@@ -303,7 +303,7 @@ input::placeholder {
     height: 16px;
     transition: transform 0.28s ease;
     border-radius: 2px;
-    background-color: #000000;
+    background-color: #E8EDF9;
 }
 .checkbox label:after {
   content: '';
@@ -321,7 +321,7 @@ input::placeholder {
     left: 7.5px;
 }
 .checkbox input[type="checkbox"]:checked ~ label::before {
-    color: #000000;
+    color: #E8EDF9;
 }
 
 .checkbox input[type="checkbox"]:checked ~ label::after {

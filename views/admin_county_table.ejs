@@ -24,7 +24,7 @@
             <form action="/submitNewTrouble?db=sales" method="post">
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                    <select id="state_sales" class="form-control" placeholder="Enter State..." name="state" required>
+                    <select style="color: black;" id="state_sales" class="form-control" placeholder="Enter State..." name="state" required>
                         <option value="AL">Alabama</option>
                         <option value="AZ">Arizona</option>
                         <option value="AR">Arkansas</option>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                    <select id="county_sales" class="form-control" name="county" required>
+                    <select style="color: black;" id="county_sales" class="form-control" name="county" required>
                         <option value="" disabled selected hidden>Enter County...</option>
                     </select>
                 </div>
@@ -114,7 +114,7 @@
             <form action="/submitNewTrouble?db=driver" method="post">
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                    <select id="state_driver" class="form-control" placeholder="Enter State..." name="state" required>
+                    <select style="color: black;" id="state_driver" class="form-control" placeholder="Enter State..." name="state" required>
                         <option value="AL">Alabama</option>
                         <option value="AZ">Arizona</option>
                         <option value="AR">Arkansas</option>
@@ -168,7 +168,7 @@
                 </div>
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                    <select id="county_driver" class="form-control" name="county" required>
+                    <select style="color: black;" id="county_driver" class="form-control" name="county" required>
                         <option value="" disabled selected hidden>Enter County...</option>
                     </select>
                 </div>
@@ -199,7 +199,7 @@
             <form action="/submitNewTrouble?db=processor" method="post">
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                    <select id="state_proc" class="form-control" placeholder="Enter State..." name="state" required>
+                    <select style="color: black;" id="state_proc" class="form-control" placeholder="Enter State..." name="state" required>
                         <option value="AL">Alabama</option>
                         <option value="AZ">Arizona</option>
                         <option value="AR">Arkansas</option>
@@ -253,7 +253,7 @@
                 </div>
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                    <select id="county_proc" class="form-control" name="county" required>
+                    <select style="color: black;" id="county_proc" class="form-control" name="county" required>
                         <option value="" disabled selected hidden>Enter County...</option>
                     </select>
                 </div>
@@ -361,7 +361,7 @@
             <form action="/submitNewTrouble" method="post">
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                    <select id="add-trouble-state-id" class="form-control" placeholder="Enter State..." name="state"
+                    <select style="color: black;" id="add-trouble-state-id" class="form-control" placeholder="Enter State..." name="state"
                         required>
                         <option value="AL">Alabama</option>
                         <option value="AZ">Arizona</option>
@@ -416,7 +416,7 @@
                 </div>
                 <div class="form-group">
                     <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                    <select id="add-trouble-county-id" class="form-control" name="county" required>
+                    <select style="color: black;" id="add-trouble-county-id" class="form-control" name="county" required>
                         <option value="" disabled selected hidden>Enter County...</option>
                     </select>
                 </div>
@@ -501,14 +501,14 @@
                         <% } %>
                     </div>
                     <div class="col-md-2">
-                        <select id="new" class="dropdown-toggle2" onclick="searchnew()" placeholder="All" name="new"
+                        <select style="color: black;" id="new" class="dropdown-toggle2" onclick="searchnew()" placeholder="All" name="new"
                             required>
                             <option value="all">All</option>
                             <option value="new">New</option>
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select id="stateinput" class="dropdown-toggle2" onclick="searchstate2()"
+                        <select style="color: black;" id="stateinput" class="dropdown-toggle2" onclick="searchstate2()"
                             placeholder="Filter by state" name="state" required>
                             <option value="ALL">All States</option>
                             <option value="AL">Alabama</option>
@@ -563,7 +563,7 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select id="countyinput" class="dropdown-toggle2" onclick="searchcounty()" name="county"
+                        <select style="color: black;" id="countyinput" class="dropdown-toggle2" onclick="searchcounty()" name="county"
                             required>
                             <option value="" disabled selected hidden>Filter by County</option>
                         </select>
@@ -630,7 +630,7 @@
         <form id="edit1" method="post">
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                <select id="state2" class="form-control" placeholder="Enter State..." name="state" required>
+                <select style="color: black;" id="state2" class="form-control" placeholder="Enter State..." name="state" required>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
                     <option value="AR">Arkansas</option>
@@ -684,7 +684,7 @@
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                <select id="county2" class="form-control" name="county" required>
+                <select style="color: black;" id="county2" class="form-control" name="county" required>
                     <option value="" disabled selected hidden>Enter County...</option>
                 </select>
             </div>
@@ -787,7 +787,7 @@
         <form id="edit2" method="post">
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                <select id="state6" class="form-control" placeholder="Enter State..." name="state" required>
+                <select style="color: black;" id="state6" class="form-control" placeholder="Enter State..." name="state" required>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
                     <option value="AR">Arkansas</option>
@@ -841,7 +841,7 @@
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                <select id="county6" class="form-control" name="county" required>
+                <select style="color: black;" id="county6" class="form-control" name="county" required>
                     <option value="" disabled selected hidden>Enter County...</option>
                 </select>
             </div>
@@ -930,7 +930,7 @@
         <form id="edit3" method="post">
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                <select id="state5" class="form-control" placeholder="Enter State..." name="state" required>
+                <select style="color: black;" id="state5" class="form-control" placeholder="Enter State..." name="state" required>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
                     <option value="AR">Arkansas</option>
@@ -984,7 +984,7 @@
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                <select id="county5" class="form-control" name="county" required>
+                <select style="color: black;" id="county5" class="form-control" name="county" required>
                     <option value="" disabled selected hidden>Enter County...</option>
                 </select>
             </div>

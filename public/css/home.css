@@ -100,7 +100,7 @@ html * {
   float: right;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
-  background-color: rgba(49, 95, 165, 0.5);
+  background-color: #E8EDF9;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
@@ -175,7 +175,7 @@ path:hover, circle:hover {
   height: 55px;
 }
 .state-tbl tr:hover {
-  background-color: rgba(49, 95, 165, 0.5);
+  background-color: #E8EDF9;
   cursor: pointer;
 }
 .state-tbl tr:first-child {
@@ -192,10 +192,10 @@ path:hover, circle:hover {
   letter-spacing: normal;
   color: #000000;
   cursor: pointer;
-  border-bottom: 1px solid rgba(49, 95, 165, 0.507);
+  border-bottom: 1px solid #E8EDF9;
 }
 .records-bubble {
-  background-color: rgba(49, 95, 165, 0.507);
+  background-color: #E8EDF9;
   padding: 2px 13px;
 }
 .footer-map {

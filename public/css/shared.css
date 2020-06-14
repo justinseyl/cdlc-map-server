@@ -120,7 +120,7 @@ textarea {
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
   border: solid 1px #000000;
-  background-color: rgba(59, 101, 165, 0.507);
+  background-color: #E8EDF9;
     width: 80%;
     margin-top: 15px;
     font-size: 16px;
@@ -267,7 +267,7 @@ textarea {
     backdrop-filter: blur(2px);
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
     border: solid 1px #000000;
-    background-color: rgba(59, 101, 165, 0.507);
+    background-color: #E8EDF9;
     width: 100%;
     margin-top: 50px;
     font-size: 16px;
