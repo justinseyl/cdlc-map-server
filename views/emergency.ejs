@@ -94,11 +94,11 @@
         <form action="/submitEmergency" method="post">
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">TITLE</p>
-                <input id="email-input" type="text" class="form-control" name="title" value=<%= title %> required>
+                <input style="color:black;" id="email-input" type="text" class="form-control" name="title" value=<%= title %> required>
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
-                <select id="add-trouble-state-id" class="form-control" placeholder="Enter State..." name="state" required>
+                <select style="color:black;" id="add-trouble-state-id" class="form-control" placeholder="Enter State..." name="state" required>
                     <option value=<%= state %> selected><%= state %></option>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
@@ -153,13 +153,13 @@
             </div>
             <div class="form-group">
                 <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
-                <select id="add-trouble-county-id" class="form-control" name="county" required>
+                <select style="color:black;" id="add-trouble-county-id" class="form-control" name="county" required>
                   <option value="" disabled selected hidden>Enter County...</option>
                 </select>
             </div>
             <div class="form-group">
               <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
-              <textarea id="add-trouble-desc" name="description" placeholder="Enter brief description..." required><%= description %></textarea>
+              <textarea style="color:black;" id="add-trouble-desc" class="form-control" name="description" placeholder="Enter brief description..." required><%= description %></textarea>
             </div>
 
             <%if (showEmergency == 'active') { %>

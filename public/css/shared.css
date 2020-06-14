@@ -73,7 +73,7 @@ html {
   font-style: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #204590;
+  color: #000000;
 }
 .popup-desc {
   opacity: 0.9;
@@ -89,7 +89,7 @@ html {
 .popup-hr {
   width: 30px;
   height: 3px;
-  background-color: #204590;
+  background-color: #000000;
   border: none;
   margin-bottom: 25px;
   margin-top: 7px;
@@ -109,7 +109,7 @@ textarea {
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #000000;
+    color: black;
     padding: 12px;
 }
 .submit-btn {
@@ -119,8 +119,8 @@ textarea {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-  border: solid 1px #204590;
-  background-color: rgba(74, 179, 173, 0.1);
+  border: solid 1px #000000;
+  background-color: rgba(59, 101, 165, 0.507);
     width: 80%;
     margin-top: 15px;
     font-size: 16px;
@@ -130,7 +130,7 @@ textarea {
   line-height: normal;
   letter-spacing: 0.44px;
   text-align: center;
-  color: #204590;
+  color: #000000;
 }
 .cancel-btn {
   opacity: 0.51;
@@ -143,7 +143,7 @@ textarea {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #204590;
+  color: #000000;
 }
 .popup-header-row {
   font-size: 11px;
@@ -186,7 +186,7 @@ textarea {
   font-style: normal;
   line-height: 24px;
   letter-spacing: 0.46px;
-  color: #204590;
+  color: #000000;
   margin: 0px;
   margin-left: 10px;
 }
@@ -258,7 +258,6 @@ textarea {
 }
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   background: transparent;
-  opacity: 0.4;
 }
 .edit-btn {
   display: block;
@@ -267,8 +266,8 @@ textarea {
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-    border: solid 1px #204590;
-    background-color: rgba(74, 179, 173, 0.1);
+    border: solid 1px #000000;
+    background-color: rgba(59, 101, 165, 0.507);
     width: 100%;
     margin-top: 50px;
     font-size: 16px;
@@ -278,7 +277,7 @@ textarea {
     line-height: 50px;
     letter-spacing: 0.44px;
     text-align: center;
-    color: #204590;
+    color: #000000;
     cursor: pointer;
 }
 .nobox-btn {
@@ -294,7 +293,7 @@ textarea {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #204590;
+  color: #000000;
   padding: 0px;
   margin-top: 20px;
 }
@@ -319,7 +318,7 @@ textarea {
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #204590;
+    color: #000000;
     cursor: pointer;
     margin: 0px;
     padding: 0px;
@@ -357,7 +356,7 @@ textarea {
     font-style: normal;
     letter-spacing: normal;
     text-align: center;
-    color: #204590;
+    color: #000000;
   }
   .popup-desc {
     opacity: 0.8;
@@ -414,6 +413,6 @@ textarea {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-  border: solid 1px #204590;
+  border: solid 1px #000000;
   background-color: rgba(255, 255, 255, 0.1);
 }
