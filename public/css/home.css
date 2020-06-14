@@ -127,20 +127,20 @@ html * {
   height: 100%;
 }
 path {
-  stroke: rgba(74, 179, 173, 1) !important;
+  stroke: black !important;
   stroke-width: 1px;
   fill: transparent;
 }
 path:hover, circle:hover {
-  stroke: rgba(74, 179, 173, 0.4) !important;
+  stroke: lightgrey !important;
   stroke-width:2px;
   stroke-linejoin: round;
-  fill: rgba(74, 179, 173, 0.4) !important;
+  fill: lightgrey !important;
   cursor: pointer;
 }
 #path67 {
   fill: none !important;
-  stroke: rgba(74, 179, 173, 0.4) !important;
+  stroke: lightgrey !important;
   cursor: default;
 }
 .list-states {
