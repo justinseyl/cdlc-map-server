@@ -127,20 +127,20 @@ html * {
   height: 100%;
 }
 path {
-  stroke: black !important;
+  stroke: #204590 !important;
   stroke-width: 1px;
   fill: transparent;
 }
 path:hover, circle:hover {
-  stroke: lightgrey !important;
+  stroke: #204590 !important;
   stroke-width:2px;
   stroke-linejoin: round;
-  fill: lightgrey !important;
+  fill: #E8EDF9 !important;
   cursor: pointer;
 }
 #path67 {
   fill: none !important;
-  stroke: lightgrey !important;
+  stroke: #E8EDF9 !important;
   cursor: default;
 }
 .list-states {
