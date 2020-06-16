@@ -127,8 +127,8 @@ function buildTable(data) {
   cty.show();
 
   var header = '<tr>'+
-  '              <th>COUNTY</th>'+
-  '              <th>REPORTS</th>'+
+  '              <th style="color: #62657d;">COUNTY</th>'+
+  '              <th style="color: #62657d;">REPORTS</th>'+
   '            </tr>';
 
   cty.append(header);

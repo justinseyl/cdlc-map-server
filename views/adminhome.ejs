@@ -276,8 +276,8 @@
                 <div class="list-states">
                     <table id="state-tbl" class="state-tbl">
                         <tr>
-                            <th>STATE</th>
-                            <th>REPORTS</th>
+                            <th style="color: #62657d;">STATE</th>
+                            <th style="color: #62657d;">REPORTS</th>
                         </tr>
                         <% for (var i = 0; i < groupstate.length; i++) { %>
                         <tr>
@@ -394,12 +394,12 @@
                 <table id="myTable" class="table">
                     <thead>
                         <tr>
-                            <th>DESCRIPTION</th>
-                            <th>STATE</th>
-                            <th>COUNTY</th>
-                            <th>DATE</th>
-                            <th>TIME</th>
-                            <th>STATUS</th>
+                            <th style="color: #62657d;">DESCRIPTION</th>
+                            <th style="color: #62657d;">STATE</th>
+                            <th style="color: #62657d;">COUNTY</th>
+                            <th style="color: #62657d;">DATE</th>
+                            <th style="color: #62657d;">TIME</th>
+                            <th style="color: #62657d;">STATUS</th>
                         </tr>
                     </thead>
                     <colgroup>
@@ -445,17 +445,17 @@
                 <table id="myTable" class="table">
                     <thead>
                         <tr>
-                            <th>ATTORNEY NOTES</th>
-                            <th>STATE</th>
-                            <th>COUNTY</th>
-                            <th>ATTORNEY FEE</th>
-                            <th>ATTORNEY NAME</th>
-                            <th>ATTORNEY FAX</th>
-                            <th>ATTORNEY PHONE</th>
-                            <th>ATTORNEY EMAIL</th>
-                            <th>ATTORNEY ADDRESS</th>
-                            <th>DATE</th>
-                            <th>TIME</th>
+                            <th style="color: #62657d;">ATTORNEY NOTES</th>
+                            <th style="color: #62657d;">STATE</th>
+                            <th style="color: #62657d;">COUNTY</th>
+                            <th style="color: #62657d;">ATTORNEY FEE</th>
+                            <th style="color: #62657d;">ATTORNEY NAME</th>
+                            <th style="color: #62657d;">ATTORNEY FAX</th>
+                            <th style="color: #62657d;">ATTORNEY PHONE</th>
+                            <th style="color: #62657d;">ATTORNEY EMAIL</th>
+                            <th style="color: #62657d;">ATTORNEY ADDRESS</th>
+                            <th style="color: #62657d;">DATE</th>
+                            <th style="color: #62657d;">TIME</th>
                         </tr>
                     </thead>
                     <colgroup>
@@ -527,12 +527,12 @@
                 <table id="myTable" class="table">
                     <thead>
                         <tr>
-                            <th>DESCRIPTION</th>
-                            <th>STATE</th>
-                            <th>COUNTY</th>
-                            <th>SALES PRICE</th>
-                            <th>DATE</th>
-                            <th>TIME</th>
+                            <th style="color: #62657d;">DESCRIPTION</th>
+                            <th style="color: #62657d;">STATE</th>
+                            <th style="color: #62657d;">COUNTY</th>
+                            <th style="color: #62657d;">SALES PRICE</th>
+                            <th style="color: #62657d;">DATE</th>
+                            <th style="color: #62657d;">TIME</th>
                         </tr>
                     </thead>
                     <colgroup>
@@ -600,7 +600,7 @@
         </div>
         <form id="edit1" method="post">
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
+                <p class="text-labels">STATE</p>
                 <select style="color: black;" id="state2" class="form-control" placeholder="Enter State..." name="state" required>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
@@ -654,13 +654,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+                <p class="text-labels">COUNTY</p>
                 <select style="color: black;" id="county2" class="form-control" name="county" required>
                     <option value="" disabled selected hidden>Enter County...</option>
                 </select>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
+                <p class="text-labels">DESCRIPTION</p>
                 <textarea id="desc2" name="description" placeholder="Enter brief description..." required></textarea>
             </div>
             <button type="submit" class="submit-btn" eventid>SAVE CHANGES</button>
@@ -679,23 +679,23 @@
             <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
             <hr class="popup-hr">
             <div class="form-group col-sm-4 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+                <p class="text-labels">COUNTY</p>
                 <p name="county" id="county"></p>
             </div>
             <div class="form-group col-sm-4 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DATE</p>
+                <p class="text-labels">DATE</p>
                 <p name="date" id="date"></p>
             </div>
             <div class="form-group col-sm-4 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">TIME</p>
+                <p class="text-labels">TIME</p>
                 <p name="time" id="time"></p>
             </div>
             <div class="form-group col-sm-12 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
+                <p class="text-labels">DESCRIPTION</p>
                 <p name="desc" id="desc"></p>
             </div>
             <div class="form-group col-sm-12 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">UPLOADED BY</p>
+                <p class="text-labels">UPLOADED BY</p>
                 <p name="userid" id="upl"></p>
             </div>
             <div class="btn-container-split">
@@ -722,19 +722,19 @@
             <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
             <hr class="popup-hr">
             <div class="form-group col-sm-4 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
+                <p class="text-labels">STATE</p>
                 <p name="state" id="state4"></p>
             </div>
             <div class="form-group col-sm-4 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+                <p class="text-labels">COUNTY</p>
                 <p name="county" id="county4"></p>
             </div>
             <div class="form-group col-sm-4 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">SALES PRICE</p>
+                <p class="text-labels">SALES PRICE</p>
                 <p name="sales" id="sales"></p>
             </div>
             <div class="form-group col-sm-12 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
+                <p class="text-labels">DESCRIPTION</p>
                 <p name="desc" id="desc4"></p>
             </div>
             <div class="btn-container-split">
@@ -761,7 +761,7 @@
         </div>
         <form id="edit2" method="post">
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
+                <p class="text-labels">STATE</p>
                 <select style="color: black;" id="state6" class="form-control" placeholder="Enter State..." name="state" required>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
@@ -815,17 +815,17 @@
                 </select>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+                <p class="text-labels">COUNTY</p>
                 <select style="color: black;" id="county6" class="form-control" name="county" required>
                     <option value="" disabled selected hidden>Enter County...</option>
                 </select>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">SALE PRICE</p>
+                <p class="text-labels">SALE PRICE</p>
                 <textarea id="sales" name="saleprice" placeholder="Enter sales price..." required></textarea>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
+                <p class="text-labels">DESCRIPTION</p>
                 <textarea id="desc2" name="description" placeholder="Enter brief description..." required></textarea>
             </div>
             <input type="hidden" id="id" name="id" value="">
@@ -845,39 +845,39 @@
             <img class="close" src="/assets/icon-close-copy-3.svg" onclick="closepopup()">
             <hr class="popup-hr">
             <div class="form-group col-sm-12 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY NAME</p>
+                <p class="text-labels">ATTORNEY NAME</p>
                 <p name="aname" id="aname"></p>
             </div>
             <div class="form-group col-sm-12 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ADDRESS</p>
+                <p class="text-labels">ADDRESS</p>
                 <p name="address" id="address"></p>
             </div>
             <div class="form-group col-sm-12 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">EMAIL ADDRESS</p>
+                <p class="text-labels">EMAIL ADDRESS</p>
                 <p name="email" id="email"></p>
             </div>
             <div class="form-group col-sm-12 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">FAX</p>
+                <p class="text-labels">FAX</p>
                 <p name="fax" id="fax"></p>
             </div>
             <div class="form-group col-sm-12 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">PHONE</p>
+                <p class="text-labels">PHONE</p>
                 <p name="phone" id="phone"></p>
             </div>
             <div class="form-group col-sm-4 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+                <p class="text-labels">COUNTY</p>
                 <p name="county" id="county3"></p>
             </div>
             <div class="form-group col-sm-4 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
+                <p class="text-labels">STATE</p>
                 <p name="state" id="state3"></p>
             </div>
             <div class="form-group col-sm-4 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">PRICE</p>
+                <p class="text-labels">PRICE</p>
                 <p name="price" id="price"></p>
             </div>
             <div class="form-group col-sm-12 driver-event">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
+                <p class="text-labels">DESCRIPTION</p>
                 <p name="desc" id="desc3"></p>
             </div>
             <div class="btn-container-split">
@@ -904,7 +904,7 @@
         </div>
         <form id="edit3" method="post">
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
+                <p class="text-labels">STATE</p>
                 <select style="color: black;" id="state5" class="form-control" placeholder="Enter State..." name="state" required>
                     <option value="AL">Alabama</option>
                     <option value="AZ">Arizona</option>
@@ -958,38 +958,38 @@
                 </select>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+                <p class="text-labels">COUNTY</p>
                 <select style="color: black;" id="county5" class="form-control" name="county" required>
                     <option value="" disabled selected hidden>Enter County...</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FEE</p>
+                <p class="text-labels">ATTORNEY FEE</p>
                 <textarea id="fee2" name="fee" placeholder="Enter fee..." required></textarea>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY NAME</p>
+                <p class="text-labels">ATTORNEY NAME</p>
                 <textarea id="aname2" name="aname" placeholder="Enter name..." required></textarea>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY ADDRESS</p>
+                <p class="text-labels">ATTORNEY ADDRESS</p>
                 <textarea id="address2" name="address" placeholder="Enter address..." required></textarea>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FAX</p>
+                <p class="text-labels">ATTORNEY FAX</p>
                 <textarea id="fax2" name="fax" placeholder="Enter fax..." required></textarea>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY PHONE</p>
+                <p class="text-labels">ATTORNEY PHONE</p>
                 <textarea id="phone2" name="phone" placeholder="Enter phone..." required></textarea>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY EMAIL</p>
+                <p class="text-labels">ATTORNEY EMAIL</p>
                 <textarea id="email2" name="email" placeholder="Enter email..." required></textarea>
             </div>
             <div class="form-group">
-                <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY NOTES</p>
+                <p class="text-labels">ATTORNEY NOTES</p>
                 <textarea id="desc2" name="description" placeholder="Enter notes..."></textarea>
             </div>
             <input type="hidden" id="id" name="id" value="">
@@ -1033,7 +1033,7 @@
                 about the issue.</p>
             <form action="/submitNewTrouble?db=sales" method="post">
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
+                    <p class="text-labels">STATE</p>
                     <select style="color: black;" id="state_sales" class="form-control" placeholder="Enter State..." name="state" required>
                         <option value="AL">Alabama</option>
                         <option value="AZ">Arizona</option>
@@ -1087,18 +1087,18 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+                    <p class="text-labels">COUNTY</p>
                     <select style="color: black;" id="county_sales" class="form-control" name="county" required>
                         <option value="" disabled selected hidden>Enter County...</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">SALES PRICE</p>
+                    <p class="text-labels">SALES PRICE</p>
                     <textarea id="add-trouble-state-id" name="salesprice" placeholder="Enter sales price..."
                         required></textarea>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
+                    <p class="text-labels">DESCRIPTION</p>
                     <textarea id="add-trouble-desc" name="description" placeholder="Enter brief description..."
                         required></textarea>
                 </div>
@@ -1123,7 +1123,7 @@
                 about the issue.</p>
             <form action="/submitNewTrouble?db=driver" method="post">
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
+                    <p class="text-labels">STATE</p>
                     <select style="color: black;" id="state_driver" class="form-control" placeholder="Enter State..." name="state" required>
                         <option value="AL">Alabama</option>
                         <option value="AZ">Arizona</option>
@@ -1177,13 +1177,13 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+                    <p class="text-labels">COUNTY</p>
                     <select style="color: black;" id="county_driver" class="form-control" name="county" required>
                         <option value="" disabled selected hidden>Enter County...</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">DESCRIPTION</p>
+                    <p class="text-labels">DESCRIPTION</p>
                     <textarea id="add-trouble-desc" name="description" placeholder="Enter brief description..."
                         required></textarea>
                 </div>
@@ -1208,7 +1208,7 @@
                 about the issue.</p>
             <form action="/submitNewTrouble?db=processor" method="post">
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">STATE</p>
+                    <p class="text-labels">STATE</p>
                     <select style="color: black;" id="state_proc" class="form-control" placeholder="Enter State..." name="state" required>
                         <option value="AL">Alabama</option>
                         <option value="AZ">Arizona</option>
@@ -1262,37 +1262,37 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">COUNTY</p>
+                    <p class="text-labels">COUNTY</p>
                     <select style="color: black;" id="county_proc" class="form-control" name="county" required>
                         <option value="" disabled selected hidden>Enter County...</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FEE</p>
+                    <p class="text-labels">ATTORNEY FEE</p>
                     <textarea id="add-trouble-fee" name="fee" placeholder="Enter fee..." required></textarea>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY NAME</p>
+                    <p class="text-labels">ATTORNEY NAME</p>
                     <textarea id="add-trouble-n" name="attorneyname" placeholder="Enter name..." required></textarea>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY ADDRESS</p>
+                    <p class="text-labels">ATTORNEY ADDRESS</p>
                     <textarea id="add-trouble-add" name="address" placeholder="Enter address..." required></textarea>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY FAX</p>
+                    <p class="text-labels">ATTORNEY FAX</p>
                     <textarea id="add-trouble-fax" name="fax" placeholder="Enter fax..." required></textarea>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY PHONE</p>
+                    <p class="text-labels">ATTORNEY PHONE</p>
                     <textarea id="add-trouble-fax" name="phone" placeholder="Enter phone number..." required></textarea>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY EMAIL</p>
+                    <p class="text-labels">ATTORNEY EMAIL</p>
                     <textarea id="add-trouble-e" name="email" placeholder="Enter email..." required></textarea>
                 </div>
                 <div class="form-group">
-                    <p style="font-size: 12px;color: rgba(255, 255, 255, 0.25);">ATTORNEY NOTES</p>
+                    <p class="text-labels">ATTORNEY NOTES</p>
                     <textarea id="add-trouble-nn" name="description" placeholder="Enter notes..."></textarea>
                 </div>
 

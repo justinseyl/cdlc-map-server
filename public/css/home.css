@@ -61,15 +61,15 @@ html * {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-  border: solid 1px #204590;
-  background-color: rgba(74, 179, 173, 0.1);
+  border: solid 1px #3865e0;
+  background-color: rgba(40, 106, 241, 0.1);
   font-size: 16px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   text-align: center;
-  color: #000000;
+  color: #3865e0;
   padding: 15px;
   margin: auto;
   margin-right: 0px;
@@ -100,14 +100,15 @@ html * {
   float: right;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
-  background-color: #E8EDF9;
+  border: solid 1px #3865e0;
+  background-color: rgba(40, 106, 241, 0.1);
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   text-align: center;
-  color: #000000;
+  color: #3865e0;
   padding: 15px;
   cursor: pointer;
 }
@@ -127,20 +128,20 @@ html * {
   height: 100%;
 }
 path {
-  stroke: #204590 !important;
+  stroke: #3865e0 !important;
   stroke-width: 1px;
   fill: transparent;
 }
 path:hover, circle:hover {
-  stroke: #204590 !important;
+  stroke: #3865e0 !important;
   stroke-width:2px;
   stroke-linejoin: round;
-  fill: #E8EDF9 !important;
+  fill: rgba(40, 106, 241, 0.1) !important;
   cursor: pointer;
 }
 #path67 {
   fill: none !important;
-  stroke: #E8EDF9 !important;
+  stroke: rgba(40, 106, 241, 0.1) !important;
   cursor: default;
 }
 .list-states {
@@ -175,7 +176,7 @@ path:hover, circle:hover {
   height: 55px;
 }
 .state-tbl tr:hover {
-  background-color: #E8EDF9;
+  background-color: rgba(40, 106, 241, 0.1);
   cursor: pointer;
 }
 .state-tbl tr:first-child {
@@ -192,10 +193,11 @@ path:hover, circle:hover {
   letter-spacing: normal;
   color: #000000;
   cursor: pointer;
-  border-bottom: 1px solid #E8EDF9;
+  border-bottom: 1px solid rgba(40, 106, 241, 0.1);
 }
 .records-bubble {
-  background-color: #E8EDF9;
+  background-color: rgba(40, 106, 241, 0.1);
+  color: #3865e0;
   padding: 2px 13px;
 }
 .footer-map {
@@ -315,8 +317,9 @@ table tbody td:last-child {
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-    border: solid 1px #000000;
+    border: solid 1px #3865e0;
     background-color: rgba(49, 96, 165, 0.082);
+    color: #3865e0;
     padding: 7px;
   }
   .custom-buttons img {

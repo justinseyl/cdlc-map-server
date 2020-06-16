@@ -47,7 +47,7 @@ html * {
   background-color: transparent;
 }
 .table>tbody>tr:nth-child(odd),.table-notifications>tbody>tr:nth-child(odd) {
-  background-color: rgba(49, 96, 165, 0.082);
+  background-color: rgba(40, 106, 241, 0.1);
   /* background-color: #000000; */
 }
 .new {
@@ -108,7 +108,7 @@ html * {
     float: right;
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(49, 96, 165, 0.082);
     /* background-color: #000000; */
     font-size: 16px;
     font-weight: 500;
@@ -116,7 +116,8 @@ html * {
     font-style: normal;
     line-height: normal;
     text-align: center;
-    color: #000000;
+    border: solid 1px #3865e0;
+    color: #3865e0;
     padding: 12px;
     cursor: pointer;
 }

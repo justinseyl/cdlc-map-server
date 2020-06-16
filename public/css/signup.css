@@ -73,7 +73,7 @@ html, body {
 }
 
 .txt-hr {
-  height: 3px;	margin-top: 0px; width: 30px;	background-color: #000000; border: none;}
+  height: 3px;	margin-top: 0px; width: 30px;	background-color: #3865e0; border: none;}
 }
 
 .split-top {
@@ -94,9 +94,9 @@ input.form-control,select.form-control,.form-control[readonly] {
   border-radius: 2px;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
-  border: solid 1px rgba(242, 242, 250, 0.05);
+  border: solid 1px solid 1px rgba(98, 101, 125, 0.2);
   background-color: rgba(252, 252, 255, 0.05);
-  color: rgba(255, 255, 255, 0.8);
+  color: #3865e0;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -133,7 +133,7 @@ input.form-control:hover,input.form-control:active,input.form-control:focus,
 select.form-control:hover,select.form-control:active,select.form-control:focus {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border: solid 1px #000000;
+  border: solid 1px #3865e0;
   background-color: rgba(255, 255, 255, 0.05);
   caret-color: #000000;
 }
@@ -141,7 +141,7 @@ select.form-control:hover,select.form-control:active,select.form-control:focus {
 input#email-input.form-control:hover,input#email-input.form-control:active,input#email-input.form-control:focus {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border: solid 1px #000000;
+  border: solid 1px #3865e0;
   background-color: rgba(255, 255, 255, 0.05);
   caret-color: #000000;
 }
@@ -153,7 +153,7 @@ input#email-input.form-control:hover,input#email-input.form-control:active,input
 }
 
 input::placeholder {
-  opacity: 0.3;	color: #3C4152;	font-family: "Montserrat Medium";	font-size: 14px;	line-height: 18px;
+  opacity: 0.3;	color: #3C4152;	font-family: "Montserrat";	font-size: 14px;	line-height: 18px;
 }
 
 .signup-button {
@@ -164,8 +164,8 @@ input::placeholder {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-  border: solid 1px #000000;
-  background-color: #E8EDF9;
+  border: solid 1px #3865e0;
+  background-color: rgba(40, 106, 241, 0.1);
   font-size: 16px;
   font-weight: 600;
   font-stretch: normal;
@@ -173,7 +173,7 @@ input::placeholder {
   line-height: normal;
   letter-spacing: 0.44px;
   text-align: center;
-  color: #000000;
+  color: #3865e0;
 }
 
 .signup-button-frg {
@@ -184,8 +184,8 @@ input::placeholder {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-  border: solid 1px #000000;
-  background-color: #E8EDF9;
+  border: solid 1px #3865e0;
+  background-color: rgba(40, 106, 241, 0.1);
   font-size: 16px;
   font-weight: 600;
   font-stretch: normal;
@@ -193,7 +193,7 @@ input::placeholder {
   line-height: normal;
   letter-spacing: 0.44px;
   text-align: center;
-  color: #000000;
+  color: #3865e0;
 }
 
 .bottom-hr {
@@ -228,7 +228,7 @@ input::placeholder {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #000000 !important;
+  color: #3865e0 !important;
   margin-left: 10px;
   cursor: pointer;
 }
@@ -303,15 +303,15 @@ input::placeholder {
     height: 16px;
     transition: transform 0.28s ease;
     border-radius: 2px;
-    background-color: #E8EDF9;
+    background-color: #3865e0;;
 }
 .checkbox label:after {
   content: '';
     display: block;
     width: 10px;
     height: 5px;
-    border-bottom: 2px solid #000000;
-    border-left: 2px solid #000000;
+    border-bottom: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
     -webkit-transform: rotate(-45deg) scale(0);
     -moz-transform: rotate(-45deg) scale(0);
     -ms-transform: rotate(-45deg) scale(0);
@@ -321,7 +321,7 @@ input::placeholder {
     left: 7.5px;
 }
 .checkbox input[type="checkbox"]:checked ~ label::before {
-    color: #E8EDF9;
+    color: #3865e0;
 }
 
 .checkbox input[type="checkbox"]:checked ~ label::after {
@@ -374,7 +374,7 @@ input::placeholder {
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e2e5ee;
+  color: #62657d;
   margin-top: 10px;
   margin-bottom: 25px;
 }
