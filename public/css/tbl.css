@@ -128,7 +128,7 @@ table tbody td:last-child,table thead tr th:last-child {
 .tbl-audit-green {
   width: 75px;
   height: 17px;
-  background-color: rgba(74, 179, 173, 0.2);
+  background-color: #bdd1fa;
   font-size: 10px;
   font-weight: bold;
   font-stretch: normal;
@@ -136,7 +136,7 @@ table tbody td:last-child,table thead tr th:last-child {
   line-height: normal;
   letter-spacing: 1px;
   text-align: center;
-  color: #4ab3ad;
+  color: #3865e0;
   padding: 2px;
 }
 .tbl-audit-yellow {
@@ -171,15 +171,15 @@ table tbody td:last-child,table thead tr th:last-child {
   text-align: center;
 }
 .driver-event p {
-  opacity: 0.8;
-  font-size: 16px;
+  /* opacity: 0.8; */
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #e2e5ee;
+  color: #62657d;
 }
 .expand {
     height: 1em;
@@ -199,19 +199,19 @@ table tbody td:last-child,table thead tr th:last-child {
 }
 .page-item.active .page-link,.pagination>.active>a:focus {
     z-index: 1;
-    color: #000000;
-    background-color: #000000;
-    border-color: #000000;
+    color: #ffffff;
+    background-color: #ffffff;
+    border-color: #ffffff;
 }
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
-  color: #000000;
-  background-color: #000000;
-  border-color: #000000;
+  color: #ffffff;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
-  color: #000000;
-  background-color: #000000;
-  border-color: #000000;
+  color: #ffffff;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 .dataTables_info {
   color: #000000;

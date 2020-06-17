@@ -154,7 +154,7 @@ textarea {
   font-style: normal;
   line-height: normal;
   letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.25);
+  color: #62657d;
   text-align: center;
 }
 .popup-desc-emerg {
@@ -225,7 +225,7 @@ textarea {
 .tbl-audit-green {
   width: 75px;
   height: 17px;
-  background-color: rgba(74, 179, 173, 0.2);
+  background-color: #bdd1fa;
   font-size: 10px;
   font-weight: bold;
   font-stretch: normal;
@@ -277,7 +277,7 @@ textarea {
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-    border: border: solid 1px #3865e0;
+    border: solid 1px #3865e0;
     background-color: rgba(40, 106, 241, 0.1);
     width: 100%;
     margin-top: 50px;
@@ -288,7 +288,7 @@ textarea {
     line-height: 50px;
     letter-spacing: 0.44px;
     text-align: center;
-    color: #000000;
+    color: #3865e0;
     cursor: pointer;
 }
 .nobox-btn {
